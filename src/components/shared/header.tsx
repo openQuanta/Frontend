@@ -20,7 +20,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 z-10 w-full bg-background">
+    <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm">
       <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
         <Link href="/" id="logo" className="w-full max-w-[200px]">
           <Image src={logo} alt="OpenQuanta" className="w-full dark:invert" />
@@ -30,9 +30,9 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-5">
             <ModeToggle />
             <Button variant="link">
-              Request a Demo <ChevronRight />
+              Become a founding contributor <ChevronRight />
             </Button>
-            <Button variant="secondary">Join Waitlist</Button>
+            <Button className="bg-white hover:bg-white/95">Get Started</Button>
           </div>
 
           {/* Desktop Navigation */}

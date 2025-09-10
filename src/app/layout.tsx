@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import "remixicon/fonts/remixicon.css";
 import { ThemeProvider } from "@/context/theme-context";
 import Header from "@/components/shared/header";
 import Footer from "@/components/shared/footer";

@@ -1,4 +1,4 @@
-import heroArt from "./hero_art.png";
+import heroArt from "./cool_light_thingy.svg";
 import heroDash from "./hero_dashboard.png";
 import smartFlow from "./smart_flow_demo.png";
 import crossPlatform from "./cross_platform.png";

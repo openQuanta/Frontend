@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "@/assets/brand/logoWordOrangeWhite.svg";
+import logo from "@/assets/brand/logo_footer.svg";
 import Link from "next/link";
 import { ChevronUp } from "lucide-react";
 
@@ -8,20 +8,37 @@ export default function Footer() {
     <footer className="p-5">
       <section className="bg-[#181615]/40 rounded-2xl px-5 py-10">
         <div className="w-full max-w-[1200px] mx-auto grid gap-5 md:grid-cols-2">
-          <div>
+          <div className="grid gap-5">
             <Link href="/">
               <Image src={logo} alt="Open Quanta" className="w-[200px]" />
             </Link>
-            <p>
+            <p className="w-full max-w-[490px]">
               Publish your research on-chain with authorship Nft, earn
               recognition without gatekeepers, and join a global community
               redefining scientific collaboration.
             </p>
 
             {/* Social Icons */}
+            <div className="flex gap-5">
+              <a href="https://x.com/openquanta" target="_blank">
+                <i className="ri-twitter-fill text-2xl"></i>
+              </a>
+              <a href="https://discord.com/invite/openquanta" target="_blank">
+                <i className="ri-discord-fill text-2xl"></i>
+              </a>
+              <a href="https://www.youtube.com/@openquanta" target="_blank">
+                <i className="ri-youtube-fill text-2xl"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/openquanta/"
+                target="_blank"
+              >
+                <i className="ri-linkedin-fill text-2xl"></i>
+              </a>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-3 text-sm">
+          <div className="grid md:grid-cols-3 gap-5 text-sm">
             <div className="flex flex-col gap-4">
               <h4 className="text-[#4B4848] font-semibold">Documentation</h4>
               <Link href="#">About</Link>
