@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { heroArt, heroDash } from "@/assets/images";
+import { heroArt, heroDash, solana, superteam } from "@/assets/images";
 
 export default function Home() {
   return (
@@ -9,9 +9,9 @@ export default function Home() {
       {/* Hero */}
       <section
         style={{ backgroundImage: `url(${heroArt.src})` }}
-        className="w-full max-w-[1200px] h-screen mx-auto bg-contain bg-position-[90%] bg-no-repeat"
+        className="w-full max-w-[1200px] mx-auto bg-contain bg-center md:bg-position-[90%] bg-no-repeat"
       >
-        <div className="px-5 pt-40 pb-20 w-full max-w-[600px] flex flex-col gap-10 items-start">
+        <div className="px-5 pt-40 pb-20 w-full max-w-[600px] flex flex-col gap-10 items-start bg-black/30 backdrop-blur-sm">
           <div className="flex items-center gap-2 p-2 px-4 border border-white/30 rounded-full">
             <div className="w-3 h-3 rounded-full bg-violet-600"></div>
             <h4>On Chain & Transparent</h4>
@@ -38,9 +38,27 @@ export default function Home() {
       </section>
 
       <section className="-mt-20">
-        {/* Hero Bottom */}
         <div className="relative w-full max-w-[1000px] mx-auto px-5">
           <Image src={heroDash} alt="Hero Dashboard" />
+        </div>
+
+        <div className="w-max mx-auto text-center grid gap-5">
+          <p>We're backed by the strength of the Solana ecosystem</p>
+          <div className="flex gap-5">
+            <div></div>
+            <Image
+              src={solana}
+              alt="Solana logo"
+              fill
+              className="object-contain h-full"
+            />
+            <Image
+              src={superteam}
+              alt="Superteam logo"
+              fill
+              className="object-contain h-full"
+            />
+          </div>
         </div>
       </section>
     </main>

@@ -4,8 +4,6 @@ import smartFlow from "./smart_flow_demo.png";
 import crossPlatform from "./cross_platform.png";
 import solanaCode from "./solana_code.png";
 
-export { heroArt, heroDash, smartFlow, crossPlatform, solanaCode };
-
 // partner brands
 import solana from "./solana.png";
 import pumpScience from "./pump_science.png";
@@ -15,12 +13,12 @@ import mintlify from "./mintlify.png";
 import fey from "./fey.png";
 import bloomread from "./bloomread.png";
 
-export const brands = [
+export {
+  heroArt,
+  heroDash,
+  smartFlow,
+  crossPlatform,
+  solanaCode,
   solana,
-  pumpScience,
-  baseDash,
   superteam,
-  mintlify,
-  fey,
-  bloomread,
-];
+};
