@@ -24,10 +24,9 @@ export default function Home() {
                 Advancing human progress with publishing
               </h1>
               <p>
-                A decentralized platform where researchers can publish openly,
-                mint authorship NFTs, receive bids from readers and
-                institutions, and get reviewed in public by reputation-weighted
-                peers.
+                Transforming research through open publishing, authorship NFTs,
+                and reputation-weighted peer review — all on a decentralized
+                platform built on Solana.
               </p>
             </div>
 
