@@ -6,12 +6,7 @@ import solanaCode from "./solana_code.png";
 
 // partner brands
 import solana from "./solana.png";
-import pumpScience from "./pump_science.png";
-import baseDash from "./base_dash.png";
 import superteam from "./superteam.png";
-import mintlify from "./mintlify.png";
-import fey from "./fey.png";
-import bloomread from "./bloomread.png";
 
 export {
   heroArt,
