@@ -28,7 +28,7 @@ export default function Header() {
 
         <div className="flex flex-row-reverse items-center justify-between w-full gap-5 p-5">
           <div className="hidden md:flex items-center gap-5">
-            <ModeToggle />
+            {/* <ModeToggle /> */}
             <Button variant="link">
               Become a founding contributor <ChevronRight />
             </Button>

@@ -45,19 +45,22 @@ export default function Home() {
         <div className="w-max mx-auto text-center grid gap-5">
           <p>We're backed by the strength of the Solana ecosystem</p>
           <div className="flex gap-5">
-            <div></div>
-            <Image
-              src={solana}
-              alt="Solana logo"
-              fill
-              className="object-contain h-full"
-            />
-            <Image
-              src={superteam}
-              alt="Superteam logo"
-              fill
-              className="object-contain h-full"
-            />
+            <div className="relative w-full h-8">
+              <Image
+                src={solana}
+                alt="Solana logo"
+                fill
+                className="object-contain h-32"
+              />
+            </div>
+            <div className="relative w-full h-8">
+              <Image
+                src={superteam}
+                alt="Superteam logo"
+                fill
+                className="object-contain h-full"
+              />
+            </div>
           </div>
         </div>
       </section>
