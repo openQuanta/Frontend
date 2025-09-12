@@ -43,17 +43,17 @@ export default function Home() {
         </div>
 
         <div className="w-max mx-auto text-center grid gap-5">
-          <p>We're backed by the strength of the Solana ecosystem</p>
-          <div className="flex gap-5">
-            <div className="relative w-full h-8">
+          <p className="text-xl">We're backed by the strength of the Solana</p>
+          <div className="flex gap-5 px-10">
+            <div className="relative w-full h-4">
               <Image
                 src={solana}
                 alt="Solana logo"
                 fill
-                className="object-contain h-32"
+                className="object-contain"
               />
             </div>
-            <div className="relative w-full h-8">
+            <div className="relative w-full h-4">
               <Image
                 src={superteam}
                 alt="Superteam logo"
