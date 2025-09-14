@@ -13,8 +13,8 @@ import ModeToggle from "./mode-toggle";
 
 export default function Header() {
   const navLinks = [
-    { href: "/discover", label: "Discover Research" },
-    { href: "/bounties", label: "Funding & Bounties" },
+    { href: "/features", label: "Features" },
+    { href: "/explore", label: "Explore" },
     { href: "/docs", label: "Document" },
     { href: "/about", label: "About" },
   ];
@@ -27,7 +27,7 @@ export default function Header() {
         </Link>
 
         <div className="flex flex-row-reverse items-center justify-between w-full gap-5 p-5">
-          <div className="hidden md:flex items-center gap-5">
+          <div className="hidden lg:flex items-center gap-5">
             {/* <ModeToggle /> */}
             <Button variant="link">
               Become a founding contributor <ChevronRight />
@@ -36,7 +36,7 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-10">
+          <nav className="hidden lg:flex items-center gap-10">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -49,10 +49,10 @@ export default function Header() {
           </nav>
 
           {/* Mobile Dropdown Menu */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
+                <Button variant="ghost" size="icon" className="lg:hidden">
                   <AlignRight />
                   <span className="sr-only">Toggle menu</span>
                 </Button>
