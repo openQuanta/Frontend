@@ -5,12 +5,14 @@ import {
   circleDown,
   heroArt,
   heroDash,
+  pcTop,
   solana,
   superteam,
   triangleBlur,
 } from "@/assets/images";
 
 export default function Home() {
+  console.log(pcTop);
   return (
     <main className="font-sans flex flex-col gap-20">
       {/* Hero */}
@@ -89,11 +91,11 @@ export default function Home() {
         </div>
         <div className="bg-[#181615] rounded-2xl grid lg:grid-cols-4">
           <div className="md:col-span-1 flex flex-col gap-3 justify-center items-center lg:items-start text-center lg:text-left md:p-12 lg:-mr-36">
-            <Button variant="link" className="w-max text-sm">
+            <Button variant="link" className="w-max text-sm text-primary">
               Explore <ChevronRight />
             </Button>
             <div className="flex flex-col gap-3 px-3">
-              <h3 className="text-2xl">What You Can Do</h3>
+              <h3 className="text-2xl font-bold">What You Can Do</h3>
               <p className="text-sm max-w-sm">
                 Every layer of openQuanta is designed for scientific
                 collaboration and transparent publishing. Each piece plays a
@@ -176,6 +178,55 @@ export default function Home() {
               <div className="w-full max-w-36 h-full border-t border-l border-white/10 rounded-tl-xl"></div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Ideal Audience */}
+      <section className="w-full max-w-[1000px] mx-auto">
+        {/* illustration */}
+        <div className="flex w-full">
+          {/* client */}
+          <div className="w-max">
+            {/* will contain client illustration image and text */}
+            <div className="w-full h-36 relative">
+              <Image
+                src={pcTop.src}
+                alt="PC Top"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm">Researcher</h4>
+                <p>Alex Marshall</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm">Role</h4>
+                <p>Neuroscience DAO</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm">Title</h4>
+                <p>Episodic Activation</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm">Action</h4>
+                <p>Published</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm">Status</h4>
+                <p>Peer-reviewed & Minted</p>
+              </div>
+            </div>
+          </div>
+          {/* left orange bar */}
+          <div></div>
+          {/* middle circle with logo */}
+          <div></div>
+          {/* right orange bar */}
+          <div></div>
+          {/* server */}
+          <div>{/* will contain server illustration image and text */}</div>
         </div>
       </section>
     </main>
