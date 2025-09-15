@@ -12,7 +12,6 @@ import {
 } from "@/assets/images";
 
 export default function Home() {
-  console.log(pcTop);
   return (
     <main className="font-sans flex flex-col gap-20">
       {/* Hero */}
