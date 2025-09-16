@@ -10,6 +10,7 @@ import YoutubeIcon from "./Link - Youtube@4x (1).png"
 import LinkedinIcon from "./Link - LinkedIn.png"
 import TwitterIcon from "./Link - Whop's Twitter → SVG.png"
 import DiscordIcon from "./Link - Whop's Discord → SVG.png"
+import Logo from "./open-quanta-logo.png"
 
 
 // partner brands
@@ -31,4 +32,5 @@ export {
   LinkedinIcon,
   TwitterIcon,
   DiscordIcon,
+  Logo,
 };
