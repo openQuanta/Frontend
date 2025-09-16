@@ -1,15 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
-import {
-  circleDown,
-  heroArt,
-  heroDash,
-  pcTop,
-  solana,
-  superteam,
-  triangleBlur,
-} from "@/assets/images";
+
+// image assets
+import circleDown from "@/assets/images/circle_down.svg";
+import client from "@/assets/images/client.svg";
+import heroArt from "@/assets/images/cool_light_thingy.svg";
+import heroDash from "@/assets/images/hero_dashboard.png";
+import iconOrange from "@/assets/brand/iconOrange.svg";
+import server from "@/assets/images/server.svg";
+import solana from "@/assets/images/solana.png";
+import superteam from "@/assets/images/superteam.png";
+import triangleBlur from "@/assets/images/triangle_blur.png";
 
 export default function Home() {
   return (
@@ -18,7 +20,7 @@ export default function Home() {
       <section className="w-full max-w-[1200px] mx-auto">
         {/* top section */}
         <section
-          style={{ backgroundImage: `url(${heroArt.src})` }}
+          style={{ backgroundImage: `url(${heroArt})` }}
           className="w-full bg-contain bg-center md:bg-position-[90%] bg-no-repeat"
         >
           <div className="text-center md:text-left px-5 py-40 w-full max-w-[600px] flex flex-col items-center gap-10 md:items-start bg-black/30 backdrop-blur-sm">
@@ -76,7 +78,7 @@ export default function Home() {
       {/* Smart Flow */}
       <section className="p-5 grid gap-8 w-full max-w-[1200px] mx-auto">
         <div
-          style={{ backgroundImage: `url(${triangleBlur.src})` }}
+          style={{ backgroundImage: `url(${triangleBlur})` }}
           className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
         >
           <Image src={circleDown} alt="Circle Down" className="h-20 w-full" />
@@ -183,49 +185,69 @@ export default function Home() {
       {/* Ideal Audience */}
       <section className="w-full max-w-[1000px] mx-auto">
         {/* illustration */}
-        <div className="flex w-full">
+        <div className="flex items-center w-full">
           {/* client */}
-          <div className="w-max">
+          <div className="shrink-0 pt-32">
             {/* will contain client illustration image and text */}
-            <div className="w-full h-36 relative">
-              <Image
-                src={pcTop.src}
-                alt="PC Top"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div>
+            <Image src={client} alt="Client" className="w-full" />
+            <div className="">
               <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm">Researcher</h4>
+                <h4 className="text-sm opacity-40">Researcher</h4>
                 <p>Alex Marshall</p>
               </div>
               <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm">Role</h4>
+                <h4 className="text-sm opacity-40">Role</h4>
                 <p>Neuroscience DAO</p>
               </div>
               <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm">Title</h4>
+                <h4 className="text-sm opacity-40">Title</h4>
                 <p>Episodic Activation</p>
               </div>
               <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm">Action</h4>
+                <h4 className="text-sm opacity-40">Action</h4>
                 <p>Published</p>
               </div>
               <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm">Status</h4>
+                <h4 className="text-sm opacity-40">Status</h4>
                 <p>Peer-reviewed & Minted</p>
               </div>
             </div>
           </div>
           {/* left orange bar */}
-          <div></div>
+          <div className="w-full h-1 bg-primary"></div>
           {/* middle circle with logo */}
-          <div></div>
+          <div className="w-28 h-28 shrink-0 rounded-full border-x border-primary/80 flex items-center justify-center">
+            <Image src={iconOrange} alt="Icon Orange" className="w-3/4 h-3/4" />
+          </div>
           {/* right orange bar */}
-          <div></div>
+          <div className="w-full h-1 bg-primary"></div>
           {/* server */}
-          <div>{/* will contain server illustration image and text */}</div>
+          <div className="shrink-0 pt-32">
+            {/* will contain server illustration image and text */}
+            <Image src={server} alt="Server" className="w-full" />
+            <div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm opacity-40">Researcher</h4>
+                <p>Alex Marshall</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm opacity-40">Role</h4>
+                <p>Neuroscience DAO</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm opacity-40">Title</h4>
+                <p>Episodic Activation</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm opacity-40">Action</h4>
+                <p>Published</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm opacity-40">Status</h4>
+                <p>Peer-reviewed & Minted</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
