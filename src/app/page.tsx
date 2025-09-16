@@ -5,12 +5,14 @@ import {
   circleDown,
   heroArt,
   heroDash,
+  pcTop,
   solana,
   superteam,
   triangleBlur,
 } from "@/assets/images";
 
 export default function Home() {
+  console.log(pcTop);
   return (
     <main className="font-sans flex flex-col gap-20">
       {/* Hero */}
@@ -73,7 +75,7 @@ export default function Home() {
       </section>
 
       {/* Smart Flow */}
-      <section className="p-5">
+      <section className="p-5 grid gap-8 w-full max-w-[1200px] mx-auto">
         <div
           style={{ backgroundImage: `url(${triangleBlur.src})` }}
           className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
@@ -87,22 +89,24 @@ export default function Home() {
             result.
           </p>
         </div>
-        <div className="bg-[#181615] rounded-2xl grid grid-cols-4">
-          <div className="col-span-1">
-            <Button variant="link">
+        <div className="bg-[#181615] rounded-2xl grid lg:grid-cols-4">
+          <div className="md:col-span-1 flex flex-col gap-3 justify-center items-center lg:items-start text-center lg:text-left md:p-12 lg:-mr-36">
+            <Button variant="link" className="w-max text-sm text-primary">
               Explore <ChevronRight />
             </Button>
-            <h3>What You Can Do</h3>
-            <p>
-              Every layer of openQuanta is designed for scientific collaboration
-              and transparent publishing. Each piece plays a vital role in
-              advancing open research.
-            </p>
+            <div className="flex flex-col gap-3 px-3">
+              <h3 className="text-2xl font-bold">What You Can Do</h3>
+              <p className="text-sm max-w-sm">
+                Every layer of openQuanta is designed for scientific
+                collaboration and transparent publishing. Each piece plays a
+                vital role in advancing open research.
+              </p>
+            </div>
           </div>
-          <div className="col-span-3 flex flex-col gap-5">
+          <div className="lg:col-span-3 flex flex-col gap-5">
             {/* first layer */}
             <div className="flex justify-between gap-5">
-              <div className="w-full h-16 border-b border-white/10 rounded-xl"></div>
+              <div className="w-full h-28 border-b border-white/10 rounded-xl"></div>
               <div className="grid gap-5 w-max">
                 <div className="w-full h-5 border-b border-x border-white/10 rounded-b-xl"></div>
                 <div className="flex gap-5">
@@ -126,7 +130,7 @@ export default function Home() {
             </div>
 
             {/* second layer */}
-            <div className="flex justify-center gap-5">
+            <div className="flex justify-end md:mr-10 lg:mr-20 gap-5">
               <div className="p-5 bg-white/5 border border-white/10 rounded-xl w-[200px]">
                 <h4 className="font-bold mb-1">Reputation Layer</h4>
                 <p className="text-xs text-[#92939D] line-clamp-3">
@@ -148,7 +152,81 @@ export default function Home() {
                 </p>
               </div>
             </div>
+
+            {/* third layer */}
+            <div className="flex justify-between gap-5">
+              <div className="w-full h-28 mt-auto border-t border-x border-white/10 rounded-t-xl"></div>
+              <div className="grid gap-5 w-max">
+                <div className="flex gap-5">
+                  <div className="p-5 bg-white/5 border border-white/10 rounded-xl w-[200px]">
+                    <h4 className="font-bold mb-1">Research Paper</h4>
+                    <p className="text-xs text-[#92939D] line-clamp-3">
+                      Submit and tokenize your paper to prove authorship and
+                      control distribution.
+                    </p>
+                  </div>
+                  <div className="p-5 bg-white/5 border border-white/10 rounded-xl w-[200px]">
+                    <h4 className="font-bold mb-1">Peer Review NFT</h4>
+                    <p className="text-xs text-[#92939D] line-clamp-3">
+                      Provide expert feedback and mint it on-chain as a
+                      verifiable review asset.
+                    </p>
+                  </div>
+                </div>
+                <div className="w-full h-5 border-t border-x border-white/10 rounded-t-xl"></div>
+              </div>
+              <div className="w-full max-w-36 h-full border-t border-l border-white/10 rounded-tl-xl"></div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Ideal Audience */}
+      <section className="w-full max-w-[1000px] mx-auto">
+        {/* illustration */}
+        <div className="flex w-full">
+          {/* client */}
+          <div className="w-max">
+            {/* will contain client illustration image and text */}
+            <div className="w-full h-36 relative">
+              <Image
+                src={pcTop.src}
+                alt="PC Top"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm">Researcher</h4>
+                <p>Alex Marshall</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm">Role</h4>
+                <p>Neuroscience DAO</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm">Title</h4>
+                <p>Episodic Activation</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm">Action</h4>
+                <p>Published</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline">
+                <h4 className="text-sm">Status</h4>
+                <p>Peer-reviewed & Minted</p>
+              </div>
+            </div>
+          </div>
+          {/* left orange bar */}
+          <div></div>
+          {/* middle circle with logo */}
+          <div></div>
+          {/* right orange bar */}
+          <div></div>
+          {/* server */}
+          <div>{/* will contain server illustration image and text */}</div>
         </div>
       </section>
     </main>
