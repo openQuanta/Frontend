@@ -13,6 +13,7 @@ import TwitterIcon from "./Link - Whop's Twitter → SVG.png"
 import DiscordIcon from "./Link - Whop's Discord → SVG.png"
 import Logo from "./open-quanta-logo.png"
 import WaitlistBg from "./WaitlistBg.svg"
+import BgLines from "./rectangle.svg"
 
 
 // partner brands
@@ -37,4 +38,5 @@ export {
   DiscordIcon,
   Logo,
   WaitlistBg,
+  BgLines
 };
