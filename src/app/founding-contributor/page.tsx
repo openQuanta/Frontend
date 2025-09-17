@@ -1,7 +1,7 @@
 import { BubbleBackground } from "@/components/ui/shadcn-io/bubble-background/index";
 import { circleTick, DiscordIcon, LinkedinIcon, TwitterIcon, YoutubeIcon, } from "@/assets/images";
 import Image from "next/image";
-import { Link2Icon } from "lucide-react";
+import SimpleFooter from "@/components/shared/SimpleFooter";
 
 export default function Page() {
   return (
@@ -91,30 +91,7 @@ export default function Page() {
             </form>
         </div>
       {/* </BubbleBackground> */}
-      <footer className="pl-27">
-        <ul className="flex gap-[16px] items-center">
-          <li>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <Image src={TwitterIcon} alt="Twitter icon" width={14.25} height={12.5} />
-            </a>
-          </li>
-          <li>
-            <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
-              <Image src={DiscordIcon} alt="Discord icon" width={14.25} height={12.5} />
-            </a>
-          </li>
-          <li>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-              <Image src={YoutubeIcon} alt="Youtube icon" width={14.25} height={12.5} />
-            </a>
-          </li>
-          <li>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-              <Image src={LinkedinIcon} alt="Linkedin icon" width={14.25} height={12.5} />
-            </a>
-          </li>
-        </ul>
-      </footer>
+      <SimpleFooter />
     </div>
   );
 }

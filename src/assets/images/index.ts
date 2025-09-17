@@ -12,6 +12,7 @@ import LinkedinIcon from "./Link - LinkedIn.png"
 import TwitterIcon from "./Link - Whop's Twitter → SVG.png"
 import DiscordIcon from "./Link - Whop's Discord → SVG.png"
 import Logo from "./open-quanta-logo.png"
+import WaitlistBg from "./WaitlistBg.svg"
 
 
 // partner brands
@@ -35,4 +36,5 @@ export {
   TwitterIcon,
   DiscordIcon,
   Logo,
+  WaitlistBg,
 };
