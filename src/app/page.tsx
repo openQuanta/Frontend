@@ -20,7 +20,7 @@ export default function Home() {
       <section className="w-full max-w-[1200px] mx-auto">
         {/* top section */}
         <section
-          style={{ backgroundImage: `url(${heroArt})` }}
+          style={{ backgroundImage: `url(${heroArt.src})` }}
           className="w-full bg-contain bg-center md:bg-position-[90%] bg-no-repeat"
         >
           <div className="text-center md:text-left px-5 py-40 w-full max-w-[600px] flex flex-col items-center gap-10 md:items-start bg-black/30 backdrop-blur-sm">
@@ -78,7 +78,7 @@ export default function Home() {
       {/* Smart Flow */}
       <section className="p-5 grid gap-8 w-full max-w-[1200px] mx-auto">
         <div
-          style={{ backgroundImage: `url(${triangleBlur})` }}
+          style={{ backgroundImage: `url(${triangleBlur.src})` }}
           className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
         >
           <Image src={circleDown} alt="Circle Down" className="h-20 w-full" />
@@ -187,28 +187,28 @@ export default function Home() {
         {/* illustration */}
         <div className="flex items-center w-full">
           {/* client */}
-          <div className="shrink-0 pt-32">
+          <div className="shrink-0 pt-24">
             {/* will contain client illustration image and text */}
             <Image src={client} alt="Client" className="w-full" />
             <div className="">
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm opacity-40">Researcher</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Researcher</h4>
                 <p>Alex Marshall</p>
               </div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm opacity-40">Role</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Role</h4>
                 <p>Neuroscience DAO</p>
               </div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm opacity-40">Title</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Title</h4>
                 <p>Episodic Activation</p>
               </div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm opacity-40">Action</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Action</h4>
                 <p>Published</p>
               </div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm opacity-40">Status</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Status</h4>
                 <p>Peer-reviewed & Minted</p>
               </div>
             </div>
@@ -222,32 +222,50 @@ export default function Home() {
           {/* right orange bar */}
           <div className="w-full h-1 bg-primary"></div>
           {/* server */}
-          <div className="shrink-0 pt-32">
+          <div className="shrink-0 pt-24">
             {/* will contain server illustration image and text */}
             <Image src={server} alt="Server" className="w-full" />
             <div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm opacity-40">Researcher</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Researcher</h4>
                 <p>Alex Marshall</p>
               </div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm opacity-40">Role</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Role</h4>
                 <p>Neuroscience DAO</p>
               </div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm opacity-40">Title</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Title</h4>
                 <p>Episodic Activation</p>
               </div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm opacity-40">Action</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Action</h4>
                 <p>Published</p>
               </div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm opacity-40">Status</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Status</h4>
                 <p>Peer-reviewed & Minted</p>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* content */}
+        <div className="text-center w-full max-w-[600px] mx-auto flex flex-col gap-5">
+          <h2 className="text-primary">What publishing looks like on-chain</h2>
+          <p className="text-5xl">
+            Once published, your work is reviewed, minted, and listed on the
+            marketplace.
+          </p>
+          <p className="text-white/65">
+            On-chain publishing turns your work into an authorship NFT — proof
+            of ownership, permanent record, and a tradable asset. It preserves
+            credibility while opening direct paths to funding and wider
+            recognition
+          </p>
+          <Button variant="link">
+            Becoming a founding contributor <ChevronRight />
+          </Button>
         </div>
       </section>
     </main>
