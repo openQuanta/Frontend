@@ -10,6 +10,7 @@ import heroDash from "@/assets/images/hero_dashboard.png";
 import iconOrange from "@/assets/brand/iconOrange.svg";
 import server from "@/assets/images/server.svg";
 import solana from "@/assets/images/solana.png";
+import solanaVerification from "@/assets/images/solana_verification.svg";
 import superteam from "@/assets/images/superteam.png";
 import triangleBlur from "@/assets/images/triangle_blur.png";
 
@@ -266,6 +267,43 @@ export default function Home() {
           <Button variant="link">
             Becoming a founding contributor <ChevronRight />
           </Button>
+        </div>
+      </section>
+
+      {/* How Verification Works */}
+      <section className="w-full max-w-[1200px] mx-auto p-5">
+        <div className="bg-[#181615] rounded-2xl flex gap-5">
+          {/* content */}
+          <div className="flex flex-col gap-10 p-10 w-full max-w-[420px]">
+            <div className="flex flex-col gap-3">
+              <h2 className="font-bold text-3xl">How Verification Works</h2>
+              <h3 className="text-primary text-xl">
+                Immutable Proof on Solana Blockchain
+              </h3>
+            </div>
+            <div className="flex flex-col gap-3 text-white/65 text-sm">
+              <p>
+                Every journal entry on openQuanta is cryptographically
+                timestamped and permanently anchored on the Solana blockchain.
+                This guarantees your authorship, timestamp, and data remain
+                tamper-proof and secure. It feels like publishing on any modern
+                digital platform simple, fast, and accessible.
+              </p>
+              <p>
+                Behind the scenes, advanced infrastructure ensures your work is
+                permanently protected.
+              </p>
+            </div>
+          </div>
+
+          {/* illustration */}
+          <div className="relative">
+            <Image
+              src={solanaVerification}
+              alt="Solana Verification"
+              className="w-full"
+            />
+          </div>
         </div>
       </section>
     </main>
