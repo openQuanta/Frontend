@@ -306,6 +306,18 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* CTA */}
+      <section className="w-full max-w-[1200px] mx-auto p-5 flex flex-col gap-10 text-center items-center">
+        <div className="flex flex-col gap-5">
+          <h2 className="text-5xl">Start Publishing</h2>
+          <p className="text-white/65">
+            All you need is your research. We handle the rest from on-chain
+            proof to peer discovery.
+          </p>
+        </div>
+        <Button className="w-max text-white">Get Started</Button>
+      </section>
     </main>
   );
 }
