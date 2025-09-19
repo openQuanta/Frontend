@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, CircleX, Search, SendHorizontal } from "lucide-react";
 import Image from "next/image";
 
 // image assets
@@ -304,6 +304,38 @@ export default function Home() {
               className="w-full"
             />
           </div>
+        </div>
+      </section>
+
+      {/* Why OpenQuanta */}
+      <section className="w-full max-w-[640px] mx-auto p-5 flex flex-col gap-10 text-center items-center">
+        <div className="flex flex-col gap-5">
+          <h2 className="text-5xl">Why OpenQuanta?</h2>
+          <p>
+            We've seen quality research die in desk drawers. Brilliant minds
+            give away credit just to get published. Geographic bias beats good
+            science and curators are plagued by perverse incentives and as
+            distributors they are often paywalled.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2 w-full">
+          {/* input box */}
+          <div className="flex gap-2 items-center p-2 border border-white/10 rounded-full w-full">
+            <div className="flex gap-2 items-center p-2 w-full">
+              <Search size={16} />
+              <input
+                type="text"
+                placeholder="Ask any question about openQuanta"
+                className="w-full text-xs outline-0"
+              />
+            </div>
+            <div className="bg-white/80 p-2 rounded-full text-black w-max">
+              <SendHorizontal />
+            </div>
+          </div>
+          {/* clear icon */}
+          <CircleX className="text-white shrink-0" />
         </div>
       </section>
 
