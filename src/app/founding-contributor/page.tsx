@@ -8,7 +8,7 @@ export default function Page() {
     <div>
       <BubbleBackground interactive={true}>
         <div className="relative z-0 header container mx-auto pl-15 pt-40 gap-[40px]">
-          <div className="flex items-center gap-[12px] border-[0.5px] rounded-[38px] py-3 w-[223px] h-[38px] mb-10 text-[14px] font-[400] ">
+          <div className="flex items-center justify-center gap-[12px] border-[0.5px] rounded-[38px] py-3 w-[223px] h-[38px] mb-10 text-[14px] font-[400] ">
             <span className="w-3 h-3 bg-[#FF4C0C] rounded-full"></span>
             <span>Onchain & Transparent</span>
           </div>
