@@ -29,9 +29,11 @@ export default function Header() {
         <div className="flex flex-row-reverse items-center justify-between w-full gap-5 p-5">
           <div className="hidden lg:flex items-center gap-5">
             {/* <ModeToggle /> */}
-            <Button variant="link">
-              Become a founding contributor <ChevronRight />
-            </Button>
+            <Link href="/founding-contributor">
+              <Button variant="link">
+                Become a founding contributor <ChevronRight />
+              </Button>
+            </Link>
             <Button className="bg-white hover:bg-white/95">Get Started</Button>
           </div>
 

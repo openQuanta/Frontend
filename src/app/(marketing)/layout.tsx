@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import "../globals.css";
 import "remixicon/fonts/remixicon.css";
 import { ThemeProvider } from "@/context/theme-context";
 import Header from "@/components/shared/header";
@@ -10,7 +10,7 @@ const halenoir = localFont({
   variable: "--font-halenoir",
   src: [
     {
-      path: "../assets/fonts/HalenoirCompact-Regular.otf",
+      path: "../../assets/fonts/HalenoirCompact-Regular.otf",
       weight: "400",
       style: "normal",
     },

@@ -13,6 +13,7 @@ import solana from "@/assets/images/solana.png";
 import solanaVerification from "@/assets/images/solana_verification.svg";
 import superteam from "@/assets/images/superteam.png";
 import triangleBlur from "@/assets/images/triangle_blur.png";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -43,9 +44,11 @@ export default function Home() {
 
             <div className="grid md:flex items-center gap-5">
               <Button variant="outline">Get Started</Button>
-              <Button variant="link">
-                Become a founding contributor <ChevronRight />
-              </Button>
+              <Link href="/founding-contributor">
+                <Button variant="link">
+                  Become a founding contributor <ChevronRight />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
