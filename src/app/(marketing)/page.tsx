@@ -15,7 +15,7 @@ import superteam from "@/assets/images/superteam.png";
 import triangleBlur from "@/assets/images/triangle_blur.png";
 import Link from "next/link";
 
-export default function Home() {
+export default function Page() {
   return (
     <main className="font-sans flex flex-col gap-20">
       {/* Hero */}
