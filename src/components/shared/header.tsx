@@ -1,3 +1,5 @@
+"use client";
+
 import { AlignRight, ChevronRight, Menu } from "lucide-react";
 import logo from "@/assets/brand/logoWordBlack.svg";
 import Image from "next/image";
@@ -10,8 +12,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import ModeToggle from "./mode-toggle";
+import dynamic from "next/dynamic";
+import { useWallet } from "@solana/wallet-adapter-react";
 
-export default function Header() {
+export function MarketingHeader() {
   const navLinks = [
     { href: "/features", label: "Features" },
     { href: "/explore", label: "Explore" },
@@ -73,6 +77,33 @@ export default function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+const WalletMultiButton = dynamic(
+  async () =>
+    (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
+  {
+    ssr: false,
+  }
+);
+
+export function UserHeader() {
+  const wallet = useWallet();
+  return (
+    <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm">
+      <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
+        <Link href="/" id="logo" className="w-full max-w-[200px]">
+          <Image src={logo} alt="OpenQuanta" className="w-full dark:invert" />
+        </Link>
+
+        <div>
+          <WalletMultiButton>
+            {wallet.connected ? wallet.publicKey?.toBase58() : "Connect Wallet"}
+          </WalletMultiButton>
         </div>
       </div>
     </header>

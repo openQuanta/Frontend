@@ -3,8 +3,8 @@ import localFont from "next/font/local";
 import "../globals.css";
 import "remixicon/fonts/remixicon.css";
 import { ThemeProvider } from "@/context/theme-context";
-import Header from "@/components/shared/header";
 import Footer from "@/components/shared/footer";
+import { MarketingHeader } from "@/components/shared/header";
 
 const halenoir = localFont({
   variable: "--font-halenoir",
@@ -37,7 +37,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
+          <MarketingHeader />
           {children}
           <Footer />
         </ThemeProvider>
