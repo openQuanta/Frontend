@@ -1,18 +1,21 @@
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, CircleX, Search, SendHorizontal } from "lucide-react";
 import Image from "next/image";
-import {
-  circleDown,
-  heroArt,
-  heroDash,
-  pcTop,
-  solana,
-  superteam,
-  triangleBlur,
-} from "@/assets/images";
 
-export default function Home() {
-  console.log(pcTop);
+// image assets
+import circleDown from "@/assets/images/circle_down.svg";
+import client from "@/assets/images/client.svg";
+import heroArt from "@/assets/images/cool_light_thingy.svg";
+import heroDash from "@/assets/images/hero_dashboard.png";
+import iconOrange from "@/assets/brand/iconOrange.svg";
+import server from "@/assets/images/server.svg";
+import solana from "@/assets/images/solana.png";
+import solanaVerification from "@/assets/images/solana_verification.svg";
+import superteam from "@/assets/images/superteam.png";
+import triangleBlur from "@/assets/images/triangle_blur.png";
+import Link from "next/link";
+
+export default function Page() {
   return (
     <main className="font-sans flex flex-col gap-20">
       {/* Hero */}
@@ -41,9 +44,11 @@ export default function Home() {
 
             <div className="grid md:flex items-center gap-5">
               <Button variant="outline">Get Started</Button>
-              <Button variant="link">
-                Become a founding contributor <ChevronRight />
-              </Button>
+              <Link href="/founding-contributor">
+                <Button variant="link">
+                  Become a founding contributor <ChevronRight />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
@@ -184,50 +189,169 @@ export default function Home() {
       {/* Ideal Audience */}
       <section className="w-full max-w-[1000px] mx-auto">
         {/* illustration */}
-        <div className="flex w-full">
+        <div className="flex items-center w-full">
           {/* client */}
-          <div className="w-max">
+          <div className="shrink-0 pt-24">
             {/* will contain client illustration image and text */}
-            <div className="w-full h-36 relative">
-              <Image
-                src={pcTop.src}
-                alt="PC Top"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm">Researcher</h4>
+            <Image src={client} alt="Client" className="w-full" />
+            <div className="">
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Researcher</h4>
                 <p>Alex Marshall</p>
               </div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm">Role</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Role</h4>
                 <p>Neuroscience DAO</p>
               </div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm">Title</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Title</h4>
                 <p>Episodic Activation</p>
               </div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm">Action</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Action</h4>
                 <p>Published</p>
               </div>
-              <div className="flex gap-3 justify-between items-baseline">
-                <h4 className="text-sm">Status</h4>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Status</h4>
                 <p>Peer-reviewed & Minted</p>
               </div>
             </div>
           </div>
           {/* left orange bar */}
-          <div></div>
+          <div className="w-full h-1 bg-primary"></div>
           {/* middle circle with logo */}
-          <div></div>
+          <div className="w-28 h-28 shrink-0 rounded-full border-x border-primary/80 flex items-center justify-center">
+            <Image src={iconOrange} alt="Icon Orange" className="w-3/4 h-3/4" />
+          </div>
           {/* right orange bar */}
-          <div></div>
+          <div className="w-full h-1 bg-primary"></div>
           {/* server */}
-          <div>{/* will contain server illustration image and text */}</div>
+          <div className="shrink-0 pt-24">
+            {/* will contain server illustration image and text */}
+            <Image src={server} alt="Server" className="w-full" />
+            <div>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Researcher</h4>
+                <p>Alex Marshall</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Role</h4>
+                <p>Neuroscience DAO</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Title</h4>
+                <p>Episodic Activation</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Action</h4>
+                <p>Published</p>
+              </div>
+              <div className="flex gap-3 justify-between items-baseline text-xs">
+                <h4 className="opacity-40">Status</h4>
+                <p>Peer-reviewed & Minted</p>
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* content */}
+        <div className="text-center w-full max-w-[600px] mx-auto flex flex-col gap-5">
+          <h2 className="text-primary">What publishing looks like on-chain</h2>
+          <p className="text-5xl">
+            Once published, your work is reviewed, minted, and listed on the
+            marketplace.
+          </p>
+          <p className="text-white/65">
+            On-chain publishing turns your work into an authorship NFT — proof
+            of ownership, permanent record, and a tradable asset. It preserves
+            credibility while opening direct paths to funding and wider
+            recognition
+          </p>
+          <Button variant="link">
+            Becoming a founding contributor <ChevronRight />
+          </Button>
+        </div>
+      </section>
+
+      {/* How Verification Works */}
+      <section className="w-full max-w-[1200px] mx-auto p-5">
+        <div className="bg-[#181615] rounded-2xl flex gap-5">
+          {/* content */}
+          <div className="flex flex-col gap-10 p-10 w-full max-w-[420px]">
+            <div className="flex flex-col gap-3">
+              <h2 className="font-bold text-3xl">How Verification Works</h2>
+              <h3 className="text-primary text-xl">
+                Immutable Proof on Solana Blockchain
+              </h3>
+            </div>
+            <div className="flex flex-col gap-3 text-white/65 text-sm">
+              <p>
+                Every journal entry on openQuanta is cryptographically
+                timestamped and permanently anchored on the Solana blockchain.
+                This guarantees your authorship, timestamp, and data remain
+                tamper-proof and secure. It feels like publishing on any modern
+                digital platform simple, fast, and accessible.
+              </p>
+              <p>
+                Behind the scenes, advanced infrastructure ensures your work is
+                permanently protected.
+              </p>
+            </div>
+          </div>
+
+          {/* illustration */}
+          <div className="relative">
+            <Image
+              src={solanaVerification}
+              alt="Solana Verification"
+              className="w-full"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Why OpenQuanta */}
+      <section className="w-full max-w-[640px] mx-auto p-5 flex flex-col gap-10 text-center items-center">
+        <div className="flex flex-col gap-5">
+          <h2 className="text-5xl">Why OpenQuanta?</h2>
+          <p>
+            We've seen quality research die in desk drawers. Brilliant minds
+            give away credit just to get published. Geographic bias beats good
+            science and curators are plagued by perverse incentives and as
+            distributors they are often paywalled.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2 w-full">
+          {/* input box */}
+          <div className="flex gap-2 items-center p-2 border border-white/10 rounded-full w-full">
+            <div className="flex gap-2 items-center p-2 w-full">
+              <Search size={16} />
+              <input
+                type="text"
+                placeholder="Ask any question about openQuanta"
+                className="w-full text-xs outline-0"
+              />
+            </div>
+            <div className="bg-white/80 p-2 rounded-full text-black w-max">
+              <SendHorizontal />
+            </div>
+          </div>
+          {/* clear icon */}
+          <CircleX className="text-white shrink-0" />
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="w-full max-w-[1200px] mx-auto p-5 flex flex-col gap-10 text-center items-center">
+        <div className="flex flex-col gap-5">
+          <h2 className="text-5xl">Start Publishing</h2>
+          <p className="text-white/65">
+            All you need is your research. We handle the rest from on-chain
+            proof to peer discovery.
+          </p>
+        </div>
+        <Button className="w-max text-white">Get Started</Button>
       </section>
     </main>
   );

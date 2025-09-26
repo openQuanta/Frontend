@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import "../globals.css";
 import "remixicon/fonts/remixicon.css";
 import { ThemeProvider } from "@/context/theme-context";
-import Header from "@/components/shared/header";
-import Footer from "@/components/shared/footer";
+
+import { UserHeader } from "@/components/shared/header";
+import { SolanaProvider } from "@/context/solana";
 
 const halenoir = localFont({
   variable: "--font-halenoir",
   src: [
     {
-      path: "../assets/fonts/HalenoirCompact-Regular.otf",
+      path: "../../assets/fonts/HalenoirCompact-Regular.otf",
       weight: "400",
       style: "normal",
     },
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     "openQuanta powered by DeSciE=mc² A decentralized science platform that powers researchers to publish, review and monetize their work transparently using blockchain technology.",
 };
 
-export default function RootLayout({
+export default function UserLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -37,9 +38,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          {children}
-          <Footer />
+          <SolanaProvider>
+            <UserHeader />
+            {children}
+          </SolanaProvider>
         </ThemeProvider>
       </body>
     </html>
