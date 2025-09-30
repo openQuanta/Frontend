@@ -329,7 +329,7 @@ export default function Page() {
         </div>
 
         <div className="p-8 bg-white/5 rounded-2xl space-y-18">
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
+          <h3 className="text-2xl lg:text-3xl font-bold">
             <span className="text-white/50">Report from </span>Researchers
           </h3>
 
@@ -375,7 +375,7 @@ export default function Page() {
       {/* Why OpenQuanta */}
       <section className="w-full max-w-[640px] mx-auto p-5 flex flex-col gap-10 text-center items-center">
         <div className="flex flex-col gap-5">
-          <h2 className="text-5xl">Why OpenQuanta?</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl">Why OpenQuanta?</h2>
           <p>
             We've seen quality research die in desk drawers. Brilliant minds
             give away credit just to get published. Geographic bias beats good
@@ -407,7 +407,7 @@ export default function Page() {
       {/* CTA */}
       <section className="w-full max-w-[1200px] mx-auto p-5 flex flex-col gap-10 text-center items-center">
         <div className="flex flex-col gap-5">
-          <h2 className="text-5xl">Start Publishing</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl">Start Publishing</h2>
           <p className="text-white/65">
             All you need is your research. We handle the rest from on-chain
             proof to peer discovery.
