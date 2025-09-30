@@ -90,7 +90,7 @@ export default function Page() {
       </section>
 
       {/* Smart Flow */}
-      <section className="p-5 gap-8 w-full max-w-[1200px] mx-auto">
+      <section className="p-5 space-y-8 w-full max-w-[1200px] mx-auto">
         <div
           style={{ backgroundImage: `url(${triangleBlur.src})` }}
           className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
@@ -118,7 +118,7 @@ export default function Page() {
               </p>
             </div>
           </div>
-          <div className="lg:col-span-3 flex flex-col gap-5">
+          <div className="lg:col-span-3 hidden md:flex md:flex-col gap-5">
             {/* first layer */}
             <div className="flex justify-between gap-5">
               <div className="w-full h-28 border-b border-white/10 rounded-xl"></div>
@@ -197,7 +197,7 @@ export default function Page() {
       </section>
 
       {/* Ideal Audience */}
-      <section className="hidden w-full max-w-[1000px] mx-auto">
+      <section className="w-full max-w-[1000px] mx-auto">
         {/* illustration */}
         <div className="flex items-center w-full">
           {/* client */}
@@ -285,7 +285,7 @@ export default function Page() {
 
       {/* How Verification Works */}
       <section className="w-full max-w-[1200px] mx-auto p-5">
-        <div className="bg-[#181615] p-8 rounded-2x grid lg:grid-cols-12 gap-6">
+        <div className="bg-[#181615] p-8 rounded-2xl grid lg:grid-cols-12 gap-6">
           {/* content */}
           <div className="flex flex-col gap-10 w-full self-center lg:col-span-5">
             <div className="flex flex-col gap-3">
@@ -310,7 +310,7 @@ export default function Page() {
           </div>
 
           {/* illustration */}
-          <div className="lg:-ml-18 lg:col-span-7">
+          <div className="-ml-12 md:-ml-16 lg:-ml-18 lg:col-span-7">
             <Image src={solanaVerification} alt="Solana Verification" />
           </div>
         </div>
