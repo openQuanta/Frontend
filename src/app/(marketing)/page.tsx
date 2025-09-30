@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { ChevronRight, CircleX, Search, SendHorizontal } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronRight,
+  CircleX,
+  Search,
+  SendHorizontal,
+} from "lucide-react";
 import Image from "next/image";
 
 // image assets
@@ -13,7 +19,10 @@ import solana from "@/assets/images/solana.png";
 import solanaVerification from "@/assets/images/solana_verification.svg";
 import superteam from "@/assets/images/superteam.png";
 import triangleBlur from "@/assets/images/triangle_blur.png";
+import connectorLine from "@/assets/images/connector-line.svg";
 import Link from "next/link";
+import ResearchPreviewCard from "@/components/research/research-preview";
+import { Icon } from "@/components/ui/icon";
 
 export default function Page() {
   return (
@@ -80,7 +89,7 @@ export default function Page() {
       </section>
 
       {/* Smart Flow */}
-      <section className="p-5 grid gap-8 w-full max-w-[1200px] mx-auto">
+      <section className="hidden p-5 gap-8 w-full max-w-[1200px] mx-auto">
         <div
           style={{ backgroundImage: `url(${triangleBlur.src})` }}
           className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
@@ -187,7 +196,7 @@ export default function Page() {
       </section>
 
       {/* Ideal Audience */}
-      <section className="w-full max-w-[1000px] mx-auto">
+      <section className="hidden w-full max-w-[1000px] mx-auto">
         {/* illustration */}
         <div className="flex items-center w-full">
           {/* client */}
@@ -307,6 +316,38 @@ export default function Page() {
               className="w-full"
             />
           </div>
+        </div>
+      </section>
+
+      {/* Feedback from users */}
+      <section></section>
+
+      {/* Featured research */}
+      <section className="w-full max-w-[1200px] mx-auto p-5 grid md:flex place-items-center md:justify-center">
+        <div className="w-full md:max-w-2/5 border border-[#6462B866] rounded p-10 h-[480px] flex flex-col justify-center gap-12">
+          <h3 className="text-2xl text-[#6A63F6]">Featured Research</h3>
+          <div className="space-y-6">
+            <h4 className="text-3xl  md:text-4xl lg:text-5xl">
+              Punchy research focus/title
+            </h4>
+            <p className="text-muted-foreground">
+              Explore groundbreaking work from scientists, DAOs. All research is
+              peer-reviewed, minted on-chain.
+            </p>
+          </div>
+          <Link href="/explore" className="text-sm flex gap-3 items-center">
+            Explore Research <ArrowRight />
+          </Link>
+        </div>
+        <Image
+          src={connectorLine}
+          alt="Connector Line"
+          className="rotate-90 md:rotate-0 -my-4"
+        />
+        <div className="w-full md:max-w-2/5 border border-[#6462B866] rounded p-5 h-[480px] flex flex-col gap-5 overflow-y-scroll">
+          <ResearchPreviewCard />
+          <ResearchPreviewCard />
+          <ResearchPreviewCard />
         </div>
       </section>
 
