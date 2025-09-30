@@ -196,15 +196,15 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Ideal Audience */}
-      <section className="w-full max-w-[1000px] mx-auto">
+      {/* What Publishing looks like */}
+      <section className="p-6 space-y-12 md:space-y-0 w-full max-w-[1000px] mx-auto">
         {/* illustration */}
-        <div className="flex items-center w-full">
+        <div className="grid place-items-center md:flex md:items-center w-full">
           {/* client */}
-          <div className="shrink-0 pt-24">
+          <div className="shrink-0 md:pt-24">
             {/* will contain client illustration image and text */}
             <Image src={client} alt="Client" className="w-full" />
-            <div className="">
+            <div className="hidden md:block">
               <div className="flex gap-3 justify-between items-baseline text-xs">
                 <h4 className="opacity-40">Researcher</h4>
                 <p>Alex Marshall</p>
@@ -228,18 +228,18 @@ export default function Page() {
             </div>
           </div>
           {/* left orange bar */}
-          <div className="w-full h-1 bg-primary"></div>
+          <div className="w-1 h-24 md:w-full md:h-1 bg-primary"></div>
           {/* middle circle with logo */}
           <div className="w-28 h-28 shrink-0 rounded-full border-x border-primary/80 flex items-center justify-center">
             <Image src={iconOrange} alt="Icon Orange" className="w-3/4 h-3/4" />
           </div>
           {/* right orange bar */}
-          <div className="w-full h-1 bg-primary"></div>
+          <div className="w-1 h-24 md:w-full md:h-1 bg-primary"></div>
           {/* server */}
-          <div className="shrink-0 pt-24">
+          <div className="shrink-0 md:pt-24">
             {/* will contain server illustration image and text */}
             <Image src={server} alt="Server" className="w-full" />
-            <div>
+            <div className="hidden md:block">
               <div className="flex gap-3 justify-between items-baseline text-xs">
                 <h4 className="opacity-40">Researcher</h4>
                 <p>Alex Marshall</p>
@@ -267,7 +267,7 @@ export default function Page() {
         {/* content */}
         <div className="text-center w-full max-w-[600px] mx-auto flex flex-col gap-5">
           <h2 className="text-primary">What publishing looks like on-chain</h2>
-          <p className="text-5xl">
+          <p className="text-3xl md:text-4xl lg:text-5xl">
             Once published, your work is reviewed, minted, and listed on the
             marketplace.
           </p>
