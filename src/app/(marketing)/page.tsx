@@ -23,6 +23,7 @@ import connectorLine from "@/assets/images/connector-line.svg";
 import Link from "next/link";
 import ResearchPreviewCard from "@/components/research/research-preview";
 import { Icon } from "@/components/ui/icon";
+import TestimonialCarousel from "@/components/feedback/testimonial-carousel";
 
 export default function Page() {
   return (
@@ -89,7 +90,7 @@ export default function Page() {
       </section>
 
       {/* Smart Flow */}
-      <section className="hidden p-5 gap-8 w-full max-w-[1200px] mx-auto">
+      <section className="p-5 gap-8 w-full max-w-[1200px] mx-auto">
         <div
           style={{ backgroundImage: `url(${triangleBlur.src})` }}
           className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
@@ -284,9 +285,9 @@ export default function Page() {
 
       {/* How Verification Works */}
       <section className="w-full max-w-[1200px] mx-auto p-5">
-        <div className="bg-[#181615] rounded-2xl flex gap-5">
+        <div className="bg-[#181615] p-8 rounded-2x grid lg:grid-cols-12 gap-6">
           {/* content */}
-          <div className="flex flex-col gap-10 p-10 w-full max-w-[420px]">
+          <div className="flex flex-col gap-10 w-full self-center lg:col-span-5">
             <div className="flex flex-col gap-3">
               <h2 className="font-bold text-3xl">How Verification Works</h2>
               <h3 className="text-primary text-xl">
@@ -309,18 +310,38 @@ export default function Page() {
           </div>
 
           {/* illustration */}
-          <div className="relative">
-            <Image
-              src={solanaVerification}
-              alt="Solana Verification"
-              className="w-full"
-            />
+          <div className="lg:-ml-18 lg:col-span-7">
+            <Image src={solanaVerification} alt="Solana Verification" />
           </div>
         </div>
       </section>
 
       {/* Feedback from users */}
-      <section></section>
+      <section className="w-full max-w-[1200px] mx-auto p-5 space-y-12">
+        <div
+          style={{ backgroundImage: `url(${triangleBlur.src})` }}
+          className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
+        >
+          <Image src={circleDown} alt="Circle Down" className="h-20 w-full" />
+          <h2 className="text-3xl md:text-4xl lg:text-5xl">
+            Feedback from <span className="text-primary">tradition users</span>
+          </h2>
+        </div>
+
+        <div className="p-8 bg-white/5 rounded-2xl space-y-18">
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
+            <span className="text-white/50">Report from </span>Researchers
+          </h3>
+
+          <p>
+            Each card below carries a unique voice from different vibrant
+            community — researchers, developers, dreamers, and doers — all
+            united by a deep love for open science. From labs to ledgers, this
+            is love from DeSci builders, to the world.
+          </p>
+          <TestimonialCarousel />
+        </div>
+      </section>
 
       {/* Featured research */}
       <section className="w-full max-w-[1200px] mx-auto p-5 grid md:flex place-items-center md:justify-center">
