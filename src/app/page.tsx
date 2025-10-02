@@ -77,8 +77,8 @@ export default function Home() {
       {/* Smart Flow */}
       <section className="p-5 grid gap-8 w-full max-w-[1200px] mx-auto">
         <div
-          style={{ backgroundImage: `url(${triangleBlur.src})` }}
-          className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
+          // style={{ backgroundImage: `url(${triangleBlur.src})` }}
+          className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat "
         >
           <Image src={circleDown} alt="Circle Down" className="h-20 w-full" />
           <h2 className="text-5xl">
@@ -88,6 +88,7 @@ export default function Home() {
             A seamless, step-by-step flow to guide you from first click to final
             result.
           </p>
+          <div className="w-100 bg-[#ff4d0c0e] h-100 rounded-full absolute z-100 -10 blur-2xl"></div>
         </div>
         <div className="bg-[#181615] rounded-2xl grid lg:grid-cols-4">
           <div className="md:col-span-1 flex flex-col gap-3 justify-center items-center lg:items-start text-center lg:text-left md:p-12 lg:-mr-36">
@@ -220,7 +221,7 @@ export default function Home() {
             </div>
           </div>
           {/* left orange bar */}
-          <div></div>
+          <div className=""></div>
           {/* middle circle with logo */}
           <div></div>
           {/* right orange bar */}

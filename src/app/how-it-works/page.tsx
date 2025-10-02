@@ -62,7 +62,6 @@ export default function Page() {
           <span>0</span>
           <span>0 </span>
         </div>
-        <DraggableBubble />
       </div>
 
       {/* Summary Section */}
@@ -149,3 +148,4 @@ export default function Page() {
     </div>
   );
 }
+ 

@@ -86,9 +86,9 @@ function BubbleBackground({
               --first-color: ${colors.first};
               --second-color: ${colors.second};
               --third-color: ${colors.third};
-              --fourth-color: ${colors.fourth};
-              --fifth-color: ${colors.fifth};
-              --sixth-color: ${colors.sixth};
+              // --fourth-color: ${colors.fourth};
+              // --fifth-color: ${colors.fifth};
+              // --sixth-color: ${colors.sixth};
             }
           `}
       </style>
@@ -117,11 +117,11 @@ function BubbleBackground({
 
       <div
         className="absolute inset-0"
-        style={{ filter: 'url(#goo) blur(40px)' }}
+        style={{ filter: 'url(#goo) blur(70px)' }}
       >
         <motion.div
-          className="absolute rounded-full size-[80%] top-[10%] left-[10%] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--first-color),0.8)_0%,rgba(var(--first-color),0)_50%)]"
-          animate={{ y: [-50, 50, -50] }}
+          className="absolute rounded-full w-[520px] h-[533px] top-[10%] left-[10%] bg-[radial-gradient(circle_at_center,rgba(var(--first-color),0.7)_0%,rgba(var(--first-color),0)_40%)] mix-blend-soft-light blur-3xl"
+          animate={{ y: [-50, 50, -50]}}
           transition={{ duration: 30, ease: 'easeInOut', repeat: Infinity }}
         />
 
@@ -135,7 +135,7 @@ function BubbleBackground({
             repeatType: 'loop',
           }}
         >
-          <div className="rounded-full size-[80%] top-[10%] left-[10%] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--second-color),0.8)_0%,rgba(var(--second-color),0)_50%)]" />
+          <div className="rounded-full size-[520px] top-[10%] left-[10%] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--second-color),0.8)_0%,rgba(var(--second-color),0)_50%)]" />
         </motion.div>
 
         <motion.div
@@ -143,11 +143,11 @@ function BubbleBackground({
           animate={{ rotate: 360 }}
           transition={{ duration: 40, ease: 'linear', repeat: Infinity }}
         >
-          <div className="absolute rounded-full size-[80%] bg-[radial-gradient(circle_at_center,rgba(var(--third-color),0.8)_0%,rgba(var(--third-color),0)_50%)] mix-blend-hard-light top-[calc(50%+200px)] left-[calc(50%-500px)]" />
+          <div className="absolute rounded-full size-[520px] bg-[radial-gradient(circle_at_center,rgba(var(--third-color),0.8)_0%,rgba(var(--third-color),0)_50%)] mix-blend-hard-light top-[calc(50%+200px)] left-[calc(50%-500px)]" />
         </motion.div>
 
         <motion.div
-          className="absolute rounded-full size-[80%] top-[10%] left-[10%] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--fourth-color),0.8)_0%,rgba(var(--fourth-color),0)_50%)] opacity-70"
+          className="absolute rounded-full size-[5 20px] top-[10%] left-[10%] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--fourth-color),0.8)_0%,rgba(var(--fourth-color),0)_50%)] opacity-70"
           animate={{ x: [-50, 50, -50] }}
           transition={{ duration: 40, ease: 'easeInOut', repeat: Infinity }}
         />
@@ -157,7 +157,7 @@ function BubbleBackground({
           animate={{ rotate: 360 }}
           transition={{ duration: 20, ease: 'linear', repeat: Infinity }}
         >
-          <div className="absolute rounded-full size-[160%] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--fifth-color),0.8)_0%,rgba(var(--fifth-color),0)_50%)] top-[calc(50%-80%)] left-[calc(50%-80%)]" />
+          <div className="absolute rounded-full size-[220px] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--fifth-color),0.8)_0%,rgba(var(--fifth-color),0)_50%)] top-[calc(50%-80%)] left-[calc(50%-80%)]" />
         </motion.div>
 
         {interactive && (
