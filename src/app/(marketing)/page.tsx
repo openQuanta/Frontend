@@ -52,7 +52,9 @@ export default function Page() {
             </div>
 
             <div className="grid md:flex items-center gap-5">
-              <Button variant="outline">Get Started</Button>
+              <Link href="/login">
+                <Button variant="outline">Get Started</Button>
+              </Link>
               <Link href="/founding-contributor">
                 <Button variant="link">
                   Become a founding contributor <ChevronRight />
@@ -412,7 +414,9 @@ export default function Page() {
             proof to peer discovery.
           </p>
         </div>
-        <Button className="w-max text-white">Get Started</Button>
+        <Link href="/login">
+          <Button className="w-max text-white">Get Started</Button>
+        </Link>
       </section>
     </main>
   );
