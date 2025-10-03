@@ -1,28 +1,28 @@
 "use client";
 
-import { AlignRight, ChevronRight, Menu } from "lucide-react";
+import { AlignRight, ChevronRight } from "lucide-react";
 import logo from "@/assets/brand/logoWordBlack.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import ModeToggle from "./mode-toggle";
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+  SheetHeader,
+} from "@/components/ui/sheet";
 import dynamic from "next/dynamic";
 import { useWallet } from "@solana/wallet-adapter-react";
 
-export function MarketingHeader() {
-  const navLinks = [
-    { href: "/features", label: "Features" },
-    { href: "/explore", label: "Explore" },
-    { href: "/docs", label: "Document" },
-    { href: "/about", label: "About" },
-  ];
+const navLinks = [
+  { href: "/research", label: "Research" },
+  { href: "/publish", label: "Publish" },
+  { href: "/discover", label: "Discover" },
+  { href: "/about", label: "About" },
+];
 
+export function MarketingHeader() {
   return (
     <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm">
       <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
@@ -30,19 +30,9 @@ export function MarketingHeader() {
           <Image src={logo} alt="OpenQuanta" className="w-full dark:invert" />
         </Link>
 
-        <div className="flex flex-row-reverse items-center justify-between w-full gap-5 p-5">
-          <div className="hidden lg:flex items-center gap-5">
-            {/* <ModeToggle /> */}
-            <Link href="/founding-contributor">
-              <Button variant="link">
-                Become a founding contributor <ChevronRight />
-              </Button>
-            </Link>
-            <Button className="bg-white hover:bg-white/95">Get Started</Button>
-          </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-10">
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center justify-between w-full">
+          <div className="flex gap-6 items-center">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -52,31 +42,48 @@ export function MarketingHeader() {
                 {link.label}
               </Link>
             ))}
-          </nav>
-
-          {/* Mobile Dropdown Menu */}
-          <div className="lg:hidden">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="lg:hidden">
-                  <AlignRight />
-                  <span className="sr-only">Toggle menu</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
-                {navLinks.map((link) => (
-                  <DropdownMenuItem key={link.href} asChild>
-                    <Link
-                      href={link.href}
-                      className="w-full cursor-pointer text-lg flex justify-end"
-                    >
-                      {link.label}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
           </div>
+
+          <div className="flex gap-6 items-center">
+            <Button variant="link">
+              Become a founding contributor <ChevronRight />
+            </Button>
+            <Button className="bg-white">Get Started</Button>
+          </div>
+        </nav>
+
+        {/* Mobile Sheet Menu */}
+        <div className="lg:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="lg:hidden w-18 h-18"
+              >
+                <AlignRight className="w-full h-full" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <SheetHeader></SheetHeader>
+              <div className="flex flex-col gap-8 p-6 py-12">
+                {navLinks.map((link) => (
+                  <SheetClose asChild key={link.href}>
+                    <Link href={link.href}>{link.label}</Link>
+                  </SheetClose>
+                ))}
+                <SheetClose asChild>
+                  <Link href="/founding-contributor">
+                    Become a founding contributor
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Button className="bg-white">Get Started</Button>
+                </SheetClose>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>

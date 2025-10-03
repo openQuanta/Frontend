@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -68,7 +69,7 @@ export default function TestimonialCarousel() {
               <CardContent className="p-3 flex flex-col">
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-4">
-                  <img
+                  <Image
                     src={t.avatar}
                     alt={t.name}
                     className="w-10 h-10 rounded-full"

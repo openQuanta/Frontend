@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import Image from "next/image";
 
 interface ResearchPreviewCardProps {
   loading?: boolean;
@@ -58,12 +59,12 @@ export default function ResearchPreviewCard({
       {/* Top section */}
       <div className="flex items-center justify-between text-sm text-gray-400">
         <div className="flex items-center space-x-2">
-          <img
+          <Image
             src="https://i.pravatar.cc/40?img=1"
             alt="avatar1"
             className="w-7 h-7 rounded-full border border-gray-700"
           />
-          <img
+          <Image
             src="https://i.pravatar.cc/40?img=2"
             alt="avatar2"
             className="w-7 h-7 rounded-full border border-gray-700 -ml-2"
@@ -95,12 +96,12 @@ export default function ResearchPreviewCard({
 
       {/* Peer reviews */}
       <div className="flex items-center space-x-2">
-        <img
+        <Image
           src="https://i.pravatar.cc/40?img=3"
           alt="avatar3"
           className="w-7 h-7 rounded-full border border-gray-700"
         />
-        <img
+        <Image
           src="https://i.pravatar.cc/40?img=4"
           alt="avatar4"
           className="w-7 h-7 rounded-full border border-gray-700 -ml-2"
