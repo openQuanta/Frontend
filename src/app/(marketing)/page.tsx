@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { ChevronRight, CircleX, Search, SendHorizontal } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronRight,
+  CircleX,
+  Search,
+  SendHorizontal,
+} from "lucide-react";
 import Image from "next/image";
 
 // image assets
@@ -13,7 +19,10 @@ import solana from "@/assets/images/solana.png";
 import solanaVerification from "@/assets/images/solana_verification.svg";
 import superteam from "@/assets/images/superteam.png";
 import triangleBlur from "@/assets/images/triangle_blur.png";
+import connectorLine from "@/assets/images/connector-line.svg";
 import Link from "next/link";
+import ResearchPreviewCard from "@/components/research/research-preview";
+import TestimonialCarousel from "@/components/feedback/testimonial-carousel";
 
 export default function Page() {
   return (
@@ -43,7 +52,9 @@ export default function Page() {
             </div>
 
             <div className="grid md:flex items-center gap-5">
-              <Button variant="outline">Get Started</Button>
+              <Link href="/login">
+                <Button variant="outline">Get Started</Button>
+              </Link>
               <Link href="/founding-contributor">
                 <Button variant="link">
                   Become a founding contributor <ChevronRight />
@@ -61,7 +72,7 @@ export default function Page() {
 
           <div className="text-center grid gap-5 py-10">
             <p className="text-sm md:text-xl">
-              We're backed by the strength of the Solana ecosystem
+              We&apos;re backed by the strength of the Solana ecosystem
             </p>
             <div className="flex justify-center items-center gap-5 px-10">
               <div className="relative">
@@ -80,7 +91,7 @@ export default function Page() {
       </section>
 
       {/* Smart Flow */}
-      <section className="p-5 grid gap-8 w-full max-w-[1200px] mx-auto">
+      <section className="p-5 space-y-8 w-full max-w-[1200px] mx-auto">
         <div
           style={{ backgroundImage: `url(${triangleBlur.src})` }}
           className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
@@ -108,7 +119,7 @@ export default function Page() {
               </p>
             </div>
           </div>
-          <div className="lg:col-span-3 flex flex-col gap-5">
+          <div className="lg:col-span-3 hidden md:flex md:flex-col gap-5">
             {/* first layer */}
             <div className="flex justify-between gap-5">
               <div className="w-full h-28 border-b border-white/10 rounded-xl"></div>
@@ -186,15 +197,15 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Ideal Audience */}
-      <section className="w-full max-w-[1000px] mx-auto">
+      {/* What Publishing looks like */}
+      <section className="p-6 space-y-12 md:space-y-0 w-full max-w-[1000px] mx-auto">
         {/* illustration */}
-        <div className="flex items-center w-full">
+        <div className="grid place-items-center md:flex md:items-center w-full">
           {/* client */}
-          <div className="shrink-0 pt-24">
+          <div className="shrink-0 md:pt-24">
             {/* will contain client illustration image and text */}
             <Image src={client} alt="Client" className="w-full" />
-            <div className="">
+            <div className="hidden md:block">
               <div className="flex gap-3 justify-between items-baseline text-xs">
                 <h4 className="opacity-40">Researcher</h4>
                 <p>Alex Marshall</p>
@@ -218,18 +229,18 @@ export default function Page() {
             </div>
           </div>
           {/* left orange bar */}
-          <div className="w-full h-1 bg-primary"></div>
+          <div className="w-1 h-24 md:w-full md:h-1 bg-primary"></div>
           {/* middle circle with logo */}
           <div className="w-28 h-28 shrink-0 rounded-full border-x border-primary/80 flex items-center justify-center">
             <Image src={iconOrange} alt="Icon Orange" className="w-3/4 h-3/4" />
           </div>
           {/* right orange bar */}
-          <div className="w-full h-1 bg-primary"></div>
+          <div className="w-1 h-24 md:w-full md:h-1 bg-primary"></div>
           {/* server */}
-          <div className="shrink-0 pt-24">
+          <div className="shrink-0 md:pt-24">
             {/* will contain server illustration image and text */}
             <Image src={server} alt="Server" className="w-full" />
-            <div>
+            <div className="hidden md:block">
               <div className="flex gap-3 justify-between items-baseline text-xs">
                 <h4 className="opacity-40">Researcher</h4>
                 <p>Alex Marshall</p>
@@ -257,7 +268,7 @@ export default function Page() {
         {/* content */}
         <div className="text-center w-full max-w-[600px] mx-auto flex flex-col gap-5">
           <h2 className="text-primary">What publishing looks like on-chain</h2>
-          <p className="text-5xl">
+          <p className="text-3xl md:text-4xl lg:text-5xl">
             Once published, your work is reviewed, minted, and listed on the
             marketplace.
           </p>
@@ -275,9 +286,9 @@ export default function Page() {
 
       {/* How Verification Works */}
       <section className="w-full max-w-[1200px] mx-auto p-5">
-        <div className="bg-[#181615] rounded-2xl flex gap-5">
+        <div className="bg-[#181615] p-8 rounded-2xl grid lg:grid-cols-12 gap-6">
           {/* content */}
-          <div className="flex flex-col gap-10 p-10 w-full max-w-[420px]">
+          <div className="flex flex-col gap-10 w-full self-center lg:col-span-5">
             <div className="flex flex-col gap-3">
               <h2 className="font-bold text-3xl">How Verification Works</h2>
               <h3 className="text-primary text-xl">
@@ -300,24 +311,76 @@ export default function Page() {
           </div>
 
           {/* illustration */}
-          <div className="relative">
-            <Image
-              src={solanaVerification}
-              alt="Solana Verification"
-              className="w-full"
-            />
+          <div className="-ml-12 md:-ml-16 lg:-ml-18 lg:col-span-7">
+            <Image src={solanaVerification} alt="Solana Verification" />
           </div>
+        </div>
+      </section>
+
+      {/* Feedback from users */}
+      <section className="w-full max-w-[1200px] mx-auto p-5 space-y-12">
+        <div
+          style={{ backgroundImage: `url(${triangleBlur.src})` }}
+          className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
+        >
+          <Image src={circleDown} alt="Circle Down" className="h-20 w-full" />
+          <h2 className="text-3xl md:text-4xl lg:text-5xl">
+            Feedback from <span className="text-primary">tradition users</span>
+          </h2>
+        </div>
+
+        <div className="p-8 bg-white/5 rounded-2xl space-y-18">
+          <h3 className="text-2xl lg:text-3xl font-bold">
+            <span className="text-white/50">Report from </span>Researchers
+          </h3>
+
+          <p>
+            Each card below carries a unique voice from different vibrant
+            community — researchers, developers, dreamers, and doers — all
+            united by a deep love for open science. From labs to ledgers, this
+            is love from DeSci builders, to the world.
+          </p>
+          <TestimonialCarousel />
+        </div>
+      </section>
+
+      {/* Featured research */}
+      <section className="w-full max-w-[1200px] mx-auto p-5 grid md:flex place-items-center md:justify-center">
+        <div className="w-full md:max-w-2/5 border border-[#6462B866] rounded p-10 h-[480px] flex flex-col justify-center gap-12">
+          <h3 className="text-2xl text-[#6A63F6]">Featured Research</h3>
+          <div className="space-y-6">
+            <h4 className="text-3xl  md:text-4xl lg:text-5xl">
+              Punchy research focus/title
+            </h4>
+            <p className="text-muted-foreground">
+              Explore groundbreaking work from scientists, DAOs. All research is
+              peer-reviewed, minted on-chain.
+            </p>
+          </div>
+          <Link href="/explore" className="text-sm flex gap-3 items-center">
+            Explore Research <ArrowRight />
+          </Link>
+        </div>
+        <Image
+          src={connectorLine}
+          alt="Connector Line"
+          className="rotate-90 md:rotate-0 -my-4"
+        />
+        <div className="w-full md:max-w-2/5 border border-[#6462B866] rounded p-5 h-[480px] flex flex-col gap-5 overflow-y-scroll">
+          <ResearchPreviewCard />
+          <ResearchPreviewCard />
+          <ResearchPreviewCard />
         </div>
       </section>
 
       {/* Why OpenQuanta */}
       <section className="w-full max-w-[640px] mx-auto p-5 flex flex-col gap-10 text-center items-center">
         <div className="flex flex-col gap-5">
-          <h2 className="text-5xl">Why OpenQuanta?</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl">Why OpenQuanta?</h2>
           <p>
-            We've seen quality research die in desk drawers. Brilliant minds
-            give away credit just to get published. Geographic bias beats good
-            science and curators are plagued by perverse incentives and as
+            We&apos;ve seen quality research die in desk drawers. Brilliant
+            minds give away credit just to get published. Geographic bias beats
+            good science and curators are plagued by perverse incentives and as
             distributors they are often paywalled.
           </p>
         </div>
@@ -345,13 +408,15 @@ export default function Page() {
       {/* CTA */}
       <section className="w-full max-w-[1200px] mx-auto p-5 flex flex-col gap-10 text-center items-center">
         <div className="flex flex-col gap-5">
-          <h2 className="text-5xl">Start Publishing</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl">Start Publishing</h2>
           <p className="text-white/65">
             All you need is your research. We handle the rest from on-chain
             proof to peer discovery.
           </p>
         </div>
-        <Button className="w-max text-white">Get Started</Button>
+        <Link href="/login">
+          <Button className="w-max text-white">Get Started</Button>
+        </Link>
       </section>
     </main>
   );
