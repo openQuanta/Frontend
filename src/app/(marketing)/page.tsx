@@ -11,7 +11,7 @@ import Image from "next/image";
 // image assets
 import circleDown from "@/assets/images/circle_down.svg";
 import client from "@/assets/images/client.svg";
-import heroArt from "@/assets/images/cool_light_thingy.svg";
+import heroArt from "@/assets/images/cool_light_thingy.png";
 import heroDash from "@/assets/images/hero_dashboard.png";
 import iconOrange from "@/assets/brand/iconOrange.svg";
 import server from "@/assets/images/server.svg";
@@ -65,7 +65,7 @@ export default function Page() {
         </section>
 
         {/* bottom section with illustration */}
-        <section className="-mt-20 px-5">
+        <section className=" px-5">
           <div className="relative w-full max-w-[1000px] mx-auto">
             <Image src={heroDash} alt="Hero Dashboard" />
           </div>
