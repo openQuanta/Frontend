@@ -89,15 +89,16 @@ export function ScrollIndicator({ sections, className, scrollContainerRef }: Scr
         <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[1px] bg-zinc-800" />
 
         <div
-          className="absolute left-1/2 -translate-x-1/2 top-0 w-[1px] bg-gradient-to-b from-blue-500 via-blue-600 to-transparent transition-all duration-200 ease-out"
+          className="absolute left-1/2 -translate-x-1/2 top-0 w-[1px]  bg-white to-transparent transition-all duration-200 ease-out"
           style={{ height: `${normalizedPercent}%` }}
         />
 
         <div
-          className="absolute left-1/2 -translate-x-1/2 w-7 h-7 border border-white bg-transparent rounded-full transition-all duration-200 ease-out"
-          style={{ top: `calc(${normalizedPercent}% - 13px)` }}
-        >
-          <div className="w-full h-full bg-white/10 rounded-full" />
+          className="absolute left-1/2 -translate-x-1/2 w-[35px] h-[24px] border border-white transition-all duration-200 ease-out flex justify-center items-center bg-black 
+             before:content-[''] before:absolute before:left-0 before:top-1/2 before:w-[10px] before:flex before:items-center before:justify-center before:h-[25px] before:bg-black before:-translate-x-[-12px] before:-translate-y-1/2"
+          style={{ top: `calc(${normalizedPercent}% - 13px)` }}>
+
+          <div className="w-[5px] h-[5px] bg-white rounded-[1px] absolute"/>
         </div>
 
         <div className="relative mt-6 space-y-12">
@@ -106,16 +107,14 @@ export function ScrollIndicator({ sections, className, scrollContainerRef }: Scr
               key={section.id}
               onClick={() => scrollToSection(section.id)}
               className="flex items-center gap-6 group cursor-pointer"
-              aria-label={`Go to ${section.label}`}
-            >
+              aria-label={`Go to ${section.label}`}>
               <div className="w-7 h-7" />
               <div className="flex items-center gap-3">
                 <span
                   className={cn(
                     'text-lg font-light transition-all duration-200 ease-out whitespace-nowrap',
                     index === activeSection ? 'text-white' : 'text-zinc-500 group-hover:text-zinc-400'
-                  )}
-                >
+                  )}>
                   {section.label}
                 </span>
                 <span

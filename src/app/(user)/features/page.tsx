@@ -5,7 +5,8 @@ import { AnimatedButton } from "@/components/ui/animated-button";
 import { Caret, DashboardModel, CerficateIcon, FilelockIcon, TargetIcon, GridImg} from "@/assets/images";
 import { ScrollIndicator } from "../features/scroll-indicator";
 import DynamicScrollCards from "./dynamic-cards";
-
+import Footer from "@/components/shared/footer";
+import { Button } from "@/components/ui/button";
 
 const sections = [
     { id: "upload-research", label: "Upload research", number: "01" },
@@ -29,7 +30,7 @@ export default function Page() {
 
     return (
         <div className="flex flex-col gap-[40px]">
-            <div className="flex flex-col gap-[64px] px-[87px] pt-[200px] pb-[42px] border">
+            <div className="flex flex-col gap-[64px] px-[87px] pt-[200px] pb-[42px]">
                 <div className="flex flex-col">
                     <div className="grid gap-10 mb-[64px]">
                         <div className="flex items-center gap-2 px-[24px] py-[12px] border border-white/30 rounded-full w-[223px] h-[38px] text-[14px]">
@@ -40,7 +41,7 @@ export default function Page() {
                             Powering the future of research publishing
                         </h2>
                     </div>
-                    <p className="text-[16px] opacity-64 w-[984px] h-[77px]">
+                    <p className="text-[16px] opacity-64 w-[984px] h-[77px] ">
                         Submit <span className="bg-[#6D78D5] border-[#6D78D5]">Papers </span>
                         <sup className="bg-[#6D78D5] w-[28.64px] h-[16.78px] mb-[30px]">Joe</sup>and build your reputation in a new era of publishers collaboration. We make research verifiable, and market-driven through blockchain technology.
                     </p>
@@ -63,7 +64,7 @@ export default function Page() {
                 </div>
             </div>
 
-            <div className="w-[1252px] h-[512px] gap-[120px] flex sticky mt-[80px] text-[20px] justify-center items-center border mx-auto">
+            <div className="w-[1252px] h-[512px] gap-[120px] flex sticky mt-[80px] text-[20px] justify-center items-center mx-auto">
                 <div className="w-[271px] h-[416px] flex gap-[20px]">
                     <div className="min-h-screen w-11 relative">
                         <ScrollIndicator
@@ -90,7 +91,7 @@ export default function Page() {
                                     ))}
                                 </div>
 
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-[24px] [&>div]:cursor-pointer [&>div]:rounded-[4px]">
                                     <div className="border w-[40px] h-[40px] flex justify-center items-center">
                                         <Image src={Caret} alt="caret-down" width={20} height={20} />
                                     </div>
@@ -108,7 +109,7 @@ export default function Page() {
                 </div>
             </div>
 
-            <div>
+            <div className="overflow-hidden h-[200px]">
                 <div
                     ref={scrollContainerRef}
                     className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth ml-80 overflow-hidden">
@@ -130,27 +131,29 @@ export default function Page() {
             </div>
 
             <section>
-                <div className="w-[914px] h-[644px] flex justify-center items-center mx-auto my-[100px]">
+                <div className="w-[1000px] h-[727px] flex justify-center items-center mx-auto my-[100px]">
                     <Image
                         src={DashboardModel}
                         alt="Dashboard Model"
                         width={914}
                         height={644}
-                        className="w-[914px] h-[644px] object-cover opacity-25"
+                        className="w-[1000px] h-[727px] object-cover opacity-90"
                     />
                 </div>
 
-                <div className="flex justify-center  gap-[64px] mb-20 [&>div]:w-[322px] [&>div]:h-[140px] [&>div]:flex [&>div]:flex-col [&>div]:justify-center [&>div]:border [&>div]:h2:text-[20px] [&>div]:p:text-[16px] [&>div]:p:opacity-60">
+                <div className="flex justify-center  gap-[64px] mb-20 p-[160px] [&>div>h2]:text-[20px] [&>div>p]:text-[16px] [&>div>p]:opacity-64 [&>div]:gap-3">
                     <div>
-                        <Image src={CerficateIcon} alt="Certificate Icon" width={10} height={10}/>
+                        <Image src={CerficateIcon} alt="Certificate Icon" width={24} height={24}/>
                         <h2>Lorem ipsum dolor sit amet.</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis eius sequi autem similique.</p>
                     </div>
                     <div>
+                        <Image src={TargetIcon} alt="Certificate Icon" width={24} height={24}/>
                         <h2>Lorem ipsum dolor sit amet.</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis eius sequi autem similique.</p>
                     </div>
                     <div>
+                        <Image src={FilelockIcon} alt="Certificate Icon" width={24} height={24}/>
                         <h2>Lorem ipsum dolor sit amet.</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis eius sequi autem similique.</p>
                     </div>
@@ -160,6 +163,21 @@ export default function Page() {
             <div className="flex justify-center items-center">
                 <Image src={GridImg} alt="Background Lines" width={1254} height={300} />
             </div>
+
+
+            <div className="w-[1252px] h-[512px] gap-[120px] flex mt-[100px] text-[20px] justify-center items-center mx-auto">
+
+            </div>
+
+            <div className="flex flex-col justify-center items-center text-center gap-[80px] mb-20 px-4">
+                <div>
+                    <h2 className="text-[48px]">Start Publishing</h2>
+                    <p className="text-[16px] opacity-64">All you need is research. We'll handle the rest from on-chain proof to peer discovery</p>
+                </div>
+                <Button className="text-white">Get Started</Button>
+            </div>
+
+            <Footer/>
         </div>
     );
 }
