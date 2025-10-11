@@ -11,7 +11,7 @@ import Image from "next/image";
 // image assets
 import circleDown from "@/assets/images/circle_down.svg";
 import client from "@/assets/images/client.svg";
-import heroArt from "@/assets/images/cool_light_thingy.svg";
+import heroArt from "@/assets/images/cool_light_thingy.png";
 import heroDash from "@/assets/images/hero_dashboard.png";
 import iconOrange from "@/assets/brand/iconOrange.svg";
 import server from "@/assets/images/server.svg";
@@ -22,7 +22,6 @@ import triangleBlur from "@/assets/images/triangle_blur.png";
 import connectorLine from "@/assets/images/connector-line.svg";
 import Link from "next/link";
 import ResearchPreviewCard from "@/components/research/research-preview";
-import { Icon } from "@/components/ui/icon";
 import TestimonialCarousel from "@/components/feedback/testimonial-carousel";
 
 export default function Page() {
@@ -53,7 +52,9 @@ export default function Page() {
             </div>
 
             <div className="grid md:flex items-center gap-5">
-              <Button variant="outline">Get Started</Button>
+              <Link href="/login">
+                <Button variant="outline">Get Started</Button>
+              </Link>
               <Link href="/founding-contributor">
                 <Button variant="link">
                   Become a founding contributor <ChevronRight />
@@ -64,14 +65,14 @@ export default function Page() {
         </section>
 
         {/* bottom section with illustration */}
-        <section className="-mt-20 px-5">
+        <section className=" px-5">
           <div className="relative w-full max-w-[1000px] mx-auto">
             <Image src={heroDash} alt="Hero Dashboard" />
           </div>
 
           <div className="text-center grid gap-5 py-10">
             <p className="text-sm md:text-xl">
-              We're backed by the strength of the Solana ecosystem
+              We&apos;re backed by the strength of the Solana ecosystem
             </p>
             <div className="flex justify-center items-center gap-5 px-10">
               <div className="relative">
@@ -377,9 +378,9 @@ export default function Page() {
         <div className="flex flex-col gap-5">
           <h2 className="text-3xl md:text-4xl lg:text-5xl">Why OpenQuanta?</h2>
           <p>
-            We've seen quality research die in desk drawers. Brilliant minds
-            give away credit just to get published. Geographic bias beats good
-            science and curators are plagued by perverse incentives and as
+            We&apos;ve seen quality research die in desk drawers. Brilliant
+            minds give away credit just to get published. Geographic bias beats
+            good science and curators are plagued by perverse incentives and as
             distributors they are often paywalled.
           </p>
         </div>
@@ -413,7 +414,9 @@ export default function Page() {
             proof to peer discovery.
           </p>
         </div>
-        <Button className="w-max text-white">Get Started</Button>
+        <Link href="/login">
+          <Button className="w-max text-white">Get Started</Button>
+        </Link>
       </section>
     </main>
   );
