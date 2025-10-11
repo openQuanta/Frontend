@@ -14,7 +14,12 @@ import DiscordIcon from "./Link - Whop's Discord → SVG.png"
 import Logo from "./open-quanta-logo.png"
 import WaitlistBg from "./WaitlistBg.svg"
 import BgLines from "./rectangle.svg"
-
+import Caret from "./CaretDown.png"
+import DashboardModel from "./dashboard-model.png"
+import CerficateIcon from "./certificate-01.png"
+import FilelockIcon from "./file-lock-02.png"
+import TargetIcon from "./target-04.png"
+import GridImg from "./grid-img.png"
 
 // partner brands
 import solana from "./solana.png";
@@ -38,5 +43,11 @@ export {
   DiscordIcon,
   Logo,
   WaitlistBg,
-  BgLines
+  BgLines,
+  Caret,
+  DashboardModel,
+  CerficateIcon,
+  FilelockIcon,
+  TargetIcon,
+  GridImg
 };
