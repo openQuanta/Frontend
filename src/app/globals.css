@@ -136,6 +136,48 @@ iconify-icon {
   height: 1em;
 }
 
+@layer utilities {
+  .glowing-border {
+    position: relative;
+    border: 1px solid transparent;
+    background: linear-gradient(#000, #000) padding-box,
+      /* button fill */
+        conic-gradient(
+          from var(--angle, 0deg),
+          transparent 0%,
+          rgba(255, 255, 255, 0.8) 15%,
+          transparent 25%
+        )
+        border-box;
+    transition: all 0.1s ease;
+  }
+
+  /* .glowing-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(
+      from var(--angle, 0deg),
+      #00ffff,
+      #0080ff,
+      #8000ff,
+      #ff0080,
+      #00ffff
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  } */
+
+  .glowing-border:hover {
+    filter: brightness(1.2);
+  }
+}
+
 /* @theme inline {
   --animate-first: moveVertical 30s ease infinite;
   --animate-second: moveInCircle 20s reverse infinite;
