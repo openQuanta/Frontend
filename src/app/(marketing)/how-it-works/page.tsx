@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { BgLines } from "@/assets/images";
 import Image from "next/image";
-import DraggableBubble from "@/components/ui/draggale-bubble";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp, MoreHorizontal } from "lucide-react";
+
 
 const summaryData = {
   "Problem Space":
@@ -74,14 +74,13 @@ export default function Page() {
           </p>
         </div>
         <div className="flex gap-[24px] text-[14px]">
-          <Button className="bg-white hover:bg-white/95">Join waitlist</Button>
+          
           <span>Become a founding contributor </span>
         </div>
         <div className="flex justify-center">
           <span>0</span>
           <span>0 </span>
         </div>
-        <DraggableBubble />
       </div>
 
       {/* Summary Section */}
