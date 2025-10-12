@@ -9,49 +9,51 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Image from "next/image";
+import avatar from "@/assets/images/avatar.png";
 
 const testimonials = [
   {
     name: "Alon",
     handle: "@alon",
     text: "I never realized how slow and closed-off traditional science was until I discovered DeSci. The old system was built to slow us down",
-    avatar: "https://i.pravatar.cc/100?img=12",
+    avatar,
   },
   {
     name: "Alon",
     handle: "@alon",
     text: "I never realized how slow and closed-off traditional science was until I discovered DeSci. The old system was built to slow us down",
-    avatar: "https://i.pravatar.cc/100?img=13",
+    avatar,
   },
   {
     name: "Alon",
     handle: "@alon",
     text: "I never realized how slow and closed-off traditional science was until I discovered DeSci. The old system was built to slow us down",
-    avatar: "https://i.pravatar.cc/100?img=14",
+    avatar,
   },
   {
     name: "Alon",
     handle: "@alon",
     text: "I never realized how slow and closed-off traditional science was until I discovered DeSci. The old system was built to slow us down",
-    avatar: "https://i.pravatar.cc/100?img=15",
+    avatar,
   },
   {
     name: "Alon",
     handle: "@alon",
     text: "I never realized how slow and closed-off traditional science was until I discovered DeSci. The old system was built to slow us down",
-    avatar: "https://i.pravatar.cc/100?img=13",
+    avatar,
   },
   {
     name: "Alon",
     handle: "@alon",
     text: "I never realized how slow and closed-off traditional science was until I discovered DeSci. The old system was built to slow us down",
-    avatar: "https://i.pravatar.cc/100?img=14",
+    avatar,
   },
   {
     name: "Alon",
     handle: "@alon",
     text: "I never realized how slow and closed-off traditional science was until I discovered DeSci. The old system was built to slow us down",
-    avatar: "https://i.pravatar.cc/100?img=15",
+    avatar,
   },
 ];
 
@@ -68,9 +70,11 @@ export default function TestimonialCarousel() {
               <CardContent className="p-3 flex flex-col">
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-4">
-                  <img
+                  <Image
                     src={t.avatar}
                     alt={t.name}
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-full"
                   />
                   <div className="flex flex-col">
