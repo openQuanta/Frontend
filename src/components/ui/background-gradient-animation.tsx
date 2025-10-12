@@ -111,7 +111,7 @@ export const BackgroundGradientAnimation = ({
       }
       cancelAnimationFrame(frameId);
     };
-  }, [interactive]);
+  }, [interactive, curX, curY, tgX, tgY]);
 
   const [isSafari, setIsSafari] = useState(false);
 

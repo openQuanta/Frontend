@@ -1,16 +1,104 @@
+'use client';
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import logo from "@/assets/brand/logo_white.svg";
+import { Button } from "@/components/ui/button";
+import googleIcon from "@/assets/images/google_icon.svg";
+import walletIcon from "@/assets/images/wallet_icon.svg";
+import Link from "next/link";
+import { Field, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // In a real app, you would validate the email and handle the login logic here
+    console.log("Email submitted:", email);
+    
+    // Store the email (this is just in-memory, in a real app you might use context, state management, or a cookie)
+    sessionStorage.setItem('userEmail', email);
+    
+    // Redirect to dashboard
+    router.push('/dashboard');
+  };
+
   return (
-    <main>
-      <section>
-        <div className="flex items-center gap-2 p-2 px-4 border border-white/30 rounded-full">
+    <main className="py-32 flex flex-col gap-24 items-center">
+      <section className="flex flex-col gap-6 items-center">
+        <div className="flex items-center gap-2 p-2 px-4 border border-white/30 rounded-full w-max">
           <div className="w-3 h-3 rounded-full bg-violet-600"></div>
-          <h4>On Chain & Transparent</h4>
+          <h4 className="text-sm">On Chain & Transparent</h4>
         </div>
 
-        <div className="flex flex-col gap-10 text-center">
-          <h1>Welcome to OpenQuanta</h1>
-          <p>Your verifiable and market-driven publishing platform.</p>
+        <div className="flex flex-col items-center gap-6 text-center">
+          <h1 className="text-2xl md:text-3xl lg:text-5xl font-semibold">
+            Welcome to OpenQuanta
+          </h1>
+          <p className="md:text-xl lg:text-2xl max-w-sm text-white/64">
+            Your verifiable and market-driven publishing platform.
+          </p>
         </div>
+      </section>
+      <section className="w-full max-w-[480px] mx-auto">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full bg-[#950F00]/20 backdrop-blur-sm p-8 rounded-2xl">
+          <header className="flex flex-col items-center gap-4 mb-6">
+            <Image src={logo} alt="OpenQuanta logo" className="w-10 h-auto" />
+            <h2 className="text-2xl text-white/80">Sign in to OpenQuanta</h2>
+          </header>
+
+          <Field>
+            <FieldLabel htmlFor="email" className="font-normal">
+              Email
+            </FieldLabel>
+            <Input
+              id="email"
+              type="email"
+              placeholder="Your email address"
+              className="w-full rounded-full"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </Field>
+
+          <Button variant="outline" type="submit" className="w-full">
+            Continue
+          </Button>
+
+          <Button variant="outline" className="w-full gap-2">
+            <Image src={googleIcon} alt="Google icon" width={20} height={20} />
+            Continue With Google
+          </Button>
+
+          <div className="relative my-2">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="px-2 text-muted-foreground">OR</span>
+            </div>
+          </div>
+
+          <Button variant="outline" className="w-full gap-2">
+            <Image src={walletIcon} alt="Wallet icon" width={20} height={20} />
+            Continue With Wallet
+          </Button>
+
+          <footer className="mt-6 text-center text-sm text-muted-foreground">
+            By logging in you agree to our{" "}
+            <Link
+              href="/"
+              className="font-medium text-foreground hover:underline"
+            >
+              Terms and Conditions
+            </Link>
+          </footer>
+        </form>
       </section>
     </main>
   );
