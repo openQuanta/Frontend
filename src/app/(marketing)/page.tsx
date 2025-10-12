@@ -38,7 +38,7 @@ export default function Page() {
           <div className="text-center md:text-left px-5 py-40 w-full max-w-[900px] flex flex-col items-center gap-12 md:items-start bg-black/30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
             <div className="flex items-center gap-3 p-3 px-6 border-[0.5px] border-white/24 rounded-full">
               <div className="w-3 h-3 rounded-full bg-[#645cfb] animate-pulse"></div>
-              <h4 className="">On Chain & Transparent</h4>
+              <h4 className="text-sm">On Chain & Transparent</h4>
             </div>
 
             <div className="flex flex-col gap-6">

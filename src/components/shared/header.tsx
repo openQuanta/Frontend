@@ -131,3 +131,15 @@ export function UserHeader() {
     </header>
   );
 }
+
+export function AuthHeader() {
+  return (
+    <header className="fixed top-0 z-10 w-full">
+      <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
+        <Link href="/" id="logo" className="w-full max-w-[200px]">
+          <Image src={logo} alt="OpenQuanta" className="w-full dark:invert" />
+        </Link>
+      </div>
+    </header>
+  );
+}
