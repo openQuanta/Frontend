@@ -20,6 +20,11 @@ import CerficateIcon from "./certificate-01.png"
 import FilelockIcon from "./file-lock-02.png"
 import TargetIcon from "./target-04.png"
 import GridImg from "./grid-img.png"
+import ConnectorArrow from "./Connector line (1).png"
+import PlanetBg from "./WHY.png"
+import Microscope from "./Group.png"
+import Glasses from "./glasses-02.png"
+
 
 // partner brands
 import solana from "./solana.png";
@@ -49,5 +54,9 @@ export {
   CerficateIcon,
   FilelockIcon,
   TargetIcon,
-  GridImg
+  GridImg,
+  ConnectorArrow,
+  PlanetBg,
+  Microscope,
+  Glasses
 };

@@ -2,11 +2,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { AnimatedButton } from "@/components/ui/animated-button";
-import { Caret, DashboardModel, CerficateIcon, FilelockIcon, TargetIcon, GridImg} from "@/assets/images";
+import { Caret, DashboardModel, CerficateIcon, FilelockIcon, TargetIcon, GridImg, PlanetBg, ConnectorArrow, Glasses, Microscope, circleTick} from "@/assets/images";
 import { ScrollIndicator } from "../features/scroll-indicator";
 import DynamicScrollCards from "./dynamic-cards";
 import Footer from "@/components/shared/footer";
 import { Button } from "@/components/ui/button";
+import CountUp from "@/components/ui/CountUp";
 
 const sections = [
     { id: "upload-research", label: "Upload research", number: "01" },
@@ -109,7 +110,7 @@ export default function Page() {
                 </div>
             </div>
 
-            <div className="overflow-hidden h-[200px]">
+            <div className="overflow-hidden h-[500px]">
                 <div
                     ref={scrollContainerRef}
                     className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth ml-80 overflow-hidden">
@@ -120,9 +121,9 @@ export default function Page() {
                             className="h-screen flex justify-center items-center snap-start">
                             <div className="w-[840px] h-full overflow-y-auto p-10">
                                 <h2 className="text-4xl font-light text-white mb-6">{section.label}</h2>
-                                <p className="text-[20px] text-zinc-400 leading-relaxed">
+                                <p className="text-[20px] text-zinc-400 leading-relaxed w-full">
                                     This is the content section for {section.label}. Add your actual content here.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, deleniti. Exercitationem facere corrupti sed quas magnam nulla possimus dolor commodi.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident aut obcaecati harum veritatis velit, iste ipsam eos, repellendus a adipisci beatae saepe repellat deleniti. Voluptatem placeat suscipit odio aperiam voluptates, exercitationem, optio modi earum repellendus praesentium nesciunt voluptatum ea consectetur, ex corporis quasi nemo. Ex incidunt sequi autem quas voluptatem! Ut, deleniti. Exercitationem facere corrupti sed quas magnam nulla possimus dolor commodi.
                                 </p>
                             </div>
                         </section>
@@ -141,7 +142,7 @@ export default function Page() {
                     />
                 </div>
 
-                <div className="flex justify-center  gap-[64px] mb-20 p-[160px] [&>div>h2]:text-[20px] [&>div>p]:text-[16px] [&>div>p]:opacity-64 [&>div]:gap-3">
+                <div className="flex justify-center  gap-[64px] mb-20 p-[160px] [&>div>h2]:text-[20px] [&>div>p]:text-[16px] [&>div>p]:opacity-64 [&>div]:gap-3 [&>div]:flex [&>div]:flex-col">
                     <div>
                         <Image src={CerficateIcon} alt="Certificate Icon" width={24} height={24}/>
                         <h2>Lorem ipsum dolor sit amet.</h2>
@@ -160,22 +161,126 @@ export default function Page() {
                 </div>
             </section>
 
+            <section className="flex justify-center items-center mb-20 w-[1252px] mx-auto h-[400px] [&>div]:w-[640px] [&>div]:bg-[#0E0F11] [&>div]:h-[400px] [&>div]:rounded-[8px] [&>div]:border-[#6462B8]/40 [&>div]:border [&>div]:px-[30px] [&>div]:py-[20px]">
+                <div className="">
+                    <Image src={Microscope} alt="Background Lines" width={40} height={40} />
+                    <h2 className="text-[40px]  mb-6 mt-[40px]">Decentralized Peer Review</h2>
+                    <ul className="flex flex-col gap-4 mb-[42px]">
+                        <li>
+                            <Image src={circleTick} alt="caret-down" width={15} height={15} className=" inline-block mr-2"/>
+                            <span>Publish instantly without traditional gatekeepers</span>
+                        </li>
+                        <li>
+                            <Image src={circleTick} alt="caret-down" width={15} height={15} className=" inline-block mr-2"/>
+                            <span>Effective direct support from the community</span>
+                        </li>
+                        <li>
+                            <Image src={circleTick} alt="caret-down" width={15} height={15} className=" inline-block mr-2"/>
+                            <span>Build transparnt reputation on-chain</span>
+                        </li>
+                        <li>
+                            <Image src={circleTick} alt="caret-down" width={15} height={15} className=" inline-block mr-2"/>
+                            <span>Permanent immutable record for your work</span>
+                        </li>
+                        
+                    </ul>
+                    <span className="text-[#FF4C0C]">Start Publishing </span>
+                </div>
+                <Image src={ConnectorArrow} alt="Background Lines" width={40} height={40} />
+                <div className="">
+                    <Image src={Glasses} alt="Background Lines" width={40} height={40} />
+                    <h2 className="mb-6 mt-[40px] text-[40px]">For Reviewers</h2>
+                    <ul className="flex flex-col gap-4 mb-[42px]">
+                        <li>
+                            <Image src={circleTick} alt="caret-down" width={15} height={15} className=" inline-block mr-2" />
+                            <span>Publish instantly without traditional gatekeepers</span>
+                        </li>
+                        <li>
+                            <Image src={circleTick} alt="caret-down" width={15} height={15} className=" inline-block mr-2" />
+                            <span>Effective direct support from the community</span>
+                        </li>
+                        <li>
+                            <Image src={circleTick} alt="caret-down" width={15} height={15} className=" inline-block mr-2" />
+                            <span>Build transparnt reputation on-chain</span>
+                        </li>
+                        <li>
+                            <Image src={circleTick} alt="caret-down" width={15} height={15} className=" inline-block mr-2" />
+                            <span>Permanent immutable record for your work</span>
+                        </li>
+
+                    </ul>
+                    <span className="text-[#FF4C0C]">Become a reviewer</span>
+                </div>
+            </section>
+
             <div className="flex justify-center items-center">
                 <Image src={GridImg} alt="Background Lines" width={1254} height={300} />
             </div>
 
 
-            <div className="w-[1252px] h-[512px] gap-[120px] flex mt-[100px] text-[20px] justify-center items-center mx-auto">
+            <div className="w-[1252px] h-[512px gap-[86px] mt-[100px] flex flex-col justify-center  mx-auto px-[39px] pt-[69px] pb-[40px] mb-[180px]" style={{ backgroundImage: `url(${PlanetBg.src})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <div>
+                    <h2 className="w-[450px] h-[80px] text-[30px] leading-10 ">Companies can invest in <span className="text-[#FF5a1f]">security measures to ensurentinuity</span></h2>
+                    <p className="w-[601px] h-[96px] text-[16px] opacity-40 mt-[17px] leading-6">These investments offer limited assurance of effectiveness, as assessing IT security is particularly challenging.urity requires specialized knowledge and expertise that hese investments offer limited assurance of effectiveness, as assessing IT security is partic</p>
+                </div>
+                <div className="text-white w-[354px] h-[64px] px-[40px] border-white/24 drop-shadow-2xl border flex justify-center items-center rounded-[4px]">Support new layer of publication</div>
+                <div className="flex w-[1099px} h-[160px] [&>div]:flex [&>div]:flex-col [&>div]:justify-center [&>div]:items-center [&>div]:pt-[32px] [&>div]:mx-auto  [&>div]:w-[260px] [&>div]:h-[128px]">
+                    <div className="border-r border-white/20 pr-[80px]">
+                        <div className="text-[64px] flex justify-start">
+                            <CountUp
+                                from={0}
+                                to={72}
+                                separator=","
+                                direction="up"
+                                duration={1}
+                                className="count-up-text  "
+                            />
+                            <span>%</span>
+                        </div>
+                        <span className="w-[260px] h-[45px] text-[16px] leading-6 opacity-40 ">All you need is your research. We handle the rest  from on-chain </span>
+                    </div>
+                    <div className="border-r border-white/20 pr-[80px]">
+                        <CountUp
+                            from={0}
+                            to={5}
+                            separator=","
+                            direction="up"
+                            duration={1}
+                            className="count-up-text text-[64px]"
+                        />
+                        <span className="w-[260px] h-[45px] text-[16px] leading-6 opacity-40">All you need is your research. We handle the rest  from on-chain </span>
+                    </div>
+                    <div>
+                        <div className="text-[64px] flex">
+                            <CountUp
+                                from={0}
+                                to={30}
+                                separator=","
+                                direction="up"
+                                duration={1}
+                                className="count-up-text  "
+                            />
+                            <span>B+</span>
+                        </div>
+                        <span className="w-[260px] h-[45px] text-[16px] leading-6 opacity-40">All you need is your research. We handle the rest  from on-chain </span>
+                    </div>
+                </div>
 
             </div>
 
-            <div className="flex flex-col justify-center items-center text-center gap-[80px] mb-20 px-4">
+            
+
+            <div
+                className="flex flex-col justify-center items-center text-center gap-[80px] mb-20 px-4">
                 <div>
                     <h2 className="text-[48px]">Start Publishing</h2>
-                    <p className="text-[16px] opacity-64">All you need is research. We'll handle the rest from on-chain proof to peer discovery</p>
+                    <p className="text-[16px] opacity-64">
+                        All you need is research. We'll handle the rest from on-chain proof to peer discovery
+                    </p>
                 </div>
                 <Button className="text-white">Get Started</Button>
             </div>
+
 
             <Footer/>
         </div>

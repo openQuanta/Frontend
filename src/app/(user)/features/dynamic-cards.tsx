@@ -16,7 +16,7 @@ interface FlippingStackProps {
 
 const cardTextStates: Record<string, string[][]> = {
     'upload-research': [
-        ['Start uploading', 'Begin submission'],
+        ['Start uploading', 'Begin submission', 'Tyewgd'],
         ['Verify research', 'Check authenticity'],
         ['Get visibility', 'Showcase work']
     ],
