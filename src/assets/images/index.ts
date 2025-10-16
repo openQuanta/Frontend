@@ -24,7 +24,17 @@ import ConnectorArrow from "./Connector line (1).png"
 import PlanetBg from "./WHY.png"
 import Microscope from "./Group.png"
 import Glasses from "./glasses-02.png"
-
+import OrangeLogo from "./orange-logo.png"
+import Headshot from "./headshot.png"
+import Notification from "./notification.png"
+import Message from "./massage.png"
+import UploadIcon from "./upload-01.png"
+import FileIcon from "./file-06.png"
+import NftIcon from "./NFT minted to your wallet.png"
+import SolIcon from "./sol-01.png"
+import AwardIcon from "./award-01.png"
+import ArrowRight from "./arrow-right.png"
+import CalenderIcon from "./calender.png"
 
 // partner brands
 import solana from "./solana.png";
@@ -58,5 +68,16 @@ export {
   ConnectorArrow,
   PlanetBg,
   Microscope,
-  Glasses
+  Glasses,
+  OrangeLogo,
+  Notification, 
+  Headshot, 
+  Message,
+  UploadIcon,
+  FileIcon,
+  NftIcon,
+  SolIcon,
+  AwardIcon,
+  ArrowRight,
+  CalenderIcon
 };
