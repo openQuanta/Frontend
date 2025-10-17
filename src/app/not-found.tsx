@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import logo from "@/assets/brand/logo_white.svg";
 import "./globals.css";
 
 export default function NotFound() {
@@ -12,7 +11,7 @@ export default function NotFound() {
       <div className="text-center max-w-2xl mx-auto flex flex-col gap-8">
         <div className="flex flex-col gap-6">
           <Image
-            src={logo}
+            src="/images/logo_white.svg"
             alt="OpenQuanta logo"
             width={64}
             height={64}

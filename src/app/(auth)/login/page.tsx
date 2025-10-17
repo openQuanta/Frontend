@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import logo from "@/assets/brand/logo_white.svg";
 import { Button } from "@/components/ui/button";
 import googleIcon from "@/assets/images/google_icon.svg";
 import walletIcon from "@/assets/images/wallet_icon.svg";
@@ -19,12 +18,12 @@ export default function Login() {
     e.preventDefault();
     // In a real app, you would validate the email and handle the login logic here
     console.log("Email submitted:", email);
-    
+
     // Store the email (this is just in-memory, in a real app you might use context, state management, or a cookie)
-    sessionStorage.setItem('userEmail', email);
-    
+    sessionStorage.setItem("userEmail", email);
+
     // Redirect to dashboard
-    router.push('/dashboard');
+    router.push("/dashboard");
   };
 
   return (
@@ -45,9 +44,18 @@ export default function Login() {
         </div>
       </section>
       <section className="w-full max-w-[480px] mx-auto">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full bg-[#950F00]/20 backdrop-blur-sm p-8 rounded-2xl">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 w-full bg-[#950F00]/20 backdrop-blur-sm p-8 rounded-2xl"
+        >
           <header className="flex flex-col items-center gap-4 mb-6">
-            <Image src={logo} alt="OpenQuanta logo" className="w-10 h-auto" />
+            <Image
+              src="/images/logo_white.svg"
+              alt="OpenQuanta logo"
+              width={40}
+              height={40}
+              className="w-10 h-auto"
+            />{" "}
             <h2 className="text-2xl text-white/80">Sign in to OpenQuanta</h2>
           </header>
 
