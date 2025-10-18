@@ -1,7 +1,6 @@
 "use client";
 
 import { AlignRight, ArrowRight, ChevronRight } from "lucide-react";
-import logo from "@/assets/brand/logoWordBlack.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -16,18 +15,26 @@ import dynamic from "next/dynamic";
 import { useWallet } from "@solana/wallet-adapter-react";
 
 const navLinks = [
-  { href: "/research", label: "Research" },
-  { href: "/publish", label: "Publish" },
-  { href: "/discover", label: "Discover" },
+  { href: "/features", label: "Features" },
+  { href: "/explore", label: "Explore" },
+  { href: "/document", label: "Document" },
   { href: "/about", label: "About" },
 ];
 
 export function MarketingHeader() {
   return (
-    <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm">
-      <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
-        <Link href="/" id="logo" className="w-full max-w-[200px]">
-          <Image src={logo} alt="OpenQuanta" className="w-full dark:invert" />
+    <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm p-6">
+      <div className="flex items-center justify-between gap-12 w-full max-w-[1200px] mx-auto">
+        <Link href="/" id="logo" className="flex items-center gap-2">
+          <Image
+            width={32}
+            height={32}
+            src="/images/logo_white.svg"
+            alt="OpenQuanta"
+            className="light:invert"
+          />
+
+          <h1 className="text-lg font-bold">openQuanta</h1>
         </Link>
 
         {/* Desktop Navigation */}
@@ -70,7 +77,7 @@ export function MarketingHeader() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="lg:hidden w-18 h-18"
+                className="lg:hidden w-16 h-16"
               >
                 <AlignRight className="w-full h-full" />
                 <span className="sr-only">Toggle menu</span>
@@ -119,7 +126,11 @@ export function UserHeader() {
     <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm">
       <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
         <Link href="/" id="logo" className="w-full max-w-[200px]">
-          <Image src={logo} alt="OpenQuanta" className="w-full dark:invert" />
+          <Image
+            src="/images/logo_white.svg"
+            alt="OpenQuanta"
+            className="w-full dark:invert"
+          />
         </Link>
 
         <div>
@@ -137,7 +148,13 @@ export function AuthHeader() {
     <header className="fixed top-0 z-10 w-full">
       <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
         <Link href="/" id="logo" className="w-full max-w-[200px]">
-          <Image src={logo} alt="OpenQuanta" className="w-full dark:invert" />
+          <Image
+            src="/images/logo_white.svg"
+            width={32}
+            height={32}
+            alt="OpenQuanta"
+            className="w-full dark:invert"
+          />
         </Link>
       </div>
     </header>

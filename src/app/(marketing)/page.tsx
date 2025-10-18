@@ -28,8 +28,8 @@ export default function Page() {
       {/* Hero */}
       <section className="w-full max-w-[1200px] mx-auto">
         {/* top section */}
-        <section className="w-full bg-[url('/images/cool_light_thingy.svg')] bg-contain bg-center md:bg-[position:120%_center] bg-no-repeat">
-          <div className="text-center md:text-left px-5 py-40 w-full max-w-[900px] flex flex-col items-center gap-12 md:items-start bg-black/30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
+        <section className="w-full bg-[url('/images/cool_light_thingy.png')] bg-contain bg-center md:bg-[position:120%_center] bg-no-repeat">
+          <div className="text-center md:text-left px-6 py-40 w-full max-w-[900px] flex flex-col items-center gap-12 md:items-start bg-black/30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
             <div className="flex items-center gap-3 p-3 px-6 border-[0.5px] border-white/24 rounded-full">
               <div className="w-3 h-3 rounded-full bg-[#645cfb] animate-pulse"></div>
               <h4 className="text-sm">On Chain & Transparent</h4>
@@ -64,9 +64,14 @@ export default function Page() {
         </section>
 
         {/* bottom section with illustration */}
-        <section className=" px-5">
-          <div className="relative w-full max-w-[1000px] mx-auto">
-            {/* <Image src="/images/hero_dashboard.png" alt="Hero Dashboard" /> */}
+        <section className="px-5">
+          <div className="relative w-full max-w-[1200px] h-[500px] mx-auto">
+            <Image
+              src="/images/hero_dashboard.png"
+              alt="Hero Dashboard"
+              fill
+              className="object-contain"
+            />
           </div>
 
           <div className="text-center grid gap-5 py-10">

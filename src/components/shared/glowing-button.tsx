@@ -35,7 +35,7 @@ export default function GlowingButton({
       ref={btnRef}
       onClick={onClick}
       variant="ghost"
-      className={`glowing-border bg-black/90 backdrop-blur-sm`}
+      className="glowing-border bg-transparent"
     >
       {children}
     </Button>
