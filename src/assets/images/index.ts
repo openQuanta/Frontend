@@ -31,10 +31,14 @@ import Message from "./massage.png"
 import UploadIcon from "./upload-01.png"
 import FileIcon from "./file-06.png"
 import NftIcon from "./NFT minted to your wallet.png"
-import SolIcon from "./sol-01.png"
+import SolIcon from "./sol.png"
 import AwardIcon from "./award-01.png"
 import ArrowRight from "./arrow-right.png"
-import CalenderIcon from "./calender.png"
+import CalendarIcon from "./calendar.png"
+import HeadshotIcon from "./user-03.png";
+import CopyIcon from "./copy-06.png";
+import Ellipse from "./Ellipse 2635.png";
+import ExternalLinkIcon from "./link-external-01.png"
 
 // partner brands
 import solana from "./solana.png";
@@ -79,5 +83,9 @@ export {
   SolIcon,
   AwardIcon,
   ArrowRight,
-  CalenderIcon
+  CalendarIcon,
+  HeadshotIcon,
+  CopyIcon,
+  Ellipse,
+  ExternalLinkIcon
 };

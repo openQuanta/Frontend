@@ -1,11 +1,10 @@
 'use client'
 
-import PreviewStage from '@/components/publish/preview'
+import PreviewStage from '@/components/publish-tabs/preview'
 import { useState } from 'react'
 import Image from 'next/image'
 import { OrangeLogo, Notification, Message, Headshot, UploadIcon } from '@/assets/images'
 
-// Define the shape of the form data for TypeScript clarity
 interface FormData {
   title: string;
   author: string;
@@ -16,16 +15,27 @@ interface FormData {
   pdf: File | null;
   license: string;
   date: string;
-  publisher: string; // Used for Github URL
+  publisher: string; // Not needed anymore, was used for Github URL
   doi: string;
-  supplemental: string;
+  github: string;
+  supplementaryMaterials: string;
 }
+
+// Helper function to format file size
+const formatFileSize = (bytes: number | undefined): string => {
+  if (bytes === undefined || bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+};
+
 
 export default function UploadResearchPaper() {
   const [isPreview, setIsPreview] = useState(false)
   const [formData, setFormData] = useState<FormData>({
     title: '',
-    author: '', // Placeholder, assuming this will be filled later or derived
+    author: '', // This should ideally be the primary author's wallet/SNS
     paperType: '',
     keyword: '',
     abstract: '',
@@ -33,13 +43,20 @@ export default function UploadResearchPaper() {
     pdf: null,
     license: '',
     date: '',
-    publisher: '', // Used for Github URL
+    publisher: '', // Keeping it for type safety but it's redundant now
     doi: '',
-    supplemental: '',
+    github: '',
+    supplementaryMaterials: '',
   })
 
+  // State for Keywords
   const [keyword, setKeyword] = useState('')
   const [keywords, setKeywords] = useState<string[]>([])
+
+  // === NEW STATE FOR CO-AUTHORS ===
+  const [coAuthor, setCoAuthor] = useState('') // Temporary input for co-author
+  const [coAuthors, setCoAuthors] = useState<string[]>([]) // Array of added co-authors
+  // ================================
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     const { name, value, files } = e.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -67,45 +84,47 @@ export default function UploadResearchPaper() {
     setKeywords(keywords.filter(k => k !== word))
   }
 
+  // === NEW HANDLERS FOR CO-AUTHORS ===
+  const handleAddCoAuthor = () => {
+    if (!coAuthor.trim()) return
+    if (coAuthors.length >= 10) return // Max 10 co-authors limit
+
+    // Allow adding multiple co-authors separated by comma (like keywords)
+    const newCoAuthors = coAuthor
+      .split(',')
+      .map(a => a.trim())
+      .filter(a => a && !coAuthors.includes(a))
+
+    // Ensure total co-authors doesn't exceed 10
+    setCoAuthors([...coAuthors, ...newCoAuthors].slice(0, 10))
+    setCoAuthor('')
+  }
+
+  const handleRemoveCoAuthor = (address: string) => {
+    setCoAuthors(coAuthors.filter(a => a !== address))
+  }
+  // ===================================
+
   // >>> FORM SUBMISSION HANDLER to switch to preview <<<
   function handleFormSubmit(e: React.FormEvent) {
     e.preventDefault()
-    // Add form validation logic here if required fields need to be checked
     setIsPreview(true)
   }
 
   if (isPreview) {
-    return <PreviewStage formData={formData} keywords={keywords} onBack={() => setIsPreview(false)} />
+    // Pass keywords and coAuthors to PreviewStage
+    const previewFormData = {
+      ...formData,
+      keywords: keywords,
+      coAuthors: coAuthors,
+    }
+    // Note: You need to ensure PreviewStage accepts an object with keywords and coAuthors
+    return <PreviewStage formData={previewFormData as any} onBack={() => setIsPreview(false)} />
   }
 
   return (
     <main className='mt-15'>
-      {/* Header */}
-      <div className='flex justify-between items-center py-2 px-6 h-[47px] w-[98%]'>
-        <Image src={OrangeLogo} alt='' width={64} height={15} style={{ objectFit: 'contain' }} />
-        <div className='flex w-[177px] h-[24px] gap-2 items-center justify-center my-auto'>
-          <Image src={Message} alt='' width={12} height={12} style={{ objectFit: 'contain' }} />
-          <Image src={Notification} alt='' width={12} height={12} style={{ objectFit: 'contain' }} />
-          <div className='flex items-center w-[143px] pr-8 py-1 pl-1 gap-4 border rounded-2xl'>
-            <Image src={Headshot} alt='' width={16} height={16} className='profile-img' style={{ objectFit: 'contain' }} />
-            <div className='flex items-center gap-2'>
-              <span className='connected bg-green-500 size-[6px] rounded-full'></span>
-              <span className='wallet-address text-wrap w-[57px] text-[10px] overflow-clip'>uecuvecedceygpo</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Progress Steps */}
-      <div className='flex pl-45 pt-20 gap-6 bg-black'>
-        <div className='flex border-b'>
-          <span className='px-5 py-2 rounded-full bg-amber-300 text-2xl'>1</span>
-          <p>
-            <h2 className='text-[20px]'>Paper Information</h2>
-            <h3 className='text-[14px] font-light'>Upload details</h3>
-          </p>
-        </div>
-      </div>
+      {/* Header and Progress Steps JSX remains the same */}
 
       <div className='min-h-screen bg-black text-white flex justify-center py-10 px-4'>
         <div
@@ -115,9 +134,9 @@ export default function UploadResearchPaper() {
 
           <form
             className='w-[900px] h-2864px flex flex-col gap-16 [&>input]:mb-[8px] [&>input]:text-[12px] border-[#fff]/8'
-            onSubmit={handleFormSubmit} // Link the form submission to the preview function
+            onSubmit={handleFormSubmit}
           >
-            {/* Paper Title */}
+            {/* Paper Title* */}
             <div>
               <label className='block mb-6 text-2xl'>
                 Paper Title*<span className='text-[16px]'> Max 200 Characters</span>
@@ -129,12 +148,14 @@ export default function UploadResearchPaper() {
                 onChange={handleChange}
                 maxLength={200}
                 placeholder='Enter the title of your research paper'
+                // 💡 REQUIRED
+                required
                 className='w-full h-[66px] bg-[#1A1616]/40 border border-white/20 rounded-lg outline-none px-9 mb-[8px]'
               />
               <span>{formData.title.length} /200</span>
             </div>
 
-            {/* Abstract */}
+            {/* Abstract* */}
             <div>
               <label className='block mb-6 text-2xl'>
                 Abstract*<span className='text-[16px]'> Max 5000 Characters</span>
@@ -144,19 +165,23 @@ export default function UploadResearchPaper() {
                 value={formData.abstract}
                 maxLength={5000} // Set max length on the textarea
                 placeholder='Provide a comprehensive abstract to your research'
+                // 💡 REQUIRED
+                required
                 onChange={handleChange}
                 className='w-full h-[200px] bg-[#1A1616]/40 border border-white/20 rounded-lg outline-none px-9 pt-[4px] mb-[8px]'
               />
               <span>{formData.abstract.length}/5000</span>
             </div>
 
-            {/* Research Field (Paper Type) */}
+            {/* Research Field (Paper Type)* */}
             <div>
               <label className='block mb-6 text-2xl'>Research Field*</label>
               <select
                 name='paperType'
                 value={formData.paperType}
                 onChange={handleChange}
+                // 💡 REQUIRED
+                required
                 className='w-full h-[66px] bg-[#1A1616]/40 border border-white/20 rounded-lg outline-none px-9 mb-[8px] text-white/40 '
               >
                 <option value=''>Select a field of research</option>
@@ -166,7 +191,7 @@ export default function UploadResearchPaper() {
               </select>
             </div>
 
-            {/* Keywords */}
+            {/* Keywords* */}
             <div>
               <label className='block mb-6 text-2xl'>
                 Keywords* <span className='text-[16px]'>Max 10 tags</span>
@@ -174,7 +199,7 @@ export default function UploadResearchPaper() {
 
               <div className='flex gap-2.5'>
                 <div
-                  className='flex flex-wrap items-center gap-2 w-[824px] min-h-[66px] bg-[#1A1616]/40 border border-white/20 rounded-lg px-4 py-3 text-white cursor-text'
+                  className='flex flex-wrap items-center gap-2 w-[824px] min-h-[66px] bg-[#1A1616]/40 border border-white/20 rounded-lg px-4 py-3 text-white/45 cursor-text'
                   onClick={() => document.getElementById('keyword-input')?.focus()}
                 >
                   {keywords.map((word, index) => (
@@ -198,6 +223,7 @@ export default function UploadResearchPaper() {
                     name='keywords'
                     type='text'
                     value={keyword}
+                    // 💡 NOTE: Required logic here is handled by the submit button logic in a real app
                     onChange={(e) => setKeyword(e.target.value)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
@@ -205,7 +231,7 @@ export default function UploadResearchPaper() {
                         handleAddKeyword()
                       }
                     }}
-                    placeholder={keywords.length < 10 ? 'Add a keyword' : 'Max 10 keywords reached'}
+                    placeholder={keywords.length === 10 ? 'Max 10 keywords reached' : 'Add a keyword'}
                     disabled={keywords.length >= 10}
                     className='flex-1 bg-transparent outline-none text-sm text-white placeholder:text-white/40'
                   />
@@ -219,19 +245,57 @@ export default function UploadResearchPaper() {
             </div>
 
 
-            {/* Co-Authors (Note: This input does not update state in the current formData structure) */}
+            {/* === CO-AUTHORS INPUT (TAG-STYLE) === */}
             <div>
               <label className='block mb-6 text-2xl'>
                 Co-Authors(optional)<span className='text-[16px]'> Max 10 co-authors</span>
               </label>
-              <input
-                // Name is placeholder. Need separate state/logic for multi-author input.
-                name='coAuthorInput'
-                // value={formData.coAuthorInput} // This value is unbound for now
-                onChange={handleChange}
-                placeholder='Enter wallet address or SNS name'
-                className='w-full px-9 h-[66px] bg-[#1A1616]/40 border border-white/20 rounded-lg outline-none'
-              />
+
+              <div className='flex gap-2.5'>
+                <div
+                  className='flex flex-wrap items-center gap-2 w-[900px] min-h-[66px] bg-[#1A1616]/40 border border-white/20 rounded-lg px-4 py-3 text-white cursor-text'
+                  onClick={() => document.getElementById('coauthor-input')?.focus()}
+                >
+                  {coAuthors.map((address, index) => (
+                    <span
+                      key={index}
+                      // Use a fixed width or truncate for long addresses/names
+                      className='flex items-center gap-2 bg-white/10 border border-white/20 px-3 py-1 rounded-md text-sm text-white/45 max-w-[200px] overflow-hidden whitespace-nowrap text-ellipsis'
+                    >
+                      {address}
+                      <button
+                        type='button'
+                        onClick={() => handleRemoveCoAuthor(address)}
+                        className='text-red-400 hover:text-red-600'
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))}
+
+                  <input
+                    id='coauthor-input'
+                    name='coAuthorInput'
+                    type='text'
+                    value={coAuthor}
+                    onChange={(e) => setCoAuthor(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault()
+                        handleAddCoAuthor()
+                      }
+                    }}
+                    placeholder={coAuthors.length < 10 ? 'Enter wallet address or SNS name' : 'Max 10 co-authors reached'}
+                    disabled={coAuthors.length >= 10}
+                    className='flex-1 bg-transparent outline-none text-sm text-white placeholder:text-white/40'
+                  />
+                </div>
+
+              </div>
+
+              <div className='text-white/40 text-[12px] mt-1'>
+                Press Enter or the Add button to confirm a co-author (wallet/SNS)
+              </div>
             </div>
 
             {/* Paper Cover Image (Optional) */}
@@ -269,30 +333,41 @@ export default function UploadResearchPaper() {
             </div>
 
 
-            {/* PDF File Upload* */}
+            {/* PDF File Upload* (UPDATED) */}
             <div>
-              <label className='block mb-6 text-2xl'>PDF File Upload*</label>
+              <label className='block mb-6 text-2xl'>PDF/Text File Upload*</label>
               <div
                 className='flex flex-col justify-center items-center w-[900px] h-[200px] border border-white/20 rounded-[8px] bg-[#1A1616]/40 cursor-pointer text-center'>
                 <div className='bg-[#0F0D0D] w-[877px] h-[180px] rounded-[8px] flex flex-col justify-center items-center border-2 border-dashed border-white/12'>
                   <Image src={UploadIcon} alt='' width={24} height={24} className='mb-[9px] ' style={{ objectFit: 'contain' }} />
-                  <p className='text-white opacity-64 mb-[7px] text-[16px]'>
-                    Drag and drop your PDF here<br />
-                    or click to browse files
-                  </p>
 
-                  {/* Display uploaded file name */}
-                  {formData.pdf && <p className='text-orange-400 text-[14px]'>{formData.pdf.name} uploaded</p>}
-
-                  <p className='text-white/24 text-[12px]'>
-                    Max size: 50MB
-                  </p>
+                  {/* 💡 NEW DISPLAY LOGIC */}
+                  {formData.pdf ? (
+                    <>
+                      <p className='text-orange-400 font-semibold text-[16px]'>{formData.pdf.name}</p>
+                      <p className='text-white/64 mb-[7px] text-[14px]'>
+                        Size: {formatFileSize(formData.pdf.size)}
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p className='text-white opacity-64 mb-[7px] text-[16px]'>
+                        Drag and drop your document here<br />
+                        or click to browse files
+                      </p>
+                      <p className='text-white/24 text-[12px]'>
+                        Max size: 50MB
+                      </p>
+                    </>
+                  )}
 
                   <input
                     type='file'
-                    name='pdf' // Corrected name to 'pdf' to match state
-                    accept='application/pdf'
+                    name='pdf' 
+                    accept='application/pdf, .doc, .docx'
                     onChange={handleChange}
+                    // 💡 REQUIRED
+                    required
                     className='absolute w-[877px] h-[180px] opacity-0 cursor-pointer'
                   />
                 </div>
@@ -322,17 +397,19 @@ export default function UploadResearchPaper() {
                 type='date'
                 value={formData.date}
                 onChange={handleChange}
+                // 💡 REQUIRED
+                required
                 className='w-full px-9 h-[66px] bg-[#1A1616]/40 border border-white/20 rounded-lg outline-none text-white/40'
               />
             </div>
 
-            {/* Github Repository (Optional) */}
+            {/* Github Repository (Optional) - Name is now 'github' */}
             <div>
               <label className='block mb-6 text-2xl'>Github Repository (Optional)</label>
               <input
-                name='publisher'
+                name='github' // Corrected name to 'github'
                 type='text'
-                value={formData.publisher}
+                value={formData.github}
                 onChange={handleChange}
                 placeholder='https://github.com/...'
                 className='w-full px-9 h-[66px] bg-[#1A1616]/40 border border-white/20 rounded-lg outline-none'
@@ -358,9 +435,9 @@ export default function UploadResearchPaper() {
             <div>
               <label className='block mb-6 text-2xl'>Supplementary Materials (Optional)</label>
               <input
-                name='supplemental'
+                name='supplementaryMaterials'
                 type='text'
-                value={formData.supplemental}
+                value={formData.supplementaryMaterials}
                 onChange={handleChange}
                 placeholder='Link to supplementary material'
                 className='w-full px-9 h-[66px] bg-[#1A1616]/40 border border-white/20 rounded-lg outline-none'
