@@ -15,7 +15,8 @@ const halenoir = localFont({
 
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <html>
+    <html lang="en">
+      {" "}
       <body className={`${halenoir.variable} antialiased`}>{children}</body>
     </html>
   );

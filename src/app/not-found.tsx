@@ -29,16 +29,16 @@ export default function NotFound() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            asChild
-            variant="outline"
-            className="w-full sm:w-auto text-black"
-          >
-            <Link href="/">Go to Homepage</Link>
-          </Button>
-          <Button asChild className="w-full sm:w-auto">
-            <Link href="/login">Back to Login</Link>
-          </Button>
+          <Link href="/">
+            <Button variant="ghost" className="w-full sm:w-auto">
+              Go to Homepage
+            </Button>
+          </Link>
+          <Link href="/login">
+            <Button className="w-full sm:w-auto text-white">
+              Back to Login
+            </Button>
+          </Link>
         </div>
       </div>
     </main>

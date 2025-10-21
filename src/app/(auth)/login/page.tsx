@@ -16,10 +16,10 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would validate the email and handle the login logic here
+    // you would validate the email and handle the login logic here
     console.log("Email submitted:", email);
 
-    // Store the email (this is just in-memory, in a real app you might use context, state management, or a cookie)
+    // Store the email (this is just in-memory, use context, state management, or a cookie)
     sessionStorage.setItem("userEmail", email);
 
     // Redirect to dashboard

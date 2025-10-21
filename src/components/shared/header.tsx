@@ -27,11 +27,10 @@ export function MarketingHeader() {
       <div className="flex items-center justify-between gap-12 w-full max-w-[1200px] mx-auto">
         <Link href="/" id="logo" className="flex items-center gap-2">
           <Image
-            width={32}
-            height={32}
             src="/images/logo_white.svg"
             alt="OpenQuanta"
-            className="light:invert"
+            width={32}
+            height={32}
           />
 
           <h1 className="text-lg font-bold">openQuanta</h1>
@@ -125,12 +124,15 @@ export function UserHeader() {
   return (
     <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm">
       <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
-        <Link href="/" id="logo" className="w-full max-w-[200px]">
+        <Link href="/" id="logo" className="flex items-center gap-2">
           <Image
             src="/images/logo_white.svg"
             alt="OpenQuanta"
-            className="w-full dark:invert"
+            width={32}
+            height={32}
           />
+
+          <h1 className="text-lg font-bold">openQuanta</h1>
         </Link>
 
         <div>
@@ -147,14 +149,15 @@ export function AuthHeader() {
   return (
     <header className="fixed top-0 z-10 w-full">
       <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
-        <Link href="/" id="logo" className="w-full max-w-[200px]">
+        <Link href="/" id="logo" className="flex items-center gap-2">
           <Image
             src="/images/logo_white.svg"
+            alt="OpenQuanta"
             width={32}
             height={32}
-            alt="OpenQuanta"
-            className="w-full dark:invert"
           />
+
+          <h1 className="text-lg font-bold">openQuanta</h1>
         </Link>
       </div>
     </header>
