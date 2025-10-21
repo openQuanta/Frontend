@@ -6,7 +6,7 @@ import { CopyButton } from '@/components/ui/shadcn-io/copy-button'
 export default function MetadataTab({ formData }: { formData: any }) {
   return (
 
-    <div className="grid gap-4 mt-[40px] mb-[64px] w-[900px]">
+    <div className="grid gap-4 w-[900px]">
 
       {/* 1. Publication Date Row */}
       <div className="flex justify-between items-center py-4 px-6 bg-[#1A1616]/40 rounded-[4px] min-h-[56px]">
@@ -41,7 +41,7 @@ export default function MetadataTab({ formData }: { formData: any }) {
 
           {/* Copy Icon - The flex container eliminates the unwanted space */}
           <div className="inline-flex ml-2 cursor-pointer">
-            <CopyButton content={formData.doi} variant="ghost" size="md" />
+            <CopyButton content={formData.doi} variant="ghost" size="sm" />
           </div>
         </div>
       </div>

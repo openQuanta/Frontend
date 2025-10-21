@@ -52,9 +52,7 @@ function ExternalLinkItem({ title, url }: { title: string, url: string | undefin
 
 export default function ExternalLinksTab({ formData }: { formData: any }) {
     return (
-        <div className="grid gap-4 mt-[40px] mb-[64px] w-[900px]">
-
-            <div className="grid gap-4 mt-[40px] mb-[64px] w-[900px]">
+        <div className="grid gap-4 w-[900px]">
 
                 {/* Card 1: GitHub Repository */}
                 <ExternalLinkItem
@@ -73,8 +71,6 @@ export default function ExternalLinksTab({ formData }: { formData: any }) {
                     title="Supplementary Materials"
                     url={formData.supplementaryMaterials}
                 />
-            </div>
         </div>
-                
     )
 }

@@ -43,7 +43,7 @@ export default function SettingsTab({ formData }: SettingsTabProps) {
     ];
 
     return (
-        <div className="grid gap-4 mt-[40px] mb-[64px] w-[900px]">
+        <div className="grid gap-4 w-[900px]">
             {settingsItems.map((item) => (
                 // Individual setting card container
                 <div

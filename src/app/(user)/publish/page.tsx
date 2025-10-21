@@ -3,7 +3,7 @@
 import PreviewStage from '@/components/publish-tabs/preview'
 import { useState } from 'react'
 import Image from 'next/image'
-import { OrangeLogo, Notification, Message, Headshot, UploadIcon } from '@/assets/images'
+import { OrangeLogo, Notification, Message, Headshot, UploadIcon, HeadshotIcon } from '@/assets/images'
 
 interface FormData {
   title: string;
@@ -122,9 +122,66 @@ export default function UploadResearchPaper() {
     return <PreviewStage formData={previewFormData as any} onBack={() => setIsPreview(false)} />
   }
 
+  // current step: 1 = Paper Info, 2 = Preview (and its tabs), 3 = Publishing
+  const currentStep = isPreview ? 2 : 1
+
   return (
     <main className='mt-15'>
-      {/* Header and Progress Steps JSX remains the same */}
+      {/* ... (Header and Progress Steps JSX remains the same) ... */}
+            <div className='flex justify-between items-center py-2 px-6 h-[47px] w-[98%] absolute top-0 left-0 right-0 bg-black z-10'>
+                {/* Placeholder for the Orange Logo */}
+                <div className='w-[64px] h-[15px] bg-orange-500 rounded-sm'></div>
+                <div className='flex w-[177px] h-[24px] gap-2 items-center justify-center my-auto'>
+                    <Image src={Message} alt='Message' width={12} height={12} style={{ objectFit: 'contain' }} />
+                    <Image src={Notification} alt='Notification' width={12} height={12} style={{ objectFit: 'contain' }} />
+                    <div className='flex items-center w-[143px] pr-8 py-1 pl-1 gap-4 border border-white/20 rounded-2xl'>
+                        <Image src={HeadshotIcon} alt='Headshot' width={16} height={16} className='profile-img' style={{ objectFit: 'contain' }} />
+                        <div className='flex items-center gap-2'>
+                            <span className='connected bg-green-500 size-[6px] rounded-full'></span>
+                            <span className='wallet-address text-wrap w-[57px] text-[10px] overflow-clip'>uecuvecedceygpo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+      {/* Progress Steps (highlights current step) */}
+      <div className='flex justify-center pt-20 gap-10 border-b border-gray-800/80 pb-6'>
+        <div className='flex items-center gap-3'>
+          <span
+            className={`px-4 py-2 rounded-full text-xl font-bold ${currentStep === 1 ? 'bg-[#F97316] text-white' : 'bg-[#1A1A16] text-white/80'}`}
+          >
+            1
+          </span>
+          <div className='text-sm'>
+            <h2 className={`text-[16px] font-semibold ${currentStep === 1 ? 'text-white' : 'text-white/70'}`}>Paper Information</h2>
+            <h3 className={`text-[12px] font-light ${currentStep === 1 ? 'text-white/80' : 'text-white/70'}`}>Upload details</h3>
+          </div>
+        </div>
+
+        <div className='flex items-center gap-3'>
+          <span
+            className={`px-4 py-2 rounded-full text-xl font-bold ${currentStep === 2 ? 'bg-[#F97316] text-white border border-white' : 'bg-white/5 text-white/80 border border-white/10'}`}
+          >
+            2
+          </span>
+          <div className='text-sm'>
+            <h2 className={`text-[16px] font-semibold ${currentStep === 2 ? 'text-white' : 'text-white/70'}`}>Preview</h2>
+            <h3 className={`text-[12px] font-light ${currentStep === 2 ? 'text-white/80' : 'text-white/70'}`}>Review Paper</h3>
+          </div>
+        </div>
+
+        <div className='flex items-center gap-3'>
+          <span
+            className={`px-4 py-2 rounded-full text-xl font-bold ${currentStep === 3 ? 'bg-[#F97316] text-white' : 'bg-white/5 text-white/80'}`}
+          >
+            3
+          </span>
+          <div className='text-sm'>
+            <h2 className={`text-[16px] font-semibold ${currentStep === 3 ? 'text-white' : 'text-white/70'}`}>Publishing</h2>
+            <h3 className={`text-[12px] font-light ${currentStep === 3 ? 'text-white/80' : 'text-white/70'}`}>Final Steps</h3>
+          </div>
+        </div>
+      </div>
 
       <div className='min-h-screen bg-black text-white flex justify-center py-10 px-4'>
         <div
@@ -363,7 +420,7 @@ export default function UploadResearchPaper() {
 
                   <input
                     type='file'
-                    name='pdf' 
+                    name='pdf'
                     accept='application/pdf, .doc, .docx'
                     onChange={handleChange}
                     // 💡 REQUIRED

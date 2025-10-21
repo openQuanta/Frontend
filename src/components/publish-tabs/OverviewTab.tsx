@@ -10,6 +10,7 @@ interface FormData {
     abstract: string;
     keywords: string[];
     github: string;
+    pdf?: File | null; // added: optional pdf file from formData
 }
 
 interface PreviewStageProps {
@@ -45,6 +46,16 @@ export default function OverviewTab({ formData, keywords = [], coAuthors = [], o
         }
     };
 
+    // helper to format bytes (used to show file size)
+    const formatBytes = (bytes = 0, decimals = 1) => {
+        if (!bytes) return '0 B'
+        const k = 1024
+        const dm = Math.max(0, decimals)
+        const sizes = ['B', 'KB', 'MB', 'GB', 'TB']
+        const i = Math.floor(Math.log(bytes) / Math.log(k))
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
+    }
+
     return (
         <div className="grid gap-10">
             {/* Abstract Section */}
@@ -55,19 +66,18 @@ export default function OverviewTab({ formData, keywords = [], coAuthors = [], o
 
 
             {/* Keywords section */}
-            <div className='flex max-w-[900px] gap-4'>
-                <div className='max-w-[458px]'>
-                    <h3 className='text-[20px] mb-2'>Keywords</h3>
-                    <div className='flex flex-wrap gap-2'>
-                        {keywords && keywords.map((keyword, index) => (
-                            <span
-                                key={index}
-                                className='px-3 py-1 bg-white/10 rounded-full text-sm'
-                            >
-                                {keyword}
-                            </span>
-                        ))}
-                    </div>
+
+            <div className='max-w-[458px] gap-4 flex flex-col'>
+                <h3 className='text-[20px] mb-2'>Keywords</h3>
+                <div className='flex flex-wrap gap-2'>
+                    {keywords && keywords.map((keyword, index) => (
+                        <span
+                            key={index}
+                            className='px-3 py-1 bg-white/10 rounded-full text-sm'
+                        >
+                            {keyword}
+                        </span>
+                    ))}
                 </div>
             </div>
 
@@ -84,7 +94,7 @@ export default function OverviewTab({ formData, keywords = [], coAuthors = [], o
                                     width={20}
                                     height={20}
                                     className='rounded-full'
-                                />
+                                    />
                                 <span
                                     className='text-sm'
                                 >
@@ -92,11 +102,24 @@ export default function OverviewTab({ formData, keywords = [], coAuthors = [], o
                                 </span>
                             </div>
 
-                            <CopyButton content={coAuthor} variant="ghost" size="md" />
+                            <CopyButton content={coAuthor} variant="ghost" size="sm" />
                         </div>
                     ))}
+                    {/* PDF display: name · size */}
+                    {formData.pdf && (
+                        <div className="max-w-[900px]">
+                            <div className="flex items-center gap-3 bg-[#1A1A16]/40 40 w-[900px] h-[100px] px-6 py-3 rounded-[4px]">
+                                <Image src={FileIcon} alt="PDF icon" width={20} height={20} />
+                                <span className="text-[12px] text-white/64">
+                                    {formData.pdf.name} <br /> {formatBytes(formData.pdf.size)}
+                                </span>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
+
+
 
 
 

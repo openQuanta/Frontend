@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'; // Import useEffect and useState
 import Image from 'next/image'
-import { HeadshotIcon, Message, Notification, FileIcon, ArrowRight, SolIcon} from '@/assets/images'
+import { HeadshotIcon, Message, Notification, FileIcon, ArrowRight, SolIcon } from '@/assets/images'
 import OverviewTab from './OverviewTab';
 import MetadataTab from './MetadataTab'
 import ExternalLinksTab from './ExternalLinksTab'
@@ -56,11 +56,15 @@ export default function PreviewStage({ formData, onBack }: PreviewStageProps) {
             return () => {
                 URL.revokeObjectURL(url);
             };
-        } else {
+        } else { // If no cover image is selected, ensure the URL is cleared
             setCoverImageUrl(null); // No image, so clear the URL
         }
+    }, [formData.coverImage]); // Re-run effect if coverImage changes, but don't scroll here
+
+    // Effect to scroll to the top when the component mounts
+    useEffect(() => {
         window.scrollTo(0, 0);
-    }, [formData.coverImage]); // Re-run effect if coverImage changes
+    }, []); // Empty dependency array means this effect runs once on mount
 
     // Helper to get a readable file name or a placeholder
     const getFileName = (file: File | null, placeholder: string) => {
@@ -91,7 +95,7 @@ export default function PreviewStage({ formData, onBack }: PreviewStageProps) {
             {/* Progress Steps */}
             <div className='flex justify-center pt-20 gap-10 bg-black border-b border-gray-800/80 pb-6'>
                 <div className='flex items-center gap-3'>
-                    <span className='px-4 py-2 rounded-full bg-amber-300 text-black text-xl font-bold'>1</span>
+                    <span className='px-4 py-2 rounded-full bg-[#1A1616] text-white text-xl font-bold'>1</span>
                     <div className='text-sm'>
                         <h2 className='text-[16px] font-semibold'>Paper Information</h2>
                         <h3 className='text-[12px] font-light text-white/70'>Completed</h3>
@@ -105,7 +109,7 @@ export default function PreviewStage({ formData, onBack }: PreviewStageProps) {
                     </div>
                 </div>
                 <div className='flex items-center gap-3'>
-                    <span className='px-4 py-2 rounded-full bg-gray-700 text-white text-xl font-bold'>3</span>
+                    <span className='px-4 py-2 rounded-full bg-[#1A1616] text-white text-xl font-bold'>3</span>
                     <div className='text-sm'>
                         <h2 className='text-[16px] font-semibold'>Publishing</h2>
                         <h3 className='text-[12px] font-light text-white/70'>Final Steps</h3>
@@ -141,14 +145,14 @@ export default function PreviewStage({ formData, onBack }: PreviewStageProps) {
 
                     <div className='flex flex-col'>
                         {/* Nav Section */}
-                        <div className='mb-6'>
-                            <div className='flex justify-between items-center border-b border-white/10 pb-2 max-w-[543px] [&_h3]:text-[16px]'>
+                        <div className='mb-[64px]'>
+                            <div className='flex justify-between items-center border-b border-white/10 pb-2 max-w-[543px] [&_h3]:text-[16px] '>
                                 {tabs.map(tab => (
                                     <button
                                         key={tab}
                                         type='button'
                                         onClick={() => setActiveTab(tab)}
-                                        className={`px-2 pb-3 -mb-2 text-sm transition-all ${activeTab === tab
+                                        className={`px-2 pb-3 -mb-2 text-sm transition-all hover:cursor-pointer ${activeTab === tab
                                             ? 'border-b-2 border-orange-500 text-white font-semibold'
                                             : 'text-white/60'
                                             }`}
@@ -167,7 +171,7 @@ export default function PreviewStage({ formData, onBack }: PreviewStageProps) {
                             keywords={formData.keywords || []} // Add fallback empty array
                             onBack={onBack}
                             coAuthors={formData.coAuthors || []} // Pass coAuthors array
-                            
+
                         />
                     )}
 
@@ -183,7 +187,7 @@ export default function PreviewStage({ formData, onBack }: PreviewStageProps) {
                         <SettingsTab formData={formData} />
                     )}
 
-                    <div className="grid gap-10">
+                    <div className="grid gap-10 mt-[64px]">
                         <div className="grid gap-10">
                             <h2 className='text-[20px]'>Summary</h2>
                             <div className='grid max-w-[900px] gap-6'>
@@ -244,16 +248,16 @@ export default function PreviewStage({ formData, onBack }: PreviewStageProps) {
                         </div>
                     </div>
 
-                        {/* 💡 NEW: Edit Details Button */}
-                        <div className="flex justify-center mb-[80px] mt-10">
-                            <button
-                                type='button'
-                                onClick={onBack}
-                                className='w-full max-w-[400px] px-auto py-[12px] border border-white/20 hover:border-white/50 text-[16px] font-semibold transition text-white/80 flex justify-center rounded-[4px]'
-                            >
-                                Edit Details
-                            </button>
-                        </div>
+                    {/* 💡 NEW: Edit Details Button */}
+                    <div className="flex justify-center mb-[80px] mt-10">
+                        <button
+                            type='button'
+                            onClick={onBack}
+                            className='w-full max-w-[400px] px-auto py-[12px] border border-white/20 hover:border-white/50 text-[16px] font-semibold transition text-white/80 flex justify-center rounded-[4px]'
+                        >
+                            Edit Details
+                        </button>
+                    </div>
 
                     {/* Action Buttons & Agreement */}
                     <div className='relative mt-10 flex flex-col gap-10'>
@@ -263,7 +267,7 @@ export default function PreviewStage({ formData, onBack }: PreviewStageProps) {
                             <input type='checkbox' id='agreement' className='mt-1 mr-3 size-4 accent-orange-500' required />
                             <label htmlFor='agreement' className='text-white text-sm'>
                                 I confirm this is original work or I have rights to publish <br />
-                                By publishing, you agree to openQuanta's <a href='#' className='text-orange-500 hover:underline'>Terms and Conditions</a>.
+                                By publishing, you agree to openQuanta's <a href='#' className='text-orange-500 hover:underline'>Terms and Conditions</a>
                             </label>
                         </div>
 
@@ -295,15 +299,15 @@ export default function PreviewStage({ formData, onBack }: PreviewStageProps) {
                             </button>
                         </div>
                     </div>
-                    
-                <div className='flex items-center mt-6'>
-                    <span role='img' aria-label='info icon' className='mr-3 size-3 bg-white rounded-full text-[10px] flex items-center justify-center text-black font-bold'>
-                        i
-                    </span>
-                    <p className='text-[12px] text-white/60'>
-                        <strong className='font-semibold text-white/100'>Pro tip:</strong> Review all details carefully. You can edit your paper after publishing, but metadata changes require a new transaction.
-                    </p>
-                </div>
+
+                    <div className='flex items-center mt-6'>
+                        <span role='img' aria-label='info icon' className='mr-3 size-3 bg-white rounded-full text-[10px] flex items-center justify-center text-black font-bold'>
+                            i
+                        </span>
+                        <p className='text-[12px] text-white/60'>
+                            <strong className='font-semibold text-white/100'>Pro tip:</strong> Review all details carefully. You can edit your paper after publishing, but metadata changes require a new transaction.
+                        </p>
+                    </div>
                 </div>
             </div>
         </main>
