@@ -16,7 +16,7 @@ interface FlippingStackProps {
 
 const cardTextStates: Record<string, string[][]> = {
     'upload-research': [
-        ['Start uploading', 'Begin submission'],
+        ['Start uploading', 'Begin submission', 'Upload files'],
         ['Verify research', 'Check authenticity'],
         ['Get visibility', 'Showcase work']
     ],
@@ -50,7 +50,7 @@ const cardTextStates: Record<string, string[][]> = {
 export default function FlippingStack({ sections }: FlippingStackProps) {
     const [activeSection, setActiveSection] = useState(sections[0].id)
     const [flipIndex, setFlipIndex] = useState(0)
-
+    console.log('Active Section:', sections)
     // Detect active section on scroll and on initial mount
     useEffect(() => {
         const handleScroll = () => {
@@ -85,29 +85,35 @@ export default function FlippingStack({ sections }: FlippingStackProps) {
 
     return (
         <div className="relative w-[861px] h-[332px] flex flex-col gap-4 perspective-1000">
-            {cardTextStates[activeSection].map((states, index) => (
-                <motion.div
-                    key={index}
-                    animate={{ rotateX: flipIndex ? 180 : 0, opacity: 1 }}
-                    initial={{ opacity: 0 }}
-                    transition={{
-                        type: 'spring',
-                        stiffness: 300,
-                        damping: 20,
-                        mass: 1,
-                        delay: index * 0.3
-                    }}
-                    className="absolute top-0 left-0 w-full"
-                    style={{ zIndex: 3 - index, transformStyle: 'preserve-3d' }}
-                >
-                    <div className="absolute w-full h-full backface-hidden">
-                        <LayeredCard title={states[0]} />
-                    </div>
-                    <div className="absolute w-full h-full rotate-x-180 backface-hidden">
-                        <LayeredCard title={states[1]} />
-                    </div>
-                </motion.div>
-            ))}
+            {cardTextStates[activeSection].map((states, index) => {
+                console.log('Rendering card with states:', states)
+                return (
+                    <motion.div
+                        key={index}
+                        animate={{ rotateX: flipIndex ? 180 : 0, opacity: 1 }}
+                        initial={{ opacity: 0 }}
+                        transition={{
+                            type: 'spring',
+                            stiffness: 300,
+                            damping: 20,
+                            mass: 1,
+                            delay: index * 0.3
+                        }}
+                        className="absolute top-0 left-0 w-full"
+                        style={{ zIndex: 3 - index, transformStyle: 'preserve-3d' }}
+                    >
+                        <div className="absolute w-full h-full backface-hidden">
+                            <LayeredCard title={states[0]} />
+                        </div>
+                        <div className="absolute w-full h-full rotate-x-180 backface-hidden">
+                            <LayeredCard title={states[1]} />
+                        </div>
+                        <div className="absolute w-full h-full rotate-x-360 backface-hidden">
+                            <LayeredCard title={states[2]} />
+                        </div>
+                    </motion.div>
+                )
+            })}
         </div>
     )
 }
