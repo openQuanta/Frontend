@@ -69,7 +69,7 @@ export default function Page() {
             </li>
           </ul>
         </div>
-        <form className="w-full max-w-[1000px] mx-auto border border-[rgba(100,98,184,0.64)] rounded-2xl flex flex-col gap-5 p-10">
+        <form className="w-full max-w-[1000px] mx-auto border border-[6462B8]/64 bg-[#181615]/48 rounded-2xl flex flex-col gap-5 p-10">
           <div className="flex flex-col gap-5">
             <h3 className="text-3xl">Becoming our founding contributor</h3>
             <p className="text-white/65">
