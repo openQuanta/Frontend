@@ -121,7 +121,7 @@ export default function EmailVerificationPage() {
           </Button>
 
           <footer className="mt-6 text-center text-xs text-muted-foreground">
-            Didn't get the code?{" "}
+            Didn&apos;t get the code?{" "}
             <Link
               href="/"
               className="font-medium text-foreground hover:underline"
