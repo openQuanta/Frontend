@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { AnimatedButton } from "@/components/ui/animated-button";
 import {
   Caret,
   DashboardModel,
@@ -20,6 +19,7 @@ import DynamicScrollCards from "./dynamic-cards";
 import Footer from "@/components/shared/footer";
 import { Button } from "@/components/ui/button";
 import CountUp from "@/components/ui/CountUp";
+import GlowingButton from "@/components/shared/glowing-button";
 
 const sections = [
   { id: "upload-research", label: "Upload research", number: "01" },
