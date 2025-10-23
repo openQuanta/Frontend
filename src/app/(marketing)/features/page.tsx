@@ -105,8 +105,7 @@ export default function Page() {
               <div
                 id="scroll-indicator-nav"
                 className={`
-                  min-h-[50vh] w-fit relative 
-                  sticky top-1/4 -translate-y-1/4
+                  min-h-[50vh] w-fit relative top-1/4 -translate-y-1/4
                   transition-all duration-500 ease-in-out
                   ${
                     isNavScrollOut
