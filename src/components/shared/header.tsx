@@ -1,7 +1,6 @@
 "use client";
 
 import { AlignRight, ArrowRight, ChevronRight } from "lucide-react";
-import logo from "@/assets/brand/logoWordBlack.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -16,18 +15,25 @@ import dynamic from "next/dynamic";
 import { useWallet } from "@solana/wallet-adapter-react";
 
 const navLinks = [
-  { href: "/research", label: "Research" },
-  { href: "/publish", label: "Publish" },
-  { href: "/discover", label: "Discover" },
+  { href: "/features", label: "Features" },
+  { href: "/explore", label: "Explore" },
+  { href: "/document", label: "Document" },
   { href: "/about", label: "About" },
 ];
 
 export function MarketingHeader() {
   return (
-    <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm">
-      <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
-        <Link href="/" id="logo" className="w-full max-w-[200px]">
-          <Image src={logo} alt="OpenQuanta" className="w-full dark:invert" />
+    <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm p-6">
+      <div className="flex items-center justify-between gap-12 w-full max-w-[1200px] mx-auto">
+        <Link href="/" id="logo" className="flex items-center gap-2">
+          <Image
+            src="/images/logo_white.svg"
+            alt="OpenQuanta"
+            width={32}
+            height={32}
+          />
+
+          <h1 className="text-lg font-bold">openQuanta</h1>
         </Link>
 
         {/* Desktop Navigation */}
@@ -56,7 +62,7 @@ export function MarketingHeader() {
               </Button>
             </Link>
             <Link href="/dashboard">
-              <Button className="bg-white hover:bg-white/90">
+              <Button className="bg-white hover:bg-white/90 text-black">
                 Get Started
               </Button>
             </Link>
@@ -70,7 +76,7 @@ export function MarketingHeader() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="lg:hidden w-18 h-18"
+                className="lg:hidden w-16 h-16"
               >
                 <AlignRight className="w-full h-full" />
                 <span className="sr-only">Toggle menu</span>
@@ -91,7 +97,7 @@ export function MarketingHeader() {
                 </SheetClose>
                 <SheetClose asChild>
                   <Link href="/dashboard">
-                    <Button className="bg-white hover:bg-white/90">
+                    <Button className="bg-white hover:bg-white/90 text-black">
                       Get Started
                     </Button>
                   </Link>
@@ -118,8 +124,15 @@ export function UserHeader() {
   return (
     <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm">
       <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
-        <Link href="/" id="logo" className="w-full max-w-[200px]">
-          <Image src={logo} alt="OpenQuanta" className="w-full dark:invert" />
+        <Link href="/" id="logo" className="flex items-center gap-2">
+          <Image
+            src="/images/logo_colored.svg"
+            alt="OpenQuanta"
+            width={32}
+            height={32}
+          />
+
+          <h1 className="text-lg font-bold">openQuanta</h1>
         </Link>
 
         <div>
@@ -134,10 +147,17 @@ export function UserHeader() {
 
 export function AuthHeader() {
   return (
-    <header className="fixed top-0 z-10 w-full">
+    <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm p-6">
       <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
-        <Link href="/" id="logo" className="w-full max-w-[200px]">
-          <Image src={logo} alt="OpenQuanta" className="w-full dark:invert" />
+        <Link href="/" id="logo" className="flex items-center gap-2">
+          <Image
+            src="/images/logo_colored.svg"
+            alt="OpenQuanta"
+            width={32}
+            height={32}
+          />
+
+          <h1 className="text-lg font-bold">openQuanta</h1>
         </Link>
       </div>
     </header>

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import logo from "@/assets/brand/logo_white.svg";
 import "./globals.css";
 
 export default function NotFound() {
@@ -12,7 +11,7 @@ export default function NotFound() {
       <div className="text-center max-w-2xl mx-auto flex flex-col gap-8">
         <div className="flex flex-col gap-6">
           <Image
-            src={logo}
+            src="/images/logo_white.svg"
             alt="OpenQuanta logo"
             width={64}
             height={64}
@@ -30,16 +29,16 @@ export default function NotFound() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            asChild
-            variant="outline"
-            className="w-full sm:w-auto text-black"
-          >
-            <Link href="/">Go to Homepage</Link>
-          </Button>
-          <Button asChild className="w-full sm:w-auto">
-            <Link href="/login">Back to Login</Link>
-          </Button>
+          <Link href="/">
+            <Button variant="ghost" className="w-full sm:w-auto">
+              Go to Homepage
+            </Button>
+          </Link>
+          <Link href="/login">
+            <Button className="w-full sm:w-auto text-white">
+              Back to Login
+            </Button>
+          </Link>
         </div>
       </div>
     </main>

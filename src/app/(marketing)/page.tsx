@@ -9,10 +9,7 @@ import {
 import Image from "next/image";
 
 // image assets
-import circleDown from "@/assets/images/circle_down.svg";
 import client from "@/assets/images/client.svg";
-import heroArt from "@/assets/images/cool_light_thingy.png";
-import heroDash from "@/assets/images/hero_dashboard.png";
 import iconOrange from "@/assets/brand/iconOrange.svg";
 import server from "@/assets/images/server.svg";
 import solana from "@/assets/images/solana.png";
@@ -31,11 +28,8 @@ export default function Page() {
       {/* Hero */}
       <section className="w-full max-w-[1200px] mx-auto">
         {/* top section */}
-        <section
-          style={{ backgroundImage: `url(${heroArt.src})` }}
-          className="w-full bg-contain bg-center md:bg-position-[120%] bg-no-repeat"
-        >
-          <div className="text-center md:text-left px-5 py-40 w-full max-w-[900px] flex flex-col items-center gap-12 md:items-start bg-black/30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
+        <section className="w-full bg-[url('/images/cool_light_thingy.png')] bg-contain bg-center md:bg-[position:120%_center] bg-no-repeat">
+          <div className="text-center md:text-left px-6 py-40 w-full max-w-[900px] flex flex-col items-center gap-12 md:items-start bg-black/30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
             <div className="flex items-center gap-3 p-3 px-6 border-[0.5px] border-white/24 rounded-full">
               <div className="w-3 h-3 rounded-full bg-[#645cfb] animate-pulse"></div>
               <h4 className="text-sm">On Chain & Transparent</h4>
@@ -70,9 +64,14 @@ export default function Page() {
         </section>
 
         {/* bottom section with illustration */}
-        <section className=" px-5">
-          <div className="relative w-full max-w-[1000px] mx-auto">
-            <Image src={heroDash} alt="Hero Dashboard" />
+        <section className="px-5">
+          <div className="relative w-full max-w-[1200px] h-[500px] mx-auto">
+            <Image
+              src="/images/hero_dashboard.png"
+              alt="Hero Dashboard"
+              fill
+              className="object-contain"
+            />
           </div>
 
           <div className="text-center grid gap-5 py-10">
@@ -101,7 +100,12 @@ export default function Page() {
           style={{ backgroundImage: `url(${triangleBlur.src})` }}
           className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
         >
-          <Image src={circleDown} alt="Circle Down" className="h-20 w-full" />
+          <Image
+            width={14}
+            height={76}
+            src="/images/circle_down.svg"
+            alt="Circle Down"
+          />
           <h2 className="text-5xl">
             Smart <span className="text-primary">Flow</span>
           </h2>
@@ -334,7 +338,12 @@ export default function Page() {
           style={{ backgroundImage: `url(${triangleBlur.src})` }}
           className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
         >
-          <Image src={circleDown} alt="Circle Down" className="h-20 w-full" />
+          <Image
+            width={14}
+            height={76}
+            src="/images/circle_down.svg"
+            alt="Circle Down"
+          />
           <h2 className="text-3xl md:text-4xl lg:text-5xl">
             Feedback from <span className="text-primary">tradition users</span>
           </h2>
