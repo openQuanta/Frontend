@@ -1,11 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { BgLines } from "@/assets/images";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp, MoreHorizontal } from "lucide-react";
-
 
 const summaryData = {
   "Problem Space":
@@ -74,7 +72,6 @@ export default function Page() {
           </p>
         </div>
         <div className="flex gap-[24px] text-[14px]">
-          
           <span>Become a founding contributor </span>
         </div>
         <div className="flex justify-center">

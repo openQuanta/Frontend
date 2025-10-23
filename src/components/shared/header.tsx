@@ -1,6 +1,6 @@
 "use client";
 
-import { AlignRight, ChevronRight } from "lucide-react";
+import { AlignRight, ArrowRight, ChevronRight } from "lucide-react";
 import logo from "@/assets/brand/logoWordBlack.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -34,21 +34,32 @@ export function MarketingHeader() {
         <nav className="hidden lg:flex items-center justify-between w-full">
           <div className="flex gap-6 items-center">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="hover:text-primary transition-colors text-[12px]"
-              >
-                {link.label}
-              </Link>
+              <Button variant="ghost" key={link.href} className="px-2 py-1">
+                <Link
+                  href={link.href}
+                  className="text-xs drop-shadow-[0_0_4px_rgba(255,255,255,0.5)] hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)] transition-all duration-300"
+                >
+                  {link.label}
+                </Link>
+              </Button>
             ))}
           </div>
 
           <div className="flex gap-6 items-center">
-            <Button variant="link">
-              Become a founding contributor <ChevronRight />
-            </Button>
-            <Button className="bg-white">Get Started</Button>
+            <Link href="/founding-contributor">
+              <Button variant="ghost" className="group">
+                Become a founding contributor{" "}
+                <div className="relative w-4 h-4 mt-0.5">
+                  <ChevronRight className="absolute transition-all duration-1000 group-hover:opacity-0 right-0" />
+                  <ArrowRight className="absolute opacity-0 transition-all duration-1000 group-hover:opacity-100 right-0.5" />
+                </div>
+              </Button>
+            </Link>
+            <Link href="/dashboard">
+              <Button className="bg-white hover:bg-white/90">
+                Get Started
+              </Button>
+            </Link>
           </div>
         </nav>
 
@@ -79,7 +90,11 @@ export function MarketingHeader() {
                   </Link>
                 </SheetClose>
                 <SheetClose asChild>
-                  <Button className="bg-white">Get Started</Button>
+                  <Link href="/dashboard">
+                    <Button className="bg-white hover:bg-white/90">
+                      Get Started
+                    </Button>
+                  </Link>
                 </SheetClose>
               </div>
             </SheetContent>
@@ -112,6 +127,18 @@ export function UserHeader() {
             {wallet.connected ? wallet.publicKey?.toBase58() : "Connect Wallet"}
           </WalletMultiButton>
         </div>
+      </div>
+    </header>
+  );
+}
+
+export function AuthHeader() {
+  return (
+    <header className="fixed top-0 z-10 w-full">
+      <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
+        <Link href="/" id="logo" className="w-full max-w-[200px]">
+          <Image src={logo} alt="OpenQuanta" className="w-full dark:invert" />
+        </Link>
       </div>
     </header>
   );

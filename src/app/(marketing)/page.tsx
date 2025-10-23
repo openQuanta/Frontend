@@ -23,6 +23,7 @@ import connectorLine from "@/assets/images/connector-line.svg";
 import Link from "next/link";
 import ResearchPreviewCard from "@/components/research/research-preview";
 import TestimonialCarousel from "@/components/feedback/testimonial-carousel";
+import GlowingButton from "@/components/shared/glowing-button";
 
 export default function Page() {
   return (
@@ -32,32 +33,36 @@ export default function Page() {
         {/* top section */}
         <section
           style={{ backgroundImage: `url(${heroArt.src})` }}
-          className="w-full bg-contain bg-center md:bg-position-[90%] bg-no-repeat"
+          className="w-full bg-contain bg-center md:bg-position-[120%] bg-no-repeat"
         >
-          <div className="text-center md:text-left px-5 py-40 w-full max-w-[600px] flex flex-col items-center gap-10 md:items-start bg-black/30 backdrop-blur-sm">
-            <div className="flex items-center gap-2 p-2 px-4 border border-white/30 rounded-full">
-              <div className="w-3 h-3 rounded-full bg-violet-600"></div>
-              <h4>On Chain & Transparent</h4>
+          <div className="text-center md:text-left px-5 py-40 w-full max-w-[900px] flex flex-col items-center gap-12 md:items-start bg-black/30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
+            <div className="flex items-center gap-3 p-3 px-6 border-[0.5px] border-white/24 rounded-full">
+              <div className="w-3 h-3 rounded-full bg-[#645cfb] animate-pulse"></div>
+              <h4 className="text-sm">On Chain & Transparent</h4>
             </div>
 
-            <div className="flex flex-col gap-10">
-              <h1 className="text-5xl">
-                Advancing human progress with publishing
+            <div className="flex flex-col gap-6">
+              <h1 className="text-[74px] leading-[74px]">
+                Advance your research through independent publishing
               </h1>
-              <p>
-                Transforming research through open publishing, authorship NFTs,
-                and reputation-weighted peer review — all on a decentralized
-                platform built on Solana.
+              <p className="text-white/64">
+                Here researchers publish without intermediaries, control their
+                work, secure authorship with NFTs and monetize in an open
+                market.
               </p>
             </div>
 
             <div className="grid md:flex items-center gap-5">
-              <Link href="/login">
-                <Button variant="outline">Get Started</Button>
+              <Link href="/login" className="relative group/button">
+                <GlowingButton>Get Started</GlowingButton>
               </Link>
               <Link href="/founding-contributor">
-                <Button variant="link">
-                  Become a founding contributor <ChevronRight />
+                <Button variant="ghost" className="group">
+                  Become a founding contributor{" "}
+                  <div className="relative w-4 h-4 mt-0.5">
+                    <ChevronRight className="absolute transition-all duration-1000 group-hover:opacity-0 right-0" />
+                    <ArrowRight className="absolute opacity-0 transition-all duration-1000 group-hover:opacity-100 right-0.5" />
+                  </div>
                 </Button>
               </Link>
             </div>
@@ -278,9 +283,15 @@ export default function Page() {
             credibility while opening direct paths to funding and wider
             recognition
           </p>
-          <Button variant="link">
-            Becoming a founding contributor <ChevronRight />
-          </Button>
+          <Link href="/founding-contributor">
+            <Button variant="ghost" className="group">
+              Become a founding contributor{" "}
+              <div className="relative w-4 h-4 mt-0.5">
+                <ChevronRight className="absolute transition-all duration-1000 group-hover:opacity-0 right-0" />
+                <ArrowRight className="absolute opacity-0 transition-all duration-1000 group-hover:opacity-100 right-0.5" />
+              </div>
+            </Button>
+          </Link>
         </div>
       </section>
 
