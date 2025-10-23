@@ -123,74 +123,74 @@ export default function UploadResearchPaper() {
   }
 
   // current step: 1 = Paper Info, 2 = Preview (and its tabs), 3 = Publishing
-  const currentStep = isPreview ? 2 : 1
+  const currentStep = isPreview ? 3 : 1
 
   return (
     <main className='mt-15'>
       {/* ... (Header and Progress Steps JSX remains the same) ... */}
-            <div className='flex justify-between items-center py-2 px-6 h-[47px] w-[98%] absolute top-0 left-0 right-0 bg-black z-10'>
-                {/* Placeholder for the Orange Logo */}
-                <div className='w-[64px] h-[15px] bg-orange-500 rounded-sm'></div>
-                <div className='flex w-[177px] h-[24px] gap-2 items-center justify-center my-auto'>
-                    <Image src={Message} alt='Message' width={12} height={12} style={{ objectFit: 'contain' }} />
-                    <Image src={Notification} alt='Notification' width={12} height={12} style={{ objectFit: 'contain' }} />
-                    <div className='flex items-center w-[143px] pr-8 py-1 pl-1 gap-4 border border-white/20 rounded-2xl'>
-                        <Image src={HeadshotIcon} alt='Headshot' width={16} height={16} className='profile-img' style={{ objectFit: 'contain' }} />
-                        <div className='flex items-center gap-2'>
-                            <span className='connected bg-green-500 size-[6px] rounded-full'></span>
-                            <span className='wallet-address text-wrap w-[57px] text-[10px] overflow-clip'>uecuvecedceygpo</span>
-                        </div>
-                    </div>
-                </div>
+      <div className='flex justify-between items-center py-2 px-4 sm:px-6 h-[47px] w-full absolute top-0 left-0 right-0 bg-black z-10'>
+        {/* Placeholder for the Orange Logo */}
+        <div className='w-[64px] h-[15px] bg-orange-500 rounded-sm'></div>
+        <div className='flex w-[177px] h-[24px] gap-2 items-center justify-center my-auto'>
+          <Image src={Message} alt='Message' width={12} height={12} style={{ objectFit: 'contain' }} />
+          <Image src={Notification} alt='Notification' width={12} height={12} style={{ objectFit: 'contain' }} />
+          <div className='hidden sm:flex items-center w-[143px] pr-8 py-1 pl-1 gap-4 border border-white/20 rounded-2xl'>
+            <Image src={HeadshotIcon} alt='Headshot' width={16} height={16} className='profile-img' style={{ objectFit: 'contain' }} />
+            <div className='flex items-center gap-2'>
+              <span className='connected bg-green-500 size-[6px] rounded-full'></span>
+              <span className='wallet-address text-wrap w-[57px] text-[10px] overflow-clip'>uecuvecedceygpo</span>
             </div>
-            
+          </div>
+        </div>
+      </div>
+
       {/* Progress Steps (highlights current step) */}
-      <div className='flex justify-center pt-20 gap-10 border-b border-gray-800/80 pb-6'>
-        <div className='flex items-center gap-3'>
+      <div className='flex flex-wrap justify-center pt-20 gap-20 md:gap-20  [&>div]:pb-6 px-4'>
+        <div className='flex items-center gap-3 border-b border-gray-800/80'>
           <span
-            className={`px-4 py-2 rounded-full text-xl font-bold ${currentStep === 1 ? 'bg-[#F97316] text-white' : 'bg-[#1A1A16] text-white/80'}`}
+            className={`px-4 py-2 rounded-full text-xl font-bold bg-[#F97316] text-white`}
           >
             1
           </span>
           <div className='text-sm'>
-            <h2 className={`text-[16px] font-semibold ${currentStep === 1 ? 'text-white' : 'text-white/70'}`}>Paper Information</h2>
-            <h3 className={`text-[12px] font-light ${currentStep === 1 ? 'text-white/80' : 'text-white/70'}`}>Upload details</h3>
+            <h2 className={`text-[16px] font-semibold `}>Paper Information</h2>
+            <h3 className={`text-[12px] font-light `}>Upload details</h3>
           </div>
         </div>
 
-        <div className='flex items-center gap-3'>
+        <div className='flex items-center gap-3 text-white/40 border-b border-gray-800/80'>
           <span
-            className={`px-4 py-2 rounded-full text-xl font-bold ${currentStep === 2 ? 'bg-[#F97316] text-white border border-white' : 'bg-white/5 text-white/80 border border-white/10'}`}
+            className={`px-4 py-2 rounded-full text-xl font-bold bg-[#1A1616]`}
           >
             2
           </span>
           <div className='text-sm'>
-            <h2 className={`text-[16px] font-semibold ${currentStep === 2 ? 'text-white' : 'text-white/70'}`}>Preview</h2>
-            <h3 className={`text-[12px] font-light ${currentStep === 2 ? 'text-white/80' : 'text-white/70'}`}>Review Paper</h3>
+            <h2 className={`text-[16px] font-semibold `}>Preview</h2>
+            <h3 className={`text-[12px] font-light `}>Review Paper</h3>
           </div>
         </div>
 
-        <div className='flex items-center gap-3'>
+        <div className='flex items-center gap-3 text-white/40 border-b border-gray-800/80'>
           <span
-            className={`px-4 py-2 rounded-full text-xl font-bold ${currentStep === 3 ? 'bg-[#F97316] text-white' : 'bg-white/5 text-white/80'}`}
+            className={`px-4 py-2 rounded-full text-xl font-bold bg-[#1A1616]`}
           >
             3
           </span>
           <div className='text-sm'>
-            <h2 className={`text-[16px] font-semibold ${currentStep === 3 ? 'text-white' : 'text-white/70'}`}>Publishing</h2>
-            <h3 className={`text-[12px] font-light ${currentStep === 3 ? 'text-white/80' : 'text-white/70'}`}>Final Steps</h3>
+            <h2 className={`text-[16px] font-semibold `}>Publishing</h2>
+            <h3 className={`text-[12px] font-light `}>Final Steps</h3>
           </div>
         </div>
       </div>
 
       <div className='min-h-screen bg-black text-white flex justify-center py-10 px-4'>
         <div
-          className='h-[3073px] max-w-[1000px] bg-[#110F0F]/50 p-[30px] rounded-2xl space-y-6 border border-white/10 mt-8'
+          className='w-full max-w-4xl bg-[#110F0F]/50 p-4 sm:p-6 md:p-8 rounded-2xl space-y-6 border border-white/10 mt-8'
         >
           <h2 className='text-4xl font-semibold mb-[48px]'>Upload Your Research Paper</h2>
 
           <form
-            className='w-[900px] h-2864px flex flex-col gap-16 [&>input]:mb-[8px] [&>input]:text-[12px] border-[#fff]/8'
+            className='w-full flex flex-col gap-10 md:gap-16'
             onSubmit={handleFormSubmit}
           >
             {/* Paper Title* */}
@@ -254,9 +254,9 @@ export default function UploadResearchPaper() {
                 Keywords* <span className='text-[16px]'>Max 10 tags</span>
               </label>
 
-              <div className='flex gap-2.5'>
+              <div className='flex flex-col sm:flex-row gap-2.5'>
                 <div
-                  className='flex flex-wrap items-center gap-2 w-[824px] min-h-[66px] bg-[#1A1616]/40 border border-white/20 rounded-lg px-4 py-3 text-white/45 cursor-text'
+                  className='flex flex-wrap items-center gap-2 w-full min-h-[66px] bg-[#1A1616]/40 border border-white/20 rounded-lg px-4 py-3 text-white/45 cursor-text'
                   onClick={() => document.getElementById('keyword-input')?.focus()}
                 >
                   {keywords.map((word, index) => (
@@ -308,9 +308,9 @@ export default function UploadResearchPaper() {
                 Co-Authors(optional)<span className='text-[16px]'> Max 10 co-authors</span>
               </label>
 
-              <div className='flex gap-2.5'>
+              <div className='flex flex-col sm:flex-row gap-2.5'>
                 <div
-                  className='flex flex-wrap items-center gap-2 w-[900px] min-h-[66px] bg-[#1A1616]/40 border border-white/20 rounded-lg px-4 py-3 text-white cursor-text'
+                  className='flex flex-wrap items-center gap-2 w-full min-h-[66px] bg-[#1A1616]/40 border border-white/20 rounded-lg px-4 py-3 text-white cursor-text'
                   onClick={() => document.getElementById('coauthor-input')?.focus()}
                 >
                   {coAuthors.map((address, index) => (
@@ -347,7 +347,7 @@ export default function UploadResearchPaper() {
                     className='flex-1 bg-transparent outline-none text-sm text-white placeholder:text-white/40'
                   />
                 </div>
-
+                {/* The add button for co-authors can be added here if needed, similar to keywords */}
               </div>
 
               <div className='text-white/40 text-[12px] mt-1'>
@@ -363,8 +363,8 @@ export default function UploadResearchPaper() {
               </label>
 
               <div
-                className='flex flex-col justify-center items-center w-[900px] h-[200px] border border-white/20 rounded-lg bg-[#1A1616]/40 cursor-pointer text-center'>
-                <div className='bg-[#0F0D0D] w-[877px] h-[180px] rounded-[8px] flex flex-col justify-center items-center border-2 border-dashed border-white/12'>
+                className='relative flex flex-col justify-center items-center w-full h-[200px] border border-white/20 rounded-lg bg-[#1A1616]/40 cursor-pointer text-center'>
+                <div className='bg-[#0F0D0D] w-full h-full p-4 rounded-[8px] flex flex-col justify-center items-center border-2 border-dashed border-white/12'>
                   <Image src={UploadIcon} alt='' width={24} height={24} className='mb-[9px] ' style={{ objectFit: 'contain' }} />
                   <p className='text-white opacity-64 mb-[7px] text-[16px]'>
                     Drag and drop your cover image here<br />
@@ -383,7 +383,7 @@ export default function UploadResearchPaper() {
                     name='coverImage'
                     accept='image/*'
                     onChange={handleChange}
-                    className='absolute w-[900px] h-[200px] opacity-0 cursor-pointer'
+                    className='absolute inset-0 w-full h-full opacity-0 cursor-pointer'
                   />
                 </div>
               </div>
@@ -394,8 +394,8 @@ export default function UploadResearchPaper() {
             <div>
               <label className='block mb-6 text-2xl'>PDF/Text File Upload*</label>
               <div
-                className='flex flex-col justify-center items-center w-[900px] h-[200px] border border-white/20 rounded-[8px] bg-[#1A1616]/40 cursor-pointer text-center'>
-                <div className='bg-[#0F0D0D] w-[877px] h-[180px] rounded-[8px] flex flex-col justify-center items-center border-2 border-dashed border-white/12'>
+                className='relative flex flex-col justify-center items-center w-full h-[200px] border border-white/20 rounded-[8px] bg-[#1A1616]/40 cursor-pointer text-center'>
+                <div className='bg-[#0F0D0D] w-full h-full p-4 rounded-[8px] flex flex-col justify-center items-center border-2 border-dashed border-white/12'>
                   <Image src={UploadIcon} alt='' width={24} height={24} className='mb-[9px] ' style={{ objectFit: 'contain' }} />
 
                   {/* 💡 NEW DISPLAY LOGIC */}
@@ -425,7 +425,7 @@ export default function UploadResearchPaper() {
                     onChange={handleChange}
                     // 💡 REQUIRED
                     required
-                    className='absolute w-[877px] h-[180px] opacity-0 cursor-pointer'
+                    className='absolute inset-0 w-full h-full opacity-0 cursor-pointer'
                   />
                 </div>
               </div>
@@ -508,16 +508,16 @@ export default function UploadResearchPaper() {
             </div>
 
             {/* Action Buttons */}
-            <div className='flex justify-center gap-[100px] w-[900px] h-[59px]'>
+            <div className='flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 w-full'>
               <button
-                type='button'
-                className='px-[165px] py-[16px] rounded-[40px] bg-gray-700 hover:bg-gray-600 max-lg:w-[400px] cursor-pointer'
+                type='submit'
+                className='w-[400px] px-12 py-4 rounded-full bg-[#1A1616] hover:bg-[#1A1616]/80 text-base font-semibold transition'
               >
                 Cancel
               </button>
               <button
-                type='submit' // This will trigger the handleFormSubmit function
-                className='px-[140px] py-[16px] rounded-[40px] bg-orange-500 hover:bg-orange-600 max-lg:w-[400px] text-[16px] cursor-pointer'
+                type='submit'
+                className='w-[400px] px-12 py-4 rounded-full bg-orange-500 hover:bg-orange-600 text-base font-semibold transition'
               >
                 Preview & Continue
               </button>

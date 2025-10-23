@@ -39,6 +39,7 @@ import HeadshotIcon from "./user-03.png";
 import CopyIcon from "./copy-06.png";
 import Ellipse from "./Ellipse 2635.png";
 import ExternalLinkIcon from "./link-external-01.png"
+import Caution from "./causion.png";
 
 // partner brands
 import solana from "./solana.png";
@@ -87,5 +88,6 @@ export {
   HeadshotIcon,
   CopyIcon,
   Ellipse,
-  ExternalLinkIcon
+  ExternalLinkIcon,
+  Caution
 };
