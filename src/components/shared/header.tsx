@@ -62,7 +62,7 @@ export function MarketingHeader() {
               </Button>
             </Link>
             <Link href="/dashboard">
-              <Button className="bg-white hover:bg-white/90">
+              <Button className="bg-white hover:bg-white/90 text-black">
                 Get Started
               </Button>
             </Link>
@@ -97,7 +97,7 @@ export function MarketingHeader() {
                 </SheetClose>
                 <SheetClose asChild>
                   <Link href="/dashboard">
-                    <Button className="bg-white hover:bg-white/90">
+                    <Button className="bg-white hover:bg-white/90 text-black">
                       Get Started
                     </Button>
                   </Link>
@@ -126,7 +126,7 @@ export function UserHeader() {
       <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
         <Link href="/" id="logo" className="flex items-center gap-2">
           <Image
-            src="/images/logo_white.svg"
+            src="/images/logo_colored.svg"
             alt="OpenQuanta"
             width={32}
             height={32}
@@ -147,11 +147,11 @@ export function UserHeader() {
 
 export function AuthHeader() {
   return (
-    <header className="fixed top-0 z-10 w-full">
+    <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm p-6">
       <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
         <Link href="/" id="logo" className="flex items-center gap-2">
           <Image
-            src="/images/logo_white.svg"
+            src="/images/logo_colored.svg"
             alt="OpenQuanta"
             width={32}
             height={32}

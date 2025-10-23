@@ -28,26 +28,15 @@ export default function Login() {
 
   return (
     <main className="py-32 flex flex-col gap-24 items-center">
-      <section className="flex flex-col gap-6 items-center">
-        <div className="flex items-center gap-2 p-2 px-4 border border-white/30 rounded-full w-max">
-          <div className="w-3 h-3 rounded-full bg-violet-600"></div>
-          <h4 className="text-sm">On Chain & Transparent</h4>
-        </div>
-
-        <div className="flex flex-col items-center gap-6 text-center">
-          <h1 className="text-2xl md:text-3xl lg:text-5xl font-semibold">
-            Welcome to OpenQuanta
-          </h1>
-          <p className="md:text-xl lg:text-2xl max-w-sm text-white/64">
-            Your verifiable and market-driven publishing platform.
-          </p>
-        </div>
-      </section>
-      <section className="w-full max-w-[480px] mx-auto">
+      <section className="w-full max-w-[500px] mx-auto">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-4 w-full bg-[#950F00]/20 backdrop-blur-sm p-8 rounded-2xl"
+          className="flex flex-col gap-4 w-full backdrop-blur-sm p-6 rounded-2xl relative"
         >
+          <div className="absolute w-1.5 h-1.5 rounded-full bg-white top-0 left-0" />
+          <div className="absolute w-1.5 h-1.5 rounded-full bg-white top-0 right-0" />
+          <div className="absolute w-1.5 h-1.5 rounded-full bg-white bottom-0 left-0" />
+          <div className="absolute w-1.5 h-1.5 rounded-full bg-white bottom-0 right-0" />
           <header className="flex flex-col items-center gap-4 mb-6">
             <Image
               src="/images/logo_white.svg"
@@ -55,7 +44,7 @@ export default function Login() {
               width={40}
               height={40}
               className="w-10 h-auto"
-            />{" "}
+            />
             <h2 className="text-2xl text-white/80">Sign in to OpenQuanta</h2>
           </header>
 
@@ -97,7 +86,7 @@ export default function Login() {
             Continue With Wallet
           </Button>
 
-          <footer className="mt-6 text-center text-sm text-muted-foreground">
+          <footer className="mt-6 text-center text-xs text-muted-foreground">
             By logging in you agree to our{" "}
             <Link
               href="/"
