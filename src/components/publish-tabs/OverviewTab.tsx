@@ -65,9 +65,9 @@ export default function OverviewTab({ formData, keywords = [], coAuthors = [], o
             </div>
 
 
-            {/* Keywords section */}
+            {/* Keywords Section */}
 
-            <div className='max-w-[458px] gap-4 flex flex-col'>
+            <div className='w-full max-w-lg gap-4 flex flex-col'>
                 <h3 className='text-[20px] mb-2'>Keywords</h3>
                 <div className='flex flex-wrap gap-2'>
                     {keywords && keywords.map((keyword, index) => (
@@ -81,12 +81,12 @@ export default function OverviewTab({ formData, keywords = [], coAuthors = [], o
                 </div>
             </div>
 
-            {/* CoAuthor Section  */}
-            <div className=' max-w-[900px] flex gap-4 flex-col'>
+            {/* Co-Author Section */}
+            <div className='w-full flex gap-4 flex-col'>
                 <h3 className='text-[20px] mb-2'>Co-Authors</h3>
-                <div className='flex flex-wrap gap-4 flex-col w-[900px]'>
-                    {coAuthors && coAuthors.map((coAuthor, index) => ( // Iterate over coAuthors
-                        <div className="flex justify-between items-center gap-2 bg-[#1A1A16]/40 w-[900px] h-[48px] px-6 py-3 rounded-[4px]">
+                <div className='flex flex-wrap gap-4 flex-col w-full'>
+                    {coAuthors && coAuthors.map((coAuthor, index) => (
+                        <div className="flex justify-between items-center gap-2 bg-[#1A1A16]/40 w-full p-3 rounded-lg">
                             <div key={index} className='flex '>
                                 <Image
                                     src={HeadshotIcon} // Assuming HeadshotIcon is a default for co-authors
@@ -94,9 +94,9 @@ export default function OverviewTab({ formData, keywords = [], coAuthors = [], o
                                     width={20}
                                     height={20}
                                     className='rounded-full'
-                                    />
+                                />
                                 <span
-                                    className='text-sm'
+                                    className='text-sm ml-2 truncate'
                                 >
                                     {coAuthor} {/* Display the individual coAuthor */}
                                 </span>
@@ -107,8 +107,8 @@ export default function OverviewTab({ formData, keywords = [], coAuthors = [], o
                     ))}
                     {/* PDF display: name · size */}
                     {formData.pdf && (
-                        <div className="max-w-[900px]">
-                            <div className="flex items-center gap-3 bg-[#1A1A16]/40 40 w-[900px] h-[100px] px-6 py-3 rounded-[4px]">
+                        <div className="w-full">
+                            <div className="flex items-center gap-3 bg-[#1A1A16]/40 w-full p-4 rounded-lg">
                                 <Image src={FileIcon} alt="PDF icon" width={20} height={20} />
                                 <span className="text-[12px] text-white/64">
                                     {formData.pdf.name} <br /> {formatBytes(formData.pdf.size)}
