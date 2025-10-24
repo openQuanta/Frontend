@@ -46,17 +46,17 @@ export default function Publish() {
         {/* Content */}
         <section className="p-6">
           <TabsContent value="info">
-            <div className="w-full max-w-[1200px] mx-auto">
+            <div>
               <h2>Info</h2>
             </div>
           </TabsContent>
           <TabsContent value="preview">
-            <div className="w-full max-w-[1200px] mx-auto">
+            <div>
               <h2>Preview</h2>
             </div>
           </TabsContent>
           <TabsContent value="publish">
-            <div className="w-full max-w-[1200px] mx-auto">
+            <div>
               <h2>Publish</h2>
             </div>
           </TabsContent>
