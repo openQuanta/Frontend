@@ -15,10 +15,8 @@ export default function AuthLayout({
 }) {
   return (
     <LayoutWrapper>
-      <>
-        <AuthHeader />
-        {children}
-      </>
+      <AuthHeader />
+      {children}
     </LayoutWrapper>
   );
 }

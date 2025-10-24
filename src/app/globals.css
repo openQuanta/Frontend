@@ -88,8 +88,16 @@ button.wallet-adapter-button:not([disabled]):hover {
   @apply bg-transparent;
 }
 
-button.wallet-adapter-button {
+button.wallet-adapter-button-trigger {
   @apply border rounded-full;
+}
+
+.wallet-adapter-modal-list {
+  @apply space-y-4;
+}
+
+.wallet-adapter-modal-list .wallet-adapter-button {
+  @apply border-transparent;
 }
 
 iconify-icon {

@@ -10,10 +10,12 @@ import Link from "next/link";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { setCookie } from "cookies-next";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const router = useRouter();
+  const wallet = useWallet();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
