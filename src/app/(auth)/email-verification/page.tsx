@@ -17,11 +17,13 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function EmailVerificationPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
+  const router = useRouter();
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -40,7 +42,7 @@ export default function EmailVerificationPage() {
       // const response = await verifyEmailOtp(otp);
       toast.success("Email verified successfully!");
       // Redirect to dashboard or next step
-      // router.push('/dashboard');
+      router.push("/dashboard");
     } catch (error) {
       console.error("Error verifying OTP:", error);
       setError("Invalid or expired verification code");
