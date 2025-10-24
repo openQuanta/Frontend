@@ -9,6 +9,7 @@ import walletIcon from "@/assets/images/wallet_icon.svg";
 import Link from "next/link";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { setCookie } from "cookies-next";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ export default function Login() {
     console.log("Email submitted:", email);
 
     // Store the email (this is just in-memory, use context, state management, or a cookie)
-    sessionStorage.setItem("userEmail", email);
+    setCookie("userEmail", email, { path: "/" });
 
     // Redirect to dashboard
     router.push("/dashboard");
