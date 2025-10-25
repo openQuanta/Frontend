@@ -15,10 +15,8 @@ export default function AuthLayout({
 }) {
   return (
     <LayoutWrapper>
-      <div className="bg-[#0D0A0C]">
-        <AuthHeader />
-        {children}
-      </div>
+      <AuthHeader />
+      {children}
     </LayoutWrapper>
   );
 }
