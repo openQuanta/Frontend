@@ -28,6 +28,7 @@ import {
 } from "@/schemas/publish-form-schema";
 import { Textarea } from "@/components/ui/textarea";
 import { fetchPublishInputFields } from "@/lib/data-fetching";
+import Image from "next/image";
 
 export default function Publish() {
   const [researchFields, setResearchFields] = React.useState<
@@ -123,6 +124,7 @@ export default function Publish() {
   };
 
   function onSubmit(data: ResearchPaperFormData) {
+    console.log("Submitted data:", data);
     toast("Research paper submitted successfully!", {
       description: "Your paper is being processed.",
       position: "bottom-right",
@@ -464,7 +466,7 @@ export default function Publish() {
                           />
                           <div className="flex flex-col items-center justify-center gap-2 text-center">
                             {coverImagePreview ? (
-                              <img
+                              <Image
                                 src={coverImagePreview}
                                 alt="Cover preview"
                                 className="max-h-32 rounded"

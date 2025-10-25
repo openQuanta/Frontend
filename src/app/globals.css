@@ -85,7 +85,7 @@
 
 button.wallet-adapter-button-trigger,
 button.wallet-adapter-button:not([disabled]):hover {
-  @apply bg-transparent;
+  @apply bg-transparent font-normal border-white/10;
 }
 
 button.wallet-adapter-button-trigger {

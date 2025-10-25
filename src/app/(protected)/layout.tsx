@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { UserHeader } from "@/components/shared/header";
-import { SolanaProvider } from "@/context/solana";
 import { LayoutWrapper } from "@/components/shared/layout";
 
 export const metadata: Metadata = {
@@ -16,10 +15,8 @@ export default function UserLayout({
 }>) {
   return (
     <LayoutWrapper>
-      <SolanaProvider>
-        <UserHeader />
-        {children}
-      </SolanaProvider>
+      <UserHeader />
+      {children}
     </LayoutWrapper>
   );
 }
