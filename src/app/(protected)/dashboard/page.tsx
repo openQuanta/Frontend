@@ -37,7 +37,7 @@ export default function Dashboard() {
             </div>
             <p className="text-5xl">9</p>
           </div>
-          <p className="text-xs pr-6 text-white/40 mt-1">Papers published</p>
+          <p className="text-xs pr-6 text-white/40 mt-1">Papers Published</p>
         </div>
 
         <div className="w-max">
@@ -57,7 +57,7 @@ export default function Dashboard() {
             </div>
             <p className="text-5xl">88</p>
           </div>
-          <p className="text-xs pr-6 text-white/40 mt-1">Reputation Gcore</p>
+          <p className="text-xs pr-6 text-white/40 mt-1">Reputation Score</p>
         </div>
       </section>
 
@@ -69,16 +69,22 @@ export default function Dashboard() {
             <p>Go to Profile</p>
           </Link>
         </div>
-        <div className="bg-white/4 p-3 rounded-2xl aspect-square border border-white/8">
-          <div className="p-1 bg-[#D9D9D9] text-black rounded-full w-max ml-auto">
+        <div className="bg-white/4 p-3 rounded-2xl aspect-square border border-white/8 relative flex items-center justify-center">
+          <div className="p-1 bg-[#D9D9D9] text-black rounded-full w-max ml-auto absolute top-3 right-3">
             <MoveUpRight width={12} height={12} />
           </div>
+
+          <Link href="/publish" className="flex flex-col items-center gap-2">
+            <CircleUserRound width={64} height={64} />
+            <p>Publish</p>
+          </Link>
         </div>
         <div className="bg-white/4 p-3 rounded-2xl aspect-square border border-white/8">
           <div className="p-1 bg-[#D9D9D9] text-black rounded-full w-max ml-auto">
             <MoveUpRight width={12} height={12} />
           </div>
         </div>
+
         <div className="bg-white/4 rounded-2xl row-span-2 border border-white/8"></div>
         <div className="bg-white/4 rounded-2xl aspect-square border border-white/8"></div>
         <div className="bg-white/4 rounded-2xl col-span-2 border border-white/8"></div>
