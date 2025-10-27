@@ -198,7 +198,16 @@ export default function Page() {
 
       <div className="w-[1252px] gap-[120px] flex mt-[80px] text-[20px] justify-center items-center mx-auto border">
         {/* Adjusted the height to avoid creating a fixed-height scroll area for the indicator sidebar */}
-        
+        <AnimatedSection variants={slideInLeft}>
+        <div className="w-[271px] flex gap-[20px] border relative">
+          <ScrollIndicator
+            sections={sections}
+            scrollContainerRef={scrollContainerRef}
+            // The indicator is positioned absolutely, so min-h-screen should be on its parent if it needs to be visible across a whole screen of content
+            className="absolute left-8 top-1/2 -translate-y-1/2"
+          />
+        </div>
+        </AnimatedSection>
         
         <AnimatedSection variants={fadeInUp}>
         <div className="w-[861px] h-[520px] mt-[24px]">
