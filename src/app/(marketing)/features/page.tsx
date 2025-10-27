@@ -179,7 +179,7 @@ export default function Page() {
         </div>
 
         <AnimatedSection>
-          <div className="flex gap-[24px] text-[14px] items-center">
+          <div className="flex gap-6text-[14px] items-center">
             <div className="flex gap-6">
               <span>Become a founding contributor </span>
               <div className="flex">

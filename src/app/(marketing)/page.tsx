@@ -134,6 +134,7 @@ export default function Page() {
     <main className="font-sans flex flex-col gap-20">
       {/* Hero */}
       <section className="w-full max-w-[1200px] mx-auto">
+<<<<<<< HEAD
         <section className="relative w-full overflow-clip">
           <video
             ref={videoRef}
@@ -147,6 +148,15 @@ export default function Page() {
           >
             <source src="/videos/LaserVideo.webm" type="video/webm" />
           </video>
+=======
+        {/* top section */}
+        <section className="w-full bg-[url('/images/cool_light_thingy.png')] bg-contain bg-center md:bg-[position:120%_center] bg-no-repeat">
+          <div className="text-center md:text-left px-6 py-40 w-full max-w-[900px] flex flex-col items-center gap-12 md:items-start bg-black/30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
+            <div className="flex items-center gap-3 p-3 px-6 border-[0.5px] border-white/24 rounded-full">
+              <div className="w-3 h-3 rounded-full bg-[#645cfb] animate-pulse"></div>
+              <h4 className="text-sm">On Chain & Transparent</h4>
+            </div>
+>>>>>>> eb8c23c05699f58276c11dd45bdab2eff7f4cce1
 
           <div className="relative text-center md:text-left px-6 py-40 w-full max-w-[900px] flex flex-col items-center gap-12 md:items-start bg-black/30 backdrop-blur-sm md:bg-transparent md:backdrop-blur-none">
             <AnimatedSection variants={fadeIn} delay={0.2}>
@@ -190,6 +200,7 @@ export default function Page() {
 
         {/* bottom section with illustration */}
         <section className="px-5">
+<<<<<<< HEAD
           <AnimatedSection variants={fadeInScale}>
             <div className="relative w-full max-w-[1200px] h-[500px] mx-auto">
               <Image
@@ -200,6 +211,16 @@ export default function Page() {
               />
             </div>
           </AnimatedSection>
+=======
+          <div className="relative w-full max-w-[1200px] h-[500px] mx-auto">
+            <Image
+              src="/images/hero_dashboard.png"
+              alt="Hero Dashboard"
+              fill
+              className="object-contain"
+            />
+          </div>
+>>>>>>> eb8c23c05699f58276c11dd45bdab2eff7f4cce1
 
           <AnimatedSection variants={fadeIn}>
             <div className="text-center grid gap-5 py-10">
@@ -225,6 +246,7 @@ export default function Page() {
 
       {/* Smart Flow */}
       <section className="p-5 space-y-8 w-full max-w-[1200px] mx-auto">
+<<<<<<< HEAD
         <AnimatedSection variants={fadeInUp}>
           <div
             style={{ backgroundImage: `url(${triangleBlur.src})` }}
@@ -243,6 +265,39 @@ export default function Page() {
               A seamless, step-by-step flow to guide you from first click to final
               result.
             </p>
+=======
+        <div
+          style={{ backgroundImage: `url(${triangleBlur.src})` }}
+          className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
+        >
+          <Image
+            width={14}
+            height={76}
+            src="/images/circle_down.svg"
+            alt="Circle Down"
+          />
+          <h2 className="text-5xl">
+            Smart <span className="text-primary">Flow</span>
+          </h2>
+          <p>
+            A seamless, step-by-step flow to guide you from first click to final
+            result.
+          </p>
+        </div>
+        <div className="bg-[#181615] rounded-2xl grid lg:grid-cols-4">
+          <div className="md:col-span-1 flex flex-col gap-3 justify-center items-center lg:items-start text-center lg:text-left md:p-12 lg:-mr-36">
+            <Button variant="link" className="w-max text-sm text-primary">
+              Explore <ChevronRight />
+            </Button>
+            <div className="flex flex-col gap-3 px-3">
+              <h3 className="text-2xl font-bold">What You Can Do</h3>
+              <p className="text-sm max-w-sm">
+                Every layer of openQuanta is designed for scientific
+                collaboration and transparent publishing. Each piece plays a
+                vital role in advancing open research.
+              </p>
+            </div>
+>>>>>>> eb8c23c05699f58276c11dd45bdab2eff7f4cce1
           </div>
         </AnimatedSection>
 
@@ -515,6 +570,7 @@ export default function Page() {
 
       {/* Feedback from users */}
       <section className="w-full max-w-[1200px] mx-auto p-5 space-y-12">
+<<<<<<< HEAD
         <AnimatedSection variants={fadeInUp}>
           <div
             style={{ backgroundImage: `url(${triangleBlur.src})` }}
@@ -531,6 +587,22 @@ export default function Page() {
             </h2>
           </div>
         </AnimatedSection>
+=======
+        <div
+          style={{ backgroundImage: `url(${triangleBlur.src})` }}
+          className="text-center flex flex-col items-center gap-5 bg-center bg-contain bg-no-repeat"
+        >
+          <Image
+            width={14}
+            height={76}
+            src="/images/circle_down.svg"
+            alt="Circle Down"
+          />
+          <h2 className="text-3xl md:text-4xl lg:text-5xl">
+            Feedback from <span className="text-primary">tradition users</span>
+          </h2>
+        </div>
+>>>>>>> eb8c23c05699f58276c11dd45bdab2eff7f4cce1
 
         <AnimatedSection variants={fadeInUp}>
           <div className="p-8 bg-white/5 rounded-2xl space-y-18">
