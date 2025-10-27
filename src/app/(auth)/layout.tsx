@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { LayoutWrapper } from "@/components/shared/layout";
-import loginBg from "@/assets/images/LOGIN.png";
 import { AuthHeader } from "@/components/shared/header";
 
 export const metadata: Metadata = {
@@ -16,15 +15,9 @@ export default function AuthLayout({
 }) {
   return (
     <LayoutWrapper>
-      <div className="relative w-full">
-        <div
-          style={{ backgroundImage: `url(${loginBg.src})` }}
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-75"
-        />
-        <div className="relative z-10">
-          <AuthHeader />
-          {children}
-        </div>
+      <div className="bg-[#0D0A0C]">
+        <AuthHeader />
+        {children}
       </div>
     </LayoutWrapper>
   );

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import logo from "@/assets/brand/logo_footer.svg";
 import Link from "next/link";
 import { ChevronUp } from "lucide-react";
 
@@ -8,8 +7,14 @@ export default function Footer() {
     <footer className="p-6 flex flex-col gap-5">
       <section className="bg-[#181615]/40 w-full max-w-[1200px] mx-auto rounded-2xl p-12 grid gap-12 md:grid-cols-2">
         <div className="grid gap-8">
-          <Link href="/">
-            <Image src={logo} alt="Open Quanta" className="w-[200px]" />
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              width={40}
+              height={40}
+              src="/images/logo_colored.svg"
+              alt="Open Quanta"
+            />
+            <h2 className="text-xl font-bold">openQuanta</h2>
           </Link>
           <p className="w-full max-w-[490px] text-white/64">
             Publish your research on-chain with authorship Nft, earn recognition
