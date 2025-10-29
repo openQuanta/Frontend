@@ -1,0 +1,1387 @@
+{
+  "address": "5WzLQxJCSMZb5E4tTLHyzWFQY2UXGUaTqLN6S6kocjCV",
+  "metadata": {
+    "name": "open_quanta",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "create_collection",
+      "discriminator": [
+        156,
+        251,
+        92,
+        54,
+        233,
+        2,
+        16,
+        82
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "admins",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  100,
+                  109,
+                  105,
+                  110,
+                  105,
+                  115,
+                  116,
+                  114,
+                  97,
+                  116,
+                  111,
+                  114,
+                  115
+                ]
+              },
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  112,
+                  101,
+                  110,
+                  81,
+                  117,
+                  97,
+                  110,
+                  116,
+                  97
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "collection_registry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  108,
+                  108,
+                  101,
+                  99,
+                  116,
+                  105,
+                  111,
+                  110,
+                  115,
+                  95,
+                  114,
+                  101,
+                  103,
+                  105,
+                  115,
+                  116,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  112,
+                  101,
+                  110,
+                  81,
+                  117,
+                  97,
+                  110,
+                  116,
+                  97
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "collection",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "mpl_core_program",
+          "address": "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "uri",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "initialize_admins",
+      "discriminator": [
+        139,
+        37,
+        215,
+        143,
+        116,
+        5,
+        134,
+        60
+      ],
+      "accounts": [
+        {
+          "name": "deployer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "admins",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  100,
+                  109,
+                  105,
+                  110,
+                  105,
+                  115,
+                  116,
+                  114,
+                  97,
+                  116,
+                  111,
+                  114,
+                  115
+                ]
+              },
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  112,
+                  101,
+                  110,
+                  81,
+                  117,
+                  97,
+                  110,
+                  116,
+                  97
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "admins",
+          "type": {
+            "vec": "pubkey"
+          }
+        }
+      ]
+    },
+    {
+      "name": "initialize_author_profile",
+      "discriminator": [
+        40,
+        176,
+        140,
+        71,
+        170,
+        17,
+        182,
+        128
+      ],
+      "accounts": [
+        {
+          "name": "author",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "author_profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  95,
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "author"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "profile_uri",
+          "type": "string"
+        },
+        {
+          "name": "field_of_study",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "initialize_collection_registry",
+      "discriminator": [
+        67,
+        46,
+        195,
+        231,
+        11,
+        87,
+        70,
+        204
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "admins",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  100,
+                  109,
+                  105,
+                  110,
+                  105,
+                  115,
+                  116,
+                  114,
+                  97,
+                  116,
+                  111,
+                  114,
+                  115
+                ]
+              },
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  112,
+                  101,
+                  110,
+                  81,
+                  117,
+                  97,
+                  110,
+                  116,
+                  97
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "collection_registry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  108,
+                  108,
+                  101,
+                  99,
+                  116,
+                  105,
+                  111,
+                  110,
+                  115,
+                  95,
+                  114,
+                  101,
+                  103,
+                  105,
+                  115,
+                  116,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  112,
+                  101,
+                  110,
+                  81,
+                  117,
+                  97,
+                  110,
+                  116,
+                  97
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "oq_nft_mint_authority",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  112,
+                  101,
+                  110,
+                  81,
+                  117,
+                  97,
+                  110,
+                  116,
+                  97,
+                  95,
+                  78,
+                  102,
+                  116,
+                  95,
+                  77,
+                  105,
+                  110,
+                  116,
+                  95,
+                  65,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "collection_mint",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_paper_id",
+      "discriminator": [
+        168,
+        84,
+        215,
+        65,
+        169,
+        157,
+        124,
+        89
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "admins",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  100,
+                  109,
+                  105,
+                  110,
+                  105,
+                  115,
+                  116,
+                  114,
+                  97,
+                  116,
+                  111,
+                  114,
+                  115
+                ]
+              },
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  112,
+                  101,
+                  110,
+                  81,
+                  117,
+                  97,
+                  110,
+                  116,
+                  97
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "paper_id_assigner",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  97,
+                  112,
+                  101,
+                  114,
+                  95,
+                  105,
+                  100,
+                  95,
+                  99,
+                  111,
+                  117,
+                  110,
+                  116,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  112,
+                  101,
+                  110,
+                  81,
+                  117,
+                  97,
+                  110,
+                  116,
+                  97
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "oq_nft_mint_authority",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  112,
+                  101,
+                  110,
+                  81,
+                  117,
+                  97,
+                  110,
+                  116,
+                  97,
+                  95,
+                  78,
+                  102,
+                  116,
+                  95,
+                  77,
+                  105,
+                  110,
+                  116,
+                  95,
+                  65,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_reviewer_profile",
+      "discriminator": [
+        179,
+        209,
+        155,
+        180,
+        225,
+        186,
+        152,
+        110
+      ],
+      "accounts": [
+        {
+          "name": "reviewer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "reviewer_profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  118,
+                  105,
+                  101,
+                  119,
+                  101,
+                  114,
+                  95,
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "reviewer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "reviewer_profile_uri",
+          "type": "string"
+        },
+        {
+          "name": "field_of_study",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "submit_paper",
+      "discriminator": [
+        50,
+        4,
+        72,
+        165,
+        234,
+        253,
+        22,
+        113
+      ],
+      "accounts": [
+        {
+          "name": "paper_submitter",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "paper_id_assigner",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  97,
+                  112,
+                  101,
+                  114,
+                  95,
+                  105,
+                  100,
+                  95,
+                  99,
+                  111,
+                  117,
+                  110,
+                  116,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  112,
+                  101,
+                  110,
+                  81,
+                  117,
+                  97,
+                  110,
+                  116,
+                  97
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "author_profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  95,
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "paper_submitter"
+              }
+            ]
+          }
+        },
+        {
+          "name": "research_paper",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  97,
+                  112,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "paper_submitter"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  111,
+                  114,
+                  109,
+                  97,
+                  116,
+                  33,
+                  32,
+                  40,
+                  34,
+                  79,
+                  81,
+                  45,
+                  123,
+                  58,
+                  48,
+                  55,
+                  125,
+                  34,
+                  44,
+                  32,
+                  112,
+                  97,
+                  112,
+                  101,
+                  114,
+                  95,
+                  105,
+                  100,
+                  95,
+                  97,
+                  115,
+                  115,
+                  105,
+                  103,
+                  110,
+                  101,
+                  114
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "collection_registry",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  108,
+                  108,
+                  101,
+                  99,
+                  116,
+                  105,
+                  111,
+                  110,
+                  115,
+                  95,
+                  114,
+                  101,
+                  103,
+                  105,
+                  115,
+                  116,
+                  114,
+                  121
+                ]
+              },
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  112,
+                  101,
+                  110,
+                  81,
+                  117,
+                  97,
+                  110,
+                  116,
+                  97
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "collection",
+          "writable": true,
+          "optional": true
+        },
+        {
+          "name": "oq_nft_mint_authority",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  111,
+                  112,
+                  101,
+                  110,
+                  81,
+                  117,
+                  97,
+                  110,
+                  116,
+                  97,
+                  95,
+                  78,
+                  102,
+                  116,
+                  95,
+                  77,
+                  105,
+                  110,
+                  116,
+                  95,
+                  65,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "nft_asset",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "mpl_core_program",
+          "address": "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "paper_args",
+          "type": {
+            "defined": {
+              "name": "PaperArgs"
+            }
+          }
+        },
+        {
+          "name": "paper_sub_owners",
+          "type": {
+            "vec": "pubkey"
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Administrators",
+      "discriminator": [
+        231,
+        25,
+        174,
+        2,
+        27,
+        128,
+        234,
+        183
+      ]
+    },
+    {
+      "name": "AuthorProfile",
+      "discriminator": [
+        213,
+        216,
+        229,
+        110,
+        116,
+        224,
+        143,
+        196
+      ]
+    },
+    {
+      "name": "BaseCollectionV1",
+      "discriminator": [
+        5
+      ]
+    },
+    {
+      "name": "CollectionRegistry",
+      "discriminator": [
+        103,
+        157,
+        231,
+        9,
+        181,
+        43,
+        15,
+        106
+      ]
+    },
+    {
+      "name": "Paper",
+      "discriminator": [
+        23,
+        208,
+        255,
+        36,
+        198,
+        93,
+        63,
+        12
+      ]
+    },
+    {
+      "name": "PaperIDCounter",
+      "discriminator": [
+        18,
+        200,
+        153,
+        178,
+        248,
+        204,
+        213,
+        23
+      ]
+    },
+    {
+      "name": "ReviewerProfile",
+      "discriminator": [
+        12,
+        150,
+        47,
+        35,
+        226,
+        155,
+        113,
+        164
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "PaperSubmission",
+      "discriminator": [
+        165,
+        36,
+        146,
+        109,
+        32,
+        101,
+        193,
+        34
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "OnlyAdmin",
+      "msg": "Privileged Instruction: Callable By Admin Only"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidCollection",
+      "msg": "Collection Do Not Belong To OpenQuanta"
+    }
+  ],
+  "types": [
+    {
+      "name": "Administrators",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admins_pubkey",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "admins_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AuthorProfile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "author_pubkey",
+            "type": "pubkey"
+          },
+          {
+            "name": "author_bump",
+            "type": "u8"
+          },
+          {
+            "name": "author_profile_uri",
+            "type": "string"
+          },
+          {
+            "name": "reputation_score",
+            "type": "u8"
+          },
+          {
+            "name": "author_field_of_study",
+            "type": "string"
+          },
+          {
+            "name": "number_of_submitted_papers",
+            "type": "u16"
+          },
+          {
+            "name": "joined_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BaseCollectionV1",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "key",
+            "type": {
+              "defined": {
+                "name": "Key"
+              }
+            }
+          },
+          {
+            "name": "update_authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "name": "num_minted",
+            "type": "u32"
+          },
+          {
+            "name": "current_size",
+            "type": "u32"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CollectionEntry",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "collection_address",
+            "type": "pubkey"
+          },
+          {
+            "name": "collection_name",
+            "type": "string"
+          },
+          {
+            "name": "collection_uri",
+            "type": "string"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "created_by",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CollectionRegistry",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "registry_bump",
+            "type": "u8"
+          },
+          {
+            "name": "total_collections",
+            "type": "u64"
+          },
+          {
+            "name": "mint_authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "collection_mints",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "collection_entries",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "CollectionEntry"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Key",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Uninitialized"
+          },
+          {
+            "name": "AssetV1"
+          },
+          {
+            "name": "HashedAssetV1"
+          },
+          {
+            "name": "PluginHeaderV1"
+          },
+          {
+            "name": "PluginRegistryV1"
+          },
+          {
+            "name": "CollectionV1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Paper",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner_of_paper",
+            "type": "pubkey"
+          },
+          {
+            "name": "research_sub_owners",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "title_of_paper",
+            "type": "string"
+          },
+          {
+            "name": "field_of_research",
+            "type": "string"
+          },
+          {
+            "name": "arweave_hash_to_paper",
+            "type": "string"
+          },
+          {
+            "name": "open_quanta_paper_id",
+            "type": "string"
+          },
+          {
+            "name": "paper_version",
+            "type": "u8"
+          },
+          {
+            "name": "time_of_submission",
+            "type": "i64"
+          },
+          {
+            "name": "paper_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PaperArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "title_of_paper",
+            "type": "string"
+          },
+          {
+            "name": "paper_arweave_hash",
+            "type": "string"
+          },
+          {
+            "name": "field_of_research",
+            "type": "string"
+          },
+          {
+            "name": "paper_version",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PaperIDCounter",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "current_id",
+            "type": "u64"
+          },
+          {
+            "name": "counter_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PaperSubmission",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "paper_submitter",
+            "type": "pubkey"
+          },
+          {
+            "name": "paper_id",
+            "type": "string"
+          },
+          {
+            "name": "title_of_paper",
+            "type": "string"
+          },
+          {
+            "name": "time_of_submission",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ReviewerProfile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "reviewer_pubkey",
+            "type": "pubkey"
+          },
+          {
+            "name": "reviewer_bump",
+            "type": "u8"
+          },
+          {
+            "name": "reviewer_profile_uri",
+            "type": "string"
+          },
+          {
+            "name": "reputation_score",
+            "type": "u8"
+          },
+          {
+            "name": "reviewer_field_of_study",
+            "type": "string"
+          },
+          {
+            "name": "joined_at",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ]
+}
