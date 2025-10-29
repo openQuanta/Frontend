@@ -1,6 +1,6 @@
-'use client'
-import React, { useEffect, useState, RefObject } from 'react';
-import { cn } from '@/lib/utils';
+"use client";
+import React, { useEffect, useState, RefObject } from "react";
+import { cn } from "@/lib/utils";
 
 interface ScrollSection {
   id: string;
@@ -9,34 +9,37 @@ interface ScrollSection {
 }
 
 interface ScrollIndicatorProps {
-  sections: ScrollSection[];
+  sections?: ScrollSection[]; // made optional to avoid undefined issues
   className?: string;
   scrollContainerRef?: RefObject<HTMLDivElement | null>;
 }
 
-export function ScrollIndicator({ sections, className, scrollContainerRef }: ScrollIndicatorProps) {
+export function ScrollIndicator({
+  sections = [],
+  className,
+  scrollContainerRef,
+}: ScrollIndicatorProps) {
   const [activeSection, setActiveSection] = useState<number>(0);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   useEffect(() => {
+    if (!sections || sections.length === 0) return;
+
     // Get the container that holds all the scrollable sections (from Page.tsx)
     const sectionWrapper = scrollContainerRef?.current;
 
     const handleScroll = () => {
-      // 1. Get current scroll position (always use window for sticky indicator)
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight;
-      // Use the viewport center as the reference point for the active section
       const scrollCenter = scrollTop + windowHeight / 2;
       const documentScrollHeight = document.documentElement.scrollHeight;
 
-      // 2. Find current section
+      // Find current section
       let current = 0;
       sections.forEach((section, i) => {
         const el = document.getElementById(section.id);
         if (!el) return;
 
-        // el.offsetTop is the element's top position relative to the document
         const elTopRelative = el.offsetTop;
         const elBottomRelative = elTopRelative + el.offsetHeight;
 
@@ -47,41 +50,35 @@ export function ScrollIndicator({ sections, className, scrollContainerRef }: Scr
 
       setActiveSection(current);
 
-      // 3. Compute fractional progress inside current section
+      // Compute fractional progress inside current section
       const curEl = document.getElementById(sections[current].id);
-
       if (curEl) {
         const curTop = curEl.offsetTop;
+        const nextEl =
+          current < sections.length - 1
+            ? document.getElementById(sections[current + 1].id)
+            : null;
 
-        // Determine the next boundary
-        const nextEl = current < sections.length - 1 ? document.getElementById(sections[current + 1].id) : null;
-
-        // If last section, its end is the end of the sectionWrapper (if provided), or the document end.
         const lastSectionEnd = sectionWrapper
           ? sectionWrapper.offsetTop + sectionWrapper.offsetHeight
           : documentScrollHeight;
 
         const nextTop = nextEl ? nextEl.offsetTop : lastSectionEnd;
-
         const sectionHeight = Math.max(nextTop - curTop, 1);
-
-        // Calculate how far the reference point (scrollCenter) is through the section
         const progressInSection = (scrollCenter - curTop) / sectionHeight;
-
-        // Clamp the value to 0-1 and update the overall progress tracker
         const clamped = Math.min(Math.max(progressInSection, 0), 1);
+
         setScrollProgress(current + clamped);
       }
     };
 
-    // Attach scroll listener to the window
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
-    handleScroll(); // Initial calc
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    handleScroll(); // Initial run
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
     };
   }, [sections, scrollContainerRef]);
 
@@ -89,16 +86,26 @@ export function ScrollIndicator({ sections, className, scrollContainerRef }: Scr
     const el = document.getElementById(id);
     if (!el) return;
 
-    // For page scroll, center the element in the viewport
-    const scrollOffset = el.offsetTop - window.innerHeight / 2 + el.offsetHeight / 2;
-    window.scrollTo({ top: scrollOffset, behavior: 'smooth' });
+    const scrollOffset =
+      el.offsetTop - window.innerHeight / 2 + el.offsetHeight / 2;
+    window.scrollTo({ top: scrollOffset, behavior: "smooth" });
   };
 
-  // Calculate the visual percentage for the progress bar
-  const normalizedPercent = Math.min(Math.max((scrollProgress / sections.length) * 100, 0), 100);
+  // ✅ Safe scroll progress calculation
+  const totalSections = sections?.length ?? 0;
+  const normalizedPercent =
+    totalSections > 0
+      ? Math.min(Math.max((scrollProgress / totalSections) * 100, 0), 100)
+      : 0;
+
+  // ✅ Avoid rendering until data is ready
+  if (!sections || sections.length === 0) return null;
 
   return (
-    <div className={cn('w-full sticky top-0', className)} style={{ minHeight: 'calc(100vh - 150px)' }}>
+    <div
+      className={cn("w-full sticky top-0", className)}
+      style={{ minHeight: "calc(100vh - 150px)" }}
+    >
       <span className="text-lg font-light text-white">Summary</span>
       <div className="relative w-11 mt-[62px]">
         {/* Background line */}
@@ -112,9 +119,10 @@ export function ScrollIndicator({ sections, className, scrollContainerRef }: Scr
 
         {/* Moving indicator */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 w-[35px] h-[24px] border border-white transition-all duration-200 ease-out flex justify-center items-center bg-black 
-             before:content-[''] before:absolute before:left-0 before:top-1/2 before:w-[10px] before:flex before:items-center before:justify-center before:h-[25px] before:bg-black before:-translate-x-[-12px] before:-translate-y-1/2"
-          style={{ top: `calc(${normalizedPercent}% - 13px)` }}>
+          className="absolute left-1/2 -translate-x-1/2 w-[35px] h-[24px] border border-white transition-all duration-200 ease-out flex justify-center items-center bg-black
+            before:content-[''] before:absolute before:left-0 before:top-1/2 before:w-[10px] before:flex before:items-center before:justify-center before:h-[25px] before:bg-black before:-translate-x-[-12px] before:-translate-y-1/2"
+          style={{ top: `calc(${normalizedPercent}% - 13px)` }}
+        >
           <div className="w-[5px] h-[5px] bg-white rounded-[1px] absolute" />
         </div>
 
@@ -125,20 +133,24 @@ export function ScrollIndicator({ sections, className, scrollContainerRef }: Scr
               key={section.id}
               onClick={() => scrollToSection(section.id)}
               className="flex items-center gap-6 group cursor-pointer w-full text-left"
-              aria-label={`Go to ${section.label}`}>
+              aria-label={`Go to ${section.label}`}
+            >
               <div className="w-7 h-7" />
               <div className="flex items-center gap-3">
                 <span
                   className={cn(
-                    'text-lg font-light transition-all duration-200 ease-out whitespace-nowrap',
-                    index === activeSection ? 'text-white' : 'text-zinc-500 group-hover:text-zinc-400'
-                  )}>
+                    "text-lg font-light transition-all duration-200 ease-out whitespace-nowrap",
+                    index === activeSection
+                      ? "text-white"
+                      : "text-zinc-500 group-hover:text-zinc-400"
+                  )}
+                >
                   {section.label}
                 </span>
                 <span
                   className={cn(
-                    'text-sm font-light transition-all duration-200 ease-out',
-                    index === activeSection ? 'text-zinc-400' : 'text-zinc-600'
+                    "text-sm font-light transition-all duration-200 ease-out",
+                    index === activeSection ? "text-zinc-400" : "text-zinc-600"
                   )}
                 >
                   {section.number}
