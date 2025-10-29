@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sheet";
 import dynamic from "next/dynamic";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { useMemo } from "react";
 
 const navLinks = [
   { href: "/features", label: "Features" },
@@ -121,8 +122,16 @@ const WalletMultiButton = dynamic(
 
 export function UserHeader() {
   const wallet = useWallet();
+
+  // Memoize the truncated address to avoid recalculating on every render
+  const displayAddress = useMemo(() => {
+    if (!wallet.publicKey) return null;
+    const address = wallet.publicKey.toBase58();
+    return `${address.slice(0, 4)}...${address.slice(-4)}`;
+  }, [wallet.publicKey]);
+
   return (
-    <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm">
+    <header className="fixed top-0 z-10 w-full bg-black/30 backdrop-blur-sm p-6">
       <div className="flex items-center justify-between gap-5 w-full max-w-[1200px] mx-auto">
         <Link href="/" id="logo" className="flex items-center gap-2">
           <Image
@@ -135,9 +144,43 @@ export function UserHeader() {
           <h1 className="text-lg font-bold">openQuanta</h1>
         </Link>
 
-        <div>
+        {/* Wallet Section */}
+        <div className="flex items-center gap-3">
+          {/* Optional: Add balance display */}
+          {wallet.connected && (
+            <div className="hidden sm:flex items-center gap-2 px-3 py-2">
+              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-sm text-white/70">Connected</span>
+            </div>
+          )}
+
+          {/* Custom Wallet Button or use default */}
           <WalletMultiButton>
-            {wallet.connected ? wallet.publicKey?.toBase58() : "Connect Wallet"}
+            <span className="flex items-center gap-2">
+              {wallet.connecting && (
+                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                    fill="none"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  />
+                </svg>
+              )}
+              {wallet.connecting
+                ? "Connecting..."
+                : wallet.connected
+                ? displayAddress
+                : "Connect Wallet"}
+            </span>
           </WalletMultiButton>
         </div>
       </div>
