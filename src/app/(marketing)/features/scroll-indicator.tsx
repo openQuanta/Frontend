@@ -19,94 +19,112 @@ export function ScrollIndicator({ sections, className, scrollContainerRef }: Scr
   const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   useEffect(() => {
-    const container = scrollContainerRef?.current;
-    if (!container) return;
+    // Get the container that holds all the scrollable sections (from Page.tsx)
+    const sectionWrapper = scrollContainerRef?.current;
 
     const handleScroll = () => {
-      // center point inside the scroll container, in scroll coordinates
-      const containerRect = container.getBoundingClientRect();
-      const containerTop = containerRect.top;
-      const containerScrollTop = container.scrollTop;
-      const containerCenter = containerScrollTop + container.clientHeight / 2;
+      // 1. Get current scroll position (always use window for sticky indicator)
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      // Use the viewport center as the reference point for the active section
+      const scrollCenter = scrollTop + windowHeight / 2;
+      const documentScrollHeight = document.documentElement.scrollHeight;
 
-      // find current section by comparing containerCenter to each section bounds
+      // 2. Find current section
       let current = 0;
       sections.forEach((section, i) => {
         const el = document.getElementById(section.id);
         if (!el) return;
-        const elRect = el.getBoundingClientRect();
-        const elTopRelative = elRect.top - containerTop + containerScrollTop;
+
+        // el.offsetTop is the element's top position relative to the document
+        const elTopRelative = el.offsetTop;
         const elBottomRelative = elTopRelative + el.offsetHeight;
-        if (containerCenter >= elTopRelative && containerCenter < elBottomRelative) {
+
+        if (scrollCenter >= elTopRelative && scrollCenter < elBottomRelative) {
           current = i;
         }
       });
 
       setActiveSection(current);
 
-      // compute fractional progress inside current section
+      // 3. Compute fractional progress inside current section
       const curEl = document.getElementById(sections[current].id);
-      const nextEl = current < sections.length - 1 ? document.getElementById(sections[current + 1].id) : null;
 
       if (curEl) {
-        const curTop = curEl.getBoundingClientRect().top - containerTop + containerScrollTop;
-        const nextTop = nextEl ? (nextEl.getBoundingClientRect().top - containerTop + containerScrollTop) : container.scrollHeight;
+        const curTop = curEl.offsetTop;
+
+        // Determine the next boundary
+        const nextEl = current < sections.length - 1 ? document.getElementById(sections[current + 1].id) : null;
+
+        // If last section, its end is the end of the sectionWrapper (if provided), or the document end.
+        const lastSectionEnd = sectionWrapper
+          ? sectionWrapper.offsetTop + sectionWrapper.offsetHeight
+          : documentScrollHeight;
+
+        const nextTop = nextEl ? nextEl.offsetTop : lastSectionEnd;
+
         const sectionHeight = Math.max(nextTop - curTop, 1);
-        const progressInSection = (containerCenter - curTop) / sectionHeight;
+
+        // Calculate how far the reference point (scrollCenter) is through the section
+        const progressInSection = (scrollCenter - curTop) / sectionHeight;
+
+        // Clamp the value to 0-1 and update the overall progress tracker
         const clamped = Math.min(Math.max(progressInSection, 0), 1);
         setScrollProgress(current + clamped);
       }
     };
 
-    // initial calc
-    handleScroll();
-
-    container.addEventListener('scroll', handleScroll, { passive: true });
+    // Attach scroll listener to the window
+    window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll);
+    handleScroll(); // Initial calc
 
     return () => {
-      container.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
     };
   }, [sections, scrollContainerRef]);
 
   const scrollToSection = (id: string) => {
-    const container = scrollContainerRef?.current;
     const el = document.getElementById(id);
-    if (!container || !el) return;
-    const containerTop = container.getBoundingClientRect().top;
-    const elTop = el.getBoundingClientRect().top;
-    const offset = elTop - containerTop + container.scrollTop;
-    container.scrollTo({ top: offset, behavior: 'smooth' });
+    if (!el) return;
+
+    // For page scroll, center the element in the viewport
+    const scrollOffset = el.offsetTop - window.innerHeight / 2 + el.offsetHeight / 2;
+    window.scrollTo({ top: scrollOffset, behavior: 'smooth' });
   };
 
+  // Calculate the visual percentage for the progress bar
   const normalizedPercent = Math.min(Math.max((scrollProgress / sections.length) * 100, 0), 100);
 
   return (
-    <div className={cn('sticky top-1/2 -translate-y-1/2 z-30', className)}>
-      <span>Summary</span>
+    <div className={cn('w-full sticky top-0', className)} style={{ minHeight: 'calc(100vh - 150px)' }}>
+      <span className="text-lg font-light text-white">Summary</span>
       <div className="relative w-11 mt-[62px]">
+        {/* Background line */}
         <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[1px] bg-zinc-800" />
 
+        {/* Progress line */}
         <div
-          className="absolute left-1/2 -translate-x-1/2 top-0 w-[1px]  bg-white to-transparent transition-all duration-200 ease-out"
+          className="absolute left-1/2 -translate-x-1/2 top-0 w-[1px] bg-white transition-all duration-200 ease-out"
           style={{ height: `${normalizedPercent}%` }}
         />
 
+        {/* Moving indicator */}
         <div
           className="absolute left-1/2 -translate-x-1/2 w-[35px] h-[24px] border border-white transition-all duration-200 ease-out flex justify-center items-center bg-black 
-             before:content-[''] before:absolute before:left-0 before:top-1/2 before:w-[10px] before:flex before:items-center before:justify-center before:h-[25px] before:bg-black before:-translate-x-[-12px] before:-translate-y-1/2"
+             before:content-[''] before:absolute before:left-0 before:top-1/2 before:w-[10px] before:flex before:items-center before:justify-center before:h-[25px] before:bg-black before:-translate-x-[-12px] before:-translate-y-1/2"
           style={{ top: `calc(${normalizedPercent}% - 13px)` }}>
-
-          <div className="w-[5px] h-[5px] bg-white rounded-[1px] absolute"/>
+          <div className="w-[5px] h-[5px] bg-white rounded-[1px] absolute" />
         </div>
 
-        <div className="relative mt-6 space-y-12">
+        {/* Section labels */}
+        <div className="relative mt-6 space-y-12 pl-6">
           {sections.map((section, index) => (
             <button
               key={section.id}
               onClick={() => scrollToSection(section.id)}
-              className="flex items-center gap-6 group cursor-pointer"
+              className="flex items-center gap-6 group cursor-pointer w-full text-left"
               aria-label={`Go to ${section.label}`}>
               <div className="w-7 h-7" />
               <div className="flex items-center gap-3">
