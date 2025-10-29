@@ -4,7 +4,19 @@ import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { X, Upload, Plus, User, Copy, File } from "lucide-react";
+import {
+  X,
+  Upload,
+  Plus,
+  User,
+  Copy,
+  File,
+  FileText,
+  Award,
+  Calendar,
+  ArrowRight,
+  Edit,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -845,15 +857,86 @@ export default function Publish() {
               </TabsContent>
             </Tabs>
 
-            <div>
-              <h3>Summary</h3>
+            <div className="flex flex-col gap-6">
+              <h3 className="text-xl font-medium">Summary</h3>
 
-              <div>
-                <div>
-                  <File />
+              <div className="flex flex-col gap-6">
+                <div className="flex gap-3 items-center">
+                  <FileText className="text-primary" width={24} height={24} />
+                  <div>
+                    <p className="text-white/40">Title</p>
+                    <p className="text-white/64">
+                      Post-Quantum Cryptography Protocol for Blockchain
+                      Consensus
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 items-center">
+                  <Award className="text-primary" width={24} height={24} />
+                  <div>
+                    <p className="text-white/40">Field</p>
+                    <p className="text-white/64">Cryptography</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 items-center">
+                  <Calendar className="text-primary" width={24} height={24} />
+                  <div>
+                    <p className="text-white/40">Publication Date</p>
+                    <p className="text-white/64">2025-01-15</p>
+                  </div>
                 </div>
               </div>
+
+              <hr />
+
+              <h3 className="text-xl font-medium">Expected Outcomes</h3>
+
+              <div>
+                <p className="flex items-center gap-2">
+                  <ArrowRight width={12} height={12} className="text-primary" />{" "}
+                  Paper stored permanently on Blockchain
+                </p>
+
+                <p className="flex items-center gap-2">
+                  <ArrowRight width={12} height={12} className="text-primary" />{" "}
+                  NFT minted to your wallet
+                </p>
+
+                <p className="flex items-center gap-2">
+                  <ArrowRight width={12} height={12} className="text-primary" />{" "}
+                  Visible in explore gallery
+                </p>
+
+                <p className="flex items-center gap-2">
+                  <ArrowRight width={12} height={12} className="text-primary" />{" "}
+                  Community can review & support
+                </p>
+              </div>
             </div>
+
+            <div className="rounded-[8px] p-8 bg-[#8330ED]/10 border border-white/10">
+              <div className="flex items-center gap-2">
+                <span className="text-[#8330ED]">Network Fee: </span>
+                <span className="text-[#C192FD]/64">
+                  Publishing includes blockchain transaction
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-[#8330ED]">
+                <Image
+                  src="/images/solana_small.svg"
+                  alt="solana"
+                  width={12}
+                  height={12}
+                />
+                ~0.05 Sol (Varies by network)
+              </div>
+            </div>
+
+            <Button variant="outline" className="p-6">
+              <Edit /> Edit Details
+            </Button>
           </TabsContent>
 
           <TabsContent value="publish">
