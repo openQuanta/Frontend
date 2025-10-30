@@ -7,7 +7,7 @@ import { profileSchema, type ProfileData } from "@/schemas/profile-schema";
 export const revalidate = 600;
 
 interface PublicProfilePageProps {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 }
 
 export default async function PublicProfilePage({
