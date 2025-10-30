@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { profileSchema, ProfileData } from "@/schemas/profile-schema";
 import { createClient } from "@/utils/supabase/client";
@@ -17,6 +18,7 @@ import { toast } from "sonner";
 
 export default function UpdateProfile() {
   const supabase = createClient();
+  const router = useRouter();
 
   const [formData, setFormData] = useState<Partial<ProfileData>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -27,38 +29,42 @@ export default function UpdateProfile() {
   useEffect(() => {
     const loadProfile = async () => {
       setInitializing(true);
+      try {
+        const {
+          data: { user },
+          error: userError,
+        } = await supabase.auth.getUser();
 
-      const {
-        data: { user },
-        error: userError,
-      } = await supabase.auth.getUser();
+        if (userError || !user) {
+          toast.error("You must be logged in to view your profile");
+          setInitializing(false);
+          return;
+        }
 
-      if (userError || !user) {
-        toast.error("You must be logged in to view your profile");
+        const { data, error } = await supabase
+          .from("profiles")
+          .select("username, first_name, last_name, field_of_study, bio")
+          .eq("id", user.id)
+          .single();
+
+        if (error) {
+          console.error(error);
+          toast.error("Error loading profile");
+        } else {
+          setFormData({
+            username: data?.username || "",
+            first_name: data?.first_name || "",
+            last_name: data?.last_name || "",
+            field_of_study: data?.field_of_study || "",
+            bio: data?.bio || "",
+          });
+        }
+      } catch (err) {
+        console.error("Unexpected error loading profile:", err);
+        toast.error("Something went wrong while loading your profile");
+      } finally {
         setInitializing(false);
-        return;
       }
-
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("username, first_name, last_name, field_of_study, bio")
-        .eq("id", user.id)
-        .single();
-
-      if (error) {
-        console.error(error);
-        toast.error("Error loading profile");
-      } else {
-        setFormData({
-          username: data?.username || "",
-          first_name: data?.first_name || "",
-          last_name: data?.last_name || "",
-          field_of_study: data?.field_of_study || "",
-          bio: data?.bio || "",
-        });
-      }
-
-      setInitializing(false);
     };
 
     loadProfile();
@@ -79,54 +85,60 @@ export default function UpdateProfile() {
     setLoading(true);
     setErrors({});
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
-    if (!user) {
-      toast.error("You must be logged in");
-      setLoading(false);
-      return;
-    }
+      if (!user) {
+        toast.error("You must be logged in");
+        setLoading(false);
+        return;
+      }
 
-    // Validate with Zod
-    const parsed = profileSchema.safeParse({
-      id: user.id,
-      ...formData,
-    });
-
-    if (!parsed.success) {
-      const fieldErrors: Record<string, string> = {};
-      parsed.error.errors.forEach((err) => {
-        const key = err.path[0];
-        if (typeof key === "string") fieldErrors[key] = err.message;
+      // Validate with Zod
+      const parsed = profileSchema.safeParse({
+        id: user.id,
+        ...formData,
       });
-      setErrors(fieldErrors);
-      toast.error("Please fix the highlighted fields");
+
+      if (!parsed.success) {
+        const fieldErrors: Record<string, string> = {};
+        parsed.error.errors.forEach((err) => {
+          const key = err.path[0];
+          if (typeof key === "string") fieldErrors[key] = err.message;
+        });
+        setErrors(fieldErrors);
+        toast.error("Please fix the highlighted fields");
+        setLoading(false);
+        return;
+      }
+
+      const { error } = await supabase
+        .from("profiles")
+        .update({
+          username: formData.username || null,
+          first_name: formData.first_name || null,
+          last_name: formData.last_name || null,
+          field_of_study: formData.field_of_study || null,
+          bio: formData.bio || null,
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", user.id);
+
+      if (error) {
+        console.error(error);
+        toast.error("Error updating profile");
+      } else {
+        toast.success("Profile updated successfully");
+        router.push("/dashboard");
+      }
+    } catch (err) {
+      console.error("Unexpected error updating profile:", err);
+      toast.error("Something went wrong while saving changes");
+    } finally {
       setLoading(false);
-      return;
     }
-
-    const { error } = await supabase
-      .from("profiles")
-      .update({
-        username: formData.username || null,
-        first_name: formData.first_name || null,
-        last_name: formData.last_name || null,
-        field_of_study: formData.field_of_study || null,
-        bio: formData.bio || null,
-        updated_at: new Date().toISOString(),
-      })
-      .eq("id", user.id);
-
-    if (error) {
-      console.error(error);
-      toast.error("Error updating profile");
-    } else {
-      toast.success("Profile updated successfully");
-    }
-
-    setLoading(false);
   };
 
   if (initializing) {

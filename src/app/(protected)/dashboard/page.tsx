@@ -129,9 +129,12 @@ export default function Dashboard() {
       {/* Grid */}
       <section className="grid lg:grid-cols-4 gap-3 max-w-[1200px] mx-auto">
         <div className="aspect-square bg-white/4 border border-white/8 rounded-2xl flex items-center justify-center">
-          <Link href="/profile" className="flex flex-col items-center gap-2">
+          <Link
+            href="/update-profile"
+            className="flex flex-col items-center gap-2"
+          >
             <CircleUserRound width={64} height={64} />
-            <p>Go to Profile</p>
+            <p>Update Profile</p>
           </Link>
         </div>
 
