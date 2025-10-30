@@ -19,8 +19,6 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${halenoir.variable} antialiased`}>
-        {children}
-        <Toaster />
         <SolanaProvider>
           {children}
           <Toaster />

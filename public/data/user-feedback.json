@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Alon Weiss",
+    "handle": "@alon",
+    "text": "I never realized how slow and closed-off traditional science was until I discovered DeSci. The old system was built to slow us down.",
+    "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+  },
+  {
+    "name": "Dr. Mei Zhang",
+    "handle": "@mei_genomics",
+    "text": "OpenQuanta lets me publish genetic datasets instantly, with verifiable authorship. No more months of waiting for gatekeepers to say yes.",
+    "avatar": "https://randomuser.me/api/portraits/women/52.jpg"
+  },
+  {
+    "name": "Carlos Ortega",
+    "handle": "@c_ortega_lab",
+    "text": "The peer-review layer built on Solana is genius. I can trace every edit, every review, and every contributor — totally transparent.",
+    "avatar": "https://randomuser.me/api/portraits/men/45.jpg"
+  },
+  {
+    "name": "Lara Kim",
+    "handle": "@larakim_ai",
+    "text": "As an AI researcher, reproducibility is everything. Being able to attach code, data, and proofs to my NFT publication is a game-changer.",
+    "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
+  },
+  {
+    "name": "Dr. Yusef Adebayo",
+    "handle": "@yusef_quantum",
+    "text": "Our quantum paper reached 3x more readers in a week on OpenQuanta than in three months on traditional journals. That says it all.",
+    "avatar": "https://randomuser.me/api/portraits/men/72.jpg"
+  },
+  {
+    "name": "Ananya Patel",
+    "handle": "@ananya_research",
+    "text": "Publishing here feels alive — data updates in real-time, and community feedback starts within hours. It’s how modern science should work.",
+    "avatar": "https://randomuser.me/api/portraits/women/74.jpg"
+  },
+  {
+    "name": "Rafael Costa",
+    "handle": "@rafaelbio",
+    "text": "Finally, a place where interdisciplinary work doesn’t get rejected for being 'too unconventional'. OpenQuanta values curiosity over conformity.",
+    "avatar": "https://randomuser.me/api/portraits/men/29.jpg"
+  },
+  {
+    "name": "Dr. Hannah Müller",
+    "handle": "@hm_physics",
+    "text": "Verification on-chain gives my work instant credibility. Reviewers and readers can confirm it’s mine — no more disputes over priority.",
+    "avatar": "https://randomuser.me/api/portraits/women/58.jpg"
+  },
+  {
+    "name": "Noah Singh",
+    "handle": "@noah_singh",
+    "text": "Funding microgrants directly through my research NFTs has opened new doors. Support now flows to the ideas themselves, not bureaucracy.",
+    "avatar": "https://randomuser.me/api/portraits/men/33.jpg"
+  },
+  {
+    "name": "Isabella Rossi",
+    "handle": "@isabella_neuro",
+    "text": "OpenQuanta has turned publication into collaboration. Reviewers add insight, not rejection letters — and it all stays on-chain.",
+    "avatar": "https://randomuser.me/api/portraits/women/60.jpg"
+  }
+]
