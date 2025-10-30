@@ -25,8 +25,8 @@ import {
     SystemProgram
 } from "@solana/web3.js";
 
-import { MPL_CORE_PROGRAM_ID, mplCore } from "@metaplex-foundation/mpl-core";
-import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
+import { MPL_CORE_PROGRAM_ID } from "@metaplex-foundation/mpl-core";
+/*import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
 import {
     createGenericFile,
     createSignerFromKeypair,
@@ -39,10 +39,10 @@ import {
     createUmi,
 } from "@metaplex-foundation/umi-bundle-defaults";
 import { irysUploader } from "@metaplex-foundation/umi-uploader-irys";
-import { error } from "console";
+import { error } from "console";*/
 import {
-    TurboFactory, ArweaveSigner,
-    SolanaToken,
+    TurboFactory,
+    
     SOLToTokenAmount
 } from "@ardrive/turbo-sdk";
 
@@ -50,9 +50,9 @@ import fs from "fs";
 import path from "path";
 
 
-import idl from "../open_quanta.json";
+import idl from "./open_quanta.json";
 
-import { OpenQuanta } from "../open_quanta";
+import { OpenQuanta } from "./open_quanta";
 import { program } from "@coral-xyz/anchor/dist/cjs/native/system";
 import { fileURLToPath } from "url";
 
@@ -72,14 +72,14 @@ export const openQuanta: FC = () => {
         return provider;
     }
 
-    const nftAssetKeypairFile = fs.readFileSync(
+    /*const nftAssetKeypairFile = fs.readFileSync(
         path.resolve(__dirname, "./wallets/nftAsset-wallet.json"),
         "utf-8"
     );
     const nftAssetKeypair = Keypair.fromSecretKey(
         Uint8Array.from(JSON.parse(nftAssetKeypairFile))
-    );
-    //const openQuantaProgramId = new PublicKey(idl.address);
+    );*/
+    
 
     const openQuantaProgram = new Program<OpenQuanta>(idl, getProvider());
 
@@ -303,6 +303,10 @@ export const openQuanta: FC = () => {
             }
 
             const arweaveHashForPaper = uploadFileToArweave(fileURLToPath);
+
+            // Generate NFT Asset Keypair
+            const nftAssetKeypairForSubmitter = Keypair.generate();
+            
             // Call On-Chain instruction
             await openQuantaProgram.methods
                 .submitPaper(
@@ -321,11 +325,11 @@ export const openQuanta: FC = () => {
                     collectionRegistry: collectionRegistryPDA,
                     collection: new PublicKey("HdNScTPv5FJy2pKKZjUMe4vGr4AM22XVYsWjx4z6ybJT"),
                     oqNftMintAuthority: oqNftMintAuthorityPDA,
-                    nftAsset: new PublicKey("C9Vce9pRfZ3daVMGkdHEb5835FL5VkgoUPKMQEY5NZDb"),
+                    nftAsset: nftAssetKeypairForSubmitter.publicKey,
                     mplCore: MPL_CORE_PROGRAM_ID,
                     systemProgram: SystemProgram.programId
                 })
-                .signers([ourWallet, nftAssetKeypair])
+                .signers([ourWallet, nftAssetKeypairForSubmitter])
                 .rpc();
         } catch (err) {
             console.error("There was an Error Submitting Paper,", err);
@@ -340,12 +344,21 @@ export const openQuanta: FC = () => {
     ): Promise<String> => {
 
         // Initialize Wallet For Signer
-        const turboSigner = new ArweaveSigner(ourWallet);
+        //const turboSigner = new ArweaveSigner(ourWallet); Don't Need, for Solana Web Adapter
         // Initialize Turbo
         const turbo = TurboFactory.authenticated({
-            signer: turboSigner,
-            token: "solana"
-        });
+        //privateKey: bs58.encode(secretKey),
+        walletAdapter: window.solana,
+        token: 'solana',
+        //signer: signer,
+        gatewayUrl: 'https://api.devnet.solana.com',
+        paymentServiceConfig: {
+            url: 'https://payment.ardrive.dev',
+        },
+        uploadServiceConfig: {
+            url: 'https://upload.ardrive.dev',
+        }
+    });
 
         // Get SOL Price For File To Be Uploaded
         const tokenPriceForFile = await turbo.getTokenPriceForBytes(file);

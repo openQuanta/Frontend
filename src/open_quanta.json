@@ -1281,6 +1281,10 @@
             "type": "i64"
           },
           {
+            "name": "nft_address_for_paper",
+            "type": "pubkey"
+          },
+          {
             "name": "paper_bump",
             "type": "u8"
           }

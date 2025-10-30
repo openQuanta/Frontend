@@ -1287,6 +1287,10 @@ export type OpenQuanta = {
             "type": "i64"
           },
           {
+            "name": "nftAddressForPaper",
+            "type": "pubkey"
+          },
+          {
             "name": "paperBump",
             "type": "u8"
           }
