@@ -15,7 +15,6 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import Image from "next/image";
-import Link from "next/link";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
@@ -71,7 +70,7 @@ export default function EmailVerificationPage() {
 
       toast.success("Email verified successfully!");
       router.push("/dashboard");
-    } catch (err: any) {
+    } catch (err: Error | unknown) {
       console.error("Error verifying OTP:", err);
       setError("Invalid or expired verification code");
       toast.error("Invalid or expired verification code");

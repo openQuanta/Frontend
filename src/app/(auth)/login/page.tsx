@@ -52,7 +52,7 @@ export default function Login() {
       if (error) throw error;
 
       router.push("/email-verification");
-    } catch (err: any) {
+    } catch (err: Error | unknown) {
       console.error(err);
       setError("Failed to send login email. Please try again.");
     } finally {
