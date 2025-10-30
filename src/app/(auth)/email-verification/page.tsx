@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Field,
@@ -18,12 +18,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/utils/supabase/client";
+import { getCookie } from "cookies-next";
 
 export default function EmailVerificationPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [email, setEmail] = useState<string | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    const savedEmail = getCookie("userEmail");
+    if (!savedEmail) {
+      toast.error("No email found. Please sign in again.");
+      router.push("/login");
+    } else {
+      setEmail(savedEmail as string);
+    }
+  }, [router]);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -34,21 +47,53 @@ export default function EmailVerificationPage() {
       return;
     }
 
+    if (!email) {
+      setError("No email found. Please log in again.");
+      toast.error("Missing email session");
+      return;
+    }
+
     setError("");
     setIsSubmitting(true);
 
     try {
-      // TODO: Implement your OTP verification API call here
-      // const response = await verifyEmailOtp(otp);
+      const supabase = createClient();
+
+      const { data, error: verifyError } = await supabase.auth.verifyOtp({
+        email,
+        token: otp,
+        type: "email",
+      });
+
+      if (verifyError || !data?.user) {
+        throw verifyError || new Error("Invalid verification code");
+      }
+
       toast.success("Email verified successfully!");
-      // Redirect to dashboard or next step
       router.push("/dashboard");
-    } catch (error) {
-      console.error("Error verifying OTP:", error);
+    } catch (err: any) {
+      console.error("Error verifying OTP:", err);
       setError("Invalid or expired verification code");
       toast.error("Invalid or expired verification code");
     } finally {
       setIsSubmitting(false);
+    }
+  }
+
+  async function handleResend() {
+    if (!email) {
+      toast.error("No email found. Please log in again.");
+      return;
+    }
+
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithOtp({ email });
+
+    if (error) {
+      toast.error("Failed to resend verification email.");
+      console.error(error);
+    } else {
+      toast.success("Verification code resent!");
     }
   }
 
@@ -59,6 +104,7 @@ export default function EmailVerificationPage() {
           onSubmit={onSubmit}
           className="flex flex-col gap-4 w-full backdrop-blur-sm p-6 rounded-2xl relative"
         >
+          {/* corner dots */}
           <div className="absolute w-1.5 h-1.5 rounded-full bg-white top-0 left-0" />
           <div className="absolute w-1.5 h-1.5 rounded-full bg-white top-0 right-0" />
           <div className="absolute w-1.5 h-1.5 rounded-full bg-white bottom-0 left-0" />
@@ -93,14 +139,12 @@ export default function EmailVerificationPage() {
                     setOtp(value);
                     setError("");
                   }}
+                  disabled={isSubmitting}
                 >
                   <InputOTPGroup className="gap-2">
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
+                    {[...Array(6)].map((_, i) => (
+                      <InputOTPSlot key={i} index={i} />
+                    ))}
                   </InputOTPGroup>
                 </InputOTP>
               </div>
@@ -124,12 +168,14 @@ export default function EmailVerificationPage() {
 
           <footer className="mt-6 text-center text-xs text-muted-foreground">
             Didn&apos;t get the code?{" "}
-            <Link
-              href="/"
+            <button
+              type="button"
+              onClick={handleResend}
               className="font-medium text-foreground hover:underline"
+              disabled={isSubmitting}
             >
               Resend
-            </Link>
+            </button>
           </footer>
         </form>
       </section>
