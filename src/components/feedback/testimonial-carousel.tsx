@@ -38,7 +38,7 @@ export default function TestimonialCarousel() {
         {testimonials.map((t, i) => (
           <CarouselItem key={i} className="md:basis-1/3 lg:basis-1/4">
             <Card className="bg-[#1e1e1e] border border-white/10 text-gray-200 rounded-[8px] h-full">
-              <CardContent className="p-3 flex flex-col">
+              <CardContent className="flex flex-col">
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-4">
                   <Image

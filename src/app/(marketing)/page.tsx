@@ -175,7 +175,7 @@ export default function Page() {
 
             <AnimatedSection variants={fadeInUp} delay={0.4}>
               <div className="flex flex-col gap-6">
-                <h1 className="text-[74px] leading-[74px]">
+                <h1 className="text-[42px] lg:text-[74px] lg:leading-[74px]">
                   Advance your research through independent publishing
                 </h1>
                 <p className="text-white/64">
@@ -289,7 +289,7 @@ export default function Page() {
 
             {/* Animated Card Flow */}
             <motion.div
-              className="lg:col-span-3 hidden md:flex md:flex-col gap-5"
+              className="lg:col-span-3 flex flex-col gap-5"
               variants={staggerContainer}
               initial="hidden"
               whileInView="visible"
@@ -300,84 +300,84 @@ export default function Page() {
                 variants={cardVariant}
                 className="flex justify-between gap-5"
               >
-                <div className="w-full h-28 border-b border-white/10 rounded-[8px]"></div>
+                <div className="w-full h-28 border-b border-white/10 rounded-[8px] hidden md:block" />
                 <div className="grid gap-5 w-max">
-                  <div className="w-full h-5 border-b border-x border-white/10 rounded-b-[8px]"></div>
-                  <div className="flex gap-5">
-                    <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] w-[200px] hover:bg-white/10 transition-colors">
+                  <div className="w-full h-5 border-b border-x border-white/10 rounded-b-[8px] hidden md:block" />
+                  <div className="grid md:flex gap-5">
+                    <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] md:w-[200px] hover:bg-white/10 transition-colors">
                       <h4 className="mb-1">Research Paper</h4>
-                      <p className="text-xs text-[#92939D] line-clamp-3">
+                      <p className="text-xs text-[#92939D] md:line-clamp-3">
                         Submit and tokenize your paper to prove authorship and
                         control distribution.
                       </p>
                     </div>
-                    <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] w-[200px] hover:bg-white/10 transition-colors">
+                    <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] md:w-[200px] hover:bg-white/10 transition-colors">
                       <h4 className="mb-1">Peer Review NFT</h4>
-                      <p className="text-xs text-[#92939D] line-clamp-3">
+                      <p className="text-xs text-[#92939D] md:line-clamp-3">
                         Provide expert feedback and mint it on-chain as a
                         verifiable review asset.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="w-full max-w-36 h-full border-b border-l border-white/10 rounded-bl-[8px]"></div>
+                <div className="w-full max-w-36 h-full border-b border-l border-white/10 rounded-bl-[8px] hidden md:block" />
               </motion.div>
 
               {/* Second Layer */}
-              <motion.div
+              {/* <motion.div
                 variants={cardVariant}
-                className="flex justify-end md:mr-10 lg:mr-20 gap-5"
+                className="grid md:flex md:justify-end md:mr-10 lg:mr-20 gap-5"
               >
-                <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] w-[200px] hover:bg-white/10 transition-colors">
+                <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] md:w-[200px] hover:bg-white/10 transition-colors">
                   <h4 className="mb-1">Reputation Layer</h4>
-                  <p className="text-xs text-[#92939D] line-clamp-3">
+                  <p className="text-xs text-[#92939D] md:line-clamp-3">
                     Earn public reputation points by contributing quality
                     reviews.
                   </p>
                 </div>
-                <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] w-[200px] hover:bg-white/10 transition-colors">
+                <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] md:w-[200px] hover:bg-white/10 transition-colors">
                   <h4 className="font- mb-1">Authorship NFT</h4>
-                  <p className="text-xs text-[#92939D] line-clamp-3">
+                  <p className="text-xs text-[#92939D] md:line-clamp-3">
                     Mint your scientific work as an NFT to earn, trade, and
                     track provenance.
                   </p>
                 </div>
-                <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] w-[200px] hover:bg-white/10 transition-colors">
+                <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] md:w-[200px] hover:bg-white/10 transition-colors">
                   <h4 className="font- mb-1">Open Access Tools</h4>
-                  <p className="text-xs text-[#92939D] line-clamp-3">
+                  <p className="text-xs text-[#92939D] md:line-clamp-3">
                     Enable others to cite and fund research; researchers can
                     submit proposals with tokens
                   </p>
                 </div>
-              </motion.div>
+              </motion.div> */}
 
               {/* Third Layer */}
-              <motion.div
+              {/* <motion.div
                 variants={cardVariant}
                 className="flex justify-between gap-5"
               >
-                <div className="w-full h-28 mt-auto border-t border-x border-white/10 rounded-t-[8px]"></div>
+                <div className="w-full h-28 mt-auto border-t border-x border-white/10 rounded-t-[8px] hidden md:block" />
                 <div className="grid gap-5 w-max">
-                  <div className="flex gap-5">
-                    <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] w-[200px] hover:bg-white/10 transition-colors">
+                  <div className="grid md:flex gap-5">
+                    <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] md:w-[200px] hover:bg-white/10 transition-colors">
                       <h4 className="font- mb-1">Auction & Bids</h4>
-                      <p className="text-xs text-[#92939D] line-clamp-3">
+                      <p className="text-xs text-[#92939D] md:line-clamp-3">
                         Enable researchers to auction their work and receive
                         bids from interested parties.
                       </p>
                     </div>
-                    <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] w-[200px] hover:bg-white/10 transition-colors">
+                    <div className="p-5 bg-white/5 border border-white/10 rounded-[8px] md:w-[200px] hover:bg-white/10 transition-colors">
                       <h4 className="font- mb-1">Market Analytics</h4>
-                      <p className="text-xs text-[#92939D] line-clamp-3">
+                      <p className="text-xs text-[#92939D] md:line-clamp-3">
                         Track performance, citations, and market value of your
                         published research.
                       </p>
                     </div>
                   </div>
-                  <div className="w-full h-5 border-t border-x border-white/10 rounded-t-[8px]"></div>
+                  <div className="w-full h-5 border-t border-x border-white/10 rounded-t-[8px] hidden md:block" />
                 </div>
-                <div className="w-full max-w-36 h-full border-t border-l border-white/10 rounded-tl-[8px]"></div>
-              </motion.div>
+                <div className="w-full max-w-36 h-full border-t border-l border-white/10 rounded-tl-[8px] hidden md:block" />
+              </motion.div> */}
             </motion.div>
           </div>
         </AnimatedSection>
@@ -601,7 +601,7 @@ export default function Page() {
 
       {/* Featured Research */}
       <AnimatedSection variants={fadeInUp}>
-        <section className="w-full max-w-[1200px] mx-auto p-5 grid md:flex place-items-center md:justify-center gap-6">
+        <section className="w-full max-w-[1200px] mx-auto p-5 grid md:flex place-items-center md:justify-center">
           <motion.div
             variants={slideInLeft}
             initial="hidden"
