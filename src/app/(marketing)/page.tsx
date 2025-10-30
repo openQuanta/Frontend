@@ -8,7 +8,7 @@ import {
   SendHorizontal,
 } from "lucide-react";
 import Image from "next/image";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useInView, Variants } from "framer-motion";
 
 // image assets

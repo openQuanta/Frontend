@@ -48,6 +48,7 @@ const fadeIn = {
 interface AnimatedSectionProps {
   children: React.ReactNode;
   className?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   variants?: any;
 }
 
