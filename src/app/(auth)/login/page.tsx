@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -12,54 +12,67 @@ import { Input } from "@/components/ui/input";
 import { setCookie } from "cookies-next";
 import { useWallet } from "@solana/wallet-adapter-react";
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
+import { createClient } from "@/utils/supabase/client";
 
 const WalletMultiButton = dynamic(
   async () =>
     (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
-  {
-    ssr: false,
-  }
+  { ssr: false }
 );
 
 export default function Login() {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [walletLoading, setWalletLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const router = useRouter();
   const wallet = useWallet();
 
   useEffect(() => {
-    if (wallet.connected) {
-      // Store a value to indicate wallet login
-      setCookie("walletConnected", "true", { path: "/" });
+    if (wallet.connecting) setWalletLoading(true);
+    else setWalletLoading(false);
 
-      // Redirect to dashboard
+    if (wallet.connected) {
+      setCookie("walletConnected", "true", { path: "/" });
       router.push("/dashboard");
     }
-  }, [wallet.connected, router]);
+  }, [wallet.connected, wallet.connecting, router]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // you would validate the email and handle the login logic here
-    console.log("Email submitted:", email);
-
-    // Store the email (this is just in-memory, use context, state management, or a cookie)
+    setLoading(true);
+    setError(null);
     setCookie("userEmail", email, { path: "/" });
 
-    // Redirect to dashboard
-    router.push("/dashboard");
+    try {
+      const supabase = createClient();
+      const { error } = await supabase.auth.signInWithOtp({ email });
+
+      if (error) throw error;
+
+      router.push("/email-verification");
+    } catch (err: any) {
+      console.error(err);
+      setError("Failed to send login email. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <main className="py-32 flex flex-col gap-24 items-center">
+    <main className="py-32 p-6 flex flex-col gap-24 items-center">
       <section className="w-full max-w-[500px] mx-auto">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-4 w-full backdrop-blur-sm p-6 rounded-2xl relative"
         >
+          {/* Corner dots */}
           <div className="absolute w-1.5 h-1.5 rounded-full bg-white top-0 left-0" />
           <div className="absolute w-1.5 h-1.5 rounded-full bg-white top-0 right-0" />
           <div className="absolute w-1.5 h-1.5 rounded-full bg-white bottom-0 left-0" />
           <div className="absolute w-1.5 h-1.5 rounded-full bg-white bottom-0 right-0" />
+
           <header className="flex flex-col items-center gap-4 mb-6">
             <Image
               src="/images/logo_white.svg"
@@ -83,14 +96,26 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={loading}
             />
           </Field>
 
-          <Button variant="outline" type="submit" className="w-full">
-            Continue
+          {error && <p className="text-red-400 text-sm text-center">{error}</p>}
+
+          <Button
+            variant="outline"
+            type="submit"
+            className="w-full"
+            disabled={loading}
+          >
+            {loading ? "Sending OTP..." : "Continue"}
           </Button>
 
-          <Button variant="outline" className="w-full gap-2">
+          <Button
+            variant="outline"
+            className="w-full gap-2"
+            disabled={loading || walletLoading}
+          >
             <Image src={googleIcon} alt="Google icon" width={20} height={20} />
             Continue With Google
           </Button>
@@ -112,11 +137,13 @@ export default function Login() {
               alignItems: "center",
               justifyContent: "center",
               borderRadius: "9999px",
+              opacity: walletLoading ? 0.7 : 1,
+              pointerEvents: walletLoading ? "none" : "auto",
             }}
           >
             <Image src={walletIcon} alt="Wallet icon" width={20} height={20} />
             {wallet.connecting
-              ? "Connecting..."
+              ? "Connecting Wallet..."
               : wallet.connected
               ? "Connected"
               : "Continue With Wallet"}

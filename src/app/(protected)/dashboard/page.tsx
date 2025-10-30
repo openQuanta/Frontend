@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Award,
   CircleUserRound,
@@ -6,20 +10,81 @@ import {
   Stars,
 } from "lucide-react";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/client";
 
-const sampleUser = {
-  firstName: "Neos",
-  lastName: "Jennifer",
-  bio: "Research scientist exploring decentralized science, blockchain governance, and open data system",
-  solanaAddress: "",
+type Profile = {
+  id: string;
+  first_name: string | null;
+  last_name: string | null;
+  bio: string | null;
 };
 
 export default function Dashboard() {
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const supabase = createClient();
+
+      // Get the currently authenticated user
+      const {
+        data: { user },
+        error: userError,
+      } = await supabase.auth.getUser();
+
+      if (userError || !user) {
+        console.error("Error fetching user:", userError);
+        router.push("/login");
+        return;
+      }
+
+      // Try to get the user's profile
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("id, first_name, last_name, bio")
+        .eq("id", user.id)
+        .single();
+
+      if (error) {
+        console.error("Error fetching profile:", error);
+        // If profile doesn’t exist yet, redirect to profile setup page
+        if (error.code === "PGRST116" /* no rows found */) {
+          router.push("/update-profile");
+          return;
+        }
+      }
+
+      if (!data) {
+        router.push("/update-profile");
+        return;
+      }
+
+      setProfile(data);
+      setLoading(false);
+    };
+
+    fetchProfile();
+  }, [router]);
+
+  const displayName = profile
+    ? `${profile.first_name ?? ""} ${profile.last_name ?? ""}`.trim() ||
+      "Anonymous"
+    : "Loading...";
+
+  const bio =
+    profile?.bio ||
+    "Research scientist exploring decentralized science, blockchain governance, and open data systems";
+
   return (
     <main className="w-full mt-24 p-6 space-y-12">
       <section className="flex justify-between items-center max-w-[1200px] mx-auto">
         <div>
-          <h2 className="text-4xl">Hello, {sampleUser.firstName}</h2>
+          <h2 className="text-4xl">Hello, {loading ? "..." : displayName}</h2>
+          {!loading && (
+            <p className="text-white/60 mt-2 max-w-xl text-sm">{bio}</p>
+          )}
         </div>
 
         <div className="rounded-full flex items-center gap-3 p-3 px-6 border-[0.5px] border-white/24">
@@ -64,11 +129,15 @@ export default function Dashboard() {
       {/* Grid */}
       <section className="grid lg:grid-cols-4 gap-3 max-w-[1200px] mx-auto">
         <div className="aspect-square bg-white/4 border border-white/8 rounded-2xl flex items-center justify-center">
-          <Link href="/profile" className="flex flex-col items-center gap-2">
+          <Link
+            href="/update-profile"
+            className="flex flex-col items-center gap-2"
+          >
             <CircleUserRound width={64} height={64} />
-            <p>Go to Profile</p>
+            <p>Update Profile</p>
           </Link>
         </div>
+
         <div className="bg-white/4 p-3 rounded-2xl aspect-square border border-white/8 relative flex items-center justify-center">
           <div className="p-1 bg-[#D9D9D9] text-black rounded-full w-max ml-auto absolute top-3 right-3">
             <MoveUpRight width={12} height={12} />
@@ -79,6 +148,7 @@ export default function Dashboard() {
             <p>Publish</p>
           </Link>
         </div>
+
         <div className="bg-white/4 p-3 rounded-2xl aspect-square border border-white/8">
           <div className="p-1 bg-[#D9D9D9] text-black rounded-full w-max ml-auto">
             <MoveUpRight width={12} height={12} />
