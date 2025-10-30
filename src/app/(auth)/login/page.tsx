@@ -9,10 +9,33 @@ import walletIcon from "@/assets/images/wallet_icon.svg";
 import Link from "next/link";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { setCookie } from "cookies-next";
+import { useWallet } from "@solana/wallet-adapter-react";
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
+
+const WalletMultiButton = dynamic(
+  async () =>
+    (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
+  {
+    ssr: false,
+  }
+);
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const router = useRouter();
+  const wallet = useWallet();
+
+  useEffect(() => {
+    if (wallet.connected) {
+      // Store a value to indicate wallet login
+      setCookie("walletConnected", "true", { path: "/" });
+
+      // Redirect to dashboard
+      router.push("/dashboard");
+    }
+  }, [wallet.connected, router]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +43,7 @@ export default function Login() {
     console.log("Email submitted:", email);
 
     // Store the email (this is just in-memory, use context, state management, or a cookie)
-    sessionStorage.setItem("userEmail", email);
+    setCookie("userEmail", email, { path: "/" });
 
     // Redirect to dashboard
     router.push("/dashboard");
@@ -81,10 +104,23 @@ export default function Login() {
             </div>
           </div>
 
-          <Button variant="outline" className="w-full gap-2">
+          <WalletMultiButton
+            style={{
+              width: "100%",
+              display: "flex",
+              gap: "0.5rem",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "9999px",
+            }}
+          >
             <Image src={walletIcon} alt="Wallet icon" width={20} height={20} />
-            Continue With Wallet
-          </Button>
+            {wallet.connecting
+              ? "Connecting..."
+              : wallet.connected
+              ? "Connected"
+              : "Continue With Wallet"}
+          </WalletMultiButton>
 
           <footer className="mt-6 text-center text-xs text-muted-foreground">
             By logging in you agree to our{" "}
