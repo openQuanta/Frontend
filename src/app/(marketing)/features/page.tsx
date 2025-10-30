@@ -1,40 +1,40 @@
-'use client';
+"use client";
 
-import React, { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
-import { motion, useInView } from 'framer-motion';
+import React, { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 
 import {
   Caret,
   DashboardModel,
   CerficateIcon,
   FilelockIcon,
-  TargetIcon,
-  ConnectorArrow,
-  Glasses,
-  Microscope,
+  // TargetIcon,
+  // ConnectorArrow,
+  // Glasses,
+  // Microscope,
   circleTick,
-} from '@/assets/images';
-import { ScrollIndicator } from '../features/scroll-indicator';
-import DynamicScrollCards from './dynamic-cards';
-import Footer from '@/components/shared/footer';
+} from "@/assets/images";
+import { ScrollIndicator } from "../features/scroll-indicator";
+import DynamicScrollCards from "./dynamic-cards";
+import Footer from "@/components/shared/footer";
 
 // ---------------------------
 // Framer Motion Variants
 // ---------------------------
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-const slideInLeft = {
-  hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } },
-};
+// const slideInLeft = {
+//   hidden: { opacity: 0, x: -50 },
+//   visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+// };
 
 const slideInRight = {
   hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
 const fadeIn = {
@@ -53,18 +53,18 @@ interface AnimatedSectionProps {
 
 const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   children,
-  className = '',
+  className = "",
   variants = fadeInUp,
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <motion.section
       ref={ref}
       variants={variants}
       initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
+      animate={isInView ? "visible" : "hidden"}
       className={`w-full ${className}`}
     >
       {children}
@@ -76,12 +76,12 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
 // Section Data
 // ---------------------------
 const sections = [
-  { id: 'upload', label: 'Upload' },
-  { id: 'peerReview', label: 'Peer Review' },
-  { id: 'reputation', label: 'Reputation' },
-  { id: 'authorship', label: 'Authorship' },
-  { id: 'researchSharing', label: 'Research Sharing' },
-  { id: 'communityEngagement', label: 'Community Engagement' },
+  { id: "upload", label: "Upload" },
+  { id: "peerReview", label: "Peer Review" },
+  { id: "reputation", label: "Reputation" },
+  { id: "authorship", label: "Authorship" },
+  { id: "researchSharing", label: "Research Sharing" },
+  { id: "communityEngagement", label: "Community Engagement" },
 ];
 
 const sectionText = [
@@ -130,8 +130,8 @@ const ResearchPublishing = () => {
       setActiveSection(sectionIndex);
     };
 
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -146,10 +146,12 @@ const ResearchPublishing = () => {
       >
         <motion.div variants={fadeInUp}>
           <Image src={Caret} alt="caret" width={60} height={60} />
-          <h1 className="text-5xl font-light mt-6 mb-4">Reimagining Research Publishing</h1>
+          <h1 className="text-5xl font-light mt-6 mb-4">
+            Reimagining Research Publishing
+          </h1>
           <p className="text-zinc-400 text-lg max-w-[680px] mx-auto mb-8">
-            A transparent, community-driven publishing process that redefines how research is shared,
-            reviewed, and rewarded.
+            A transparent, community-driven publishing process that redefines
+            how research is shared, reviewed, and rewarded.
           </p>
         </motion.div>
 
@@ -157,7 +159,13 @@ const ResearchPublishing = () => {
           className="flex gap-6 justify-center items-center mt-4"
           variants={slideInRight}
         >
-          <Image src={DashboardModel} alt="dashboard" className="rounded-xl" width={520} height={320} />
+          <Image
+            src={DashboardModel}
+            alt="dashboard"
+            className="rounded-xl"
+            width={520}
+            height={320}
+          />
           <Image src={FilelockIcon} alt="file-lock" width={80} height={80} />
           <Image src={CerficateIcon} alt="certificate" width={80} height={80} />
         </motion.div>
@@ -179,10 +187,18 @@ const ResearchPublishing = () => {
               <div className="max-w-[861px]">
                 <h2 className="text-4xl font-light mb-6">{section.label}</h2>
                 <p className="text-[20px] text-zinc-400 leading-relaxed">
-                  {sectionText[i][`${section.id}TextA` as keyof typeof sectionText[i]]}
+                  {
+                    sectionText[i][
+                      `${section.id}TextA` as keyof (typeof sectionText)[i]
+                    ]
+                  }
                 </p>
                 <p className="text-[20px] text-zinc-400 leading-relaxed mt-5">
-                  {sectionText[i][`${section.id}TextB` as keyof typeof sectionText[i]]}
+                  {
+                    sectionText[i][
+                      `${section.id}TextB` as keyof (typeof sectionText)[i]
+                    ]
+                  }
                 </p>
               </div>
             </AnimatedSection>
@@ -199,10 +215,12 @@ const ResearchPublishing = () => {
         className="h-screen flex flex-col justify-center items-center text-center bg-zinc-900"
         variants={fadeIn}
       >
-        <h2 className="text-3xl font-light mb-4">The Future of Scientific Collaboration</h2>
+        <h2 className="text-3xl font-light mb-4">
+          The Future of Scientific Collaboration
+        </h2>
         <p className="text-zinc-400 max-w-[600px] text-lg mb-10">
-          Transparent research publishing powered by decentralized technology, rewarding
-          contribution, collaboration, and community.
+          Transparent research publishing powered by decentralized technology,
+          rewarding contribution, collaboration, and community.
         </p>
         <Image src={circleTick} alt="tick" width={100} height={100} />
       </AnimatedSection>
