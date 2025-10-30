@@ -2,29 +2,28 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
   const userEmail = request.cookies.get("userEmail")?.value;
 
-  if (!userEmail) {
-    // If the user is not authenticated, redirect to the login page
+  // Public routes that anyone can access
+  const publicRoutes = ["/", "/login", "/email-verification", "/how-it-works"];
+
+  const isPublic = publicRoutes.includes(pathname);
+
+  // Redirect logged-in users away from the login page
+  if (pathname.startsWith("/login") && userEmail) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+
+  // Protect all non-public routes
+  if (!isPublic && !userEmail) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // If the user is authenticated, allow the request to proceed
+  // Allow everything else
   return NextResponse.next();
 }
 
 export const config = {
-  /*
-   * Match all request paths except for the ones starting with:
-   * - api (API routes)
-   * - _next/static (static files)
-   * - _next/image (image optimization files)
-   * - favicon.ico (favicon file)
-   * - login (the login page itself)
-   * - (marketing) (public marketing pages)
-   */
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|login|.*\\..*).*)",
-    "/(protected)/:path*",
-  ],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)"],
 };

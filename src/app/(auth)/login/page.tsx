@@ -50,7 +50,7 @@ export default function Login() {
   };
 
   return (
-    <main className="py-32 flex flex-col gap-24 items-center">
+    <main className="py-32 p-6 flex flex-col gap-24 items-center">
       <section className="w-full max-w-[500px] mx-auto">
         <form
           onSubmit={handleSubmit}
