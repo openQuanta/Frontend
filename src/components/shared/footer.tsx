@@ -4,10 +4,13 @@ import { ChevronUp } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="p-6 flex flex-col gap-5">
-      <section className="bg-[#181615]/40 w-full max-w-[1200px] mx-auto rounded-2xl p-12 grid gap-12 md:grid-cols-2">
+    <footer className="p-6 flex flex-col gap-5 text-center md:text-left">
+      <section className="bg-[#181615]/40 w-full max-w-[1200px] mx-auto rounded-2xl grid gap-12 md:grid-cols-2">
         <div className="grid gap-8">
-          <Link href="/" className="flex items-center gap-3">
+          <Link
+            href="/"
+            className="flex items-center gap-3 justify-center md:justify-start"
+          >
             <Image
               width={40}
               height={40}
@@ -24,7 +27,7 @@ export default function Footer() {
 
           <div className="flex flex-col gap-3">
             {/* Social Icons */}
-            <div className="flex gap-5">
+            <div className="flex gap-5 justify-center md:justify-start">
               <a href="https://x.com/openquanta" target="_blank">
                 <i className="ri-twitter-fill text-xl"></i>
               </a>
