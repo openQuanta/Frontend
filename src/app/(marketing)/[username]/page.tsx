@@ -10,10 +10,8 @@ export default async function PublicProfilePage({ params }: Props) {
   const { username } = params;
 
   try {
-    // ✅ Await the client creation
     const supabase = await createClient();
 
-    // ✅ Fetch user profile by username
     const { data: profile, error } = await supabase
       .from("profiles")
       .select(
