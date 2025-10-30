@@ -21,7 +21,7 @@ export const profileSchema = z.object({
     .max(300, "Bio must be under 300 characters")
     .optional()
     .nullable(),
-  updated_at: z.string().datetime().optional().nullable(),
+  updated_at: z.string().optional().nullable(),
 });
 
 export type ProfileData = z.infer<typeof profileSchema>;
