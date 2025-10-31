@@ -46,6 +46,7 @@ export async function updateSession(request: NextRequest) {
     "/how-it-works",
     "/auth",
     "/error",
+    "/publish"
   ];
 
   if (!user && !publicRoutes.includes(request.nextUrl.pathname)) {
