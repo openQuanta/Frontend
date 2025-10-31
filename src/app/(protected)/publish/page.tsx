@@ -10,7 +10,6 @@ import {
   Plus,
   User,
   Copy,
-  File,
   FileText,
   Award,
   Calendar,
@@ -1002,7 +1001,7 @@ export default function Publish() {
                     publish.
                   </div>
                   <div>
-                    By publishing, you agree to openQuanta's{" "}
+                    By publishing, you agree to openQuanta&apos;s{" "}
                     <Link
                       href="/terms-of-service"
                       className="text-primary underline"
