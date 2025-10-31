@@ -162,7 +162,7 @@ export default function Page() {
             onTimeUpdate={handleTimeUpdate}
             className="absolute object-contain bottom-0 h-full -right-84"
           >
-            <source src="/videos/LaserVideo.webm" type="video/webm" />
+            <source src="/videos/laservideo.webm" type="video/webm" />
           </video>
 
           <div className="relative text-center md:text-left px-6 pt-40 pb-24 w-full max-w-[840px] flex flex-col items-center gap-12 md:items-start backdrop-blur-md rounded-br-[360px]">
