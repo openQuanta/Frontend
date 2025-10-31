@@ -62,7 +62,7 @@ export const researchPaperSchema = z.object({
   // Publication Date - Required
   publicationDate: z
     .string()
-    .regex(/^\d{2}\/\d{2}\/\d{4}$/, "Date must be in MM/DD/YYYY format")
+    .regex(/^\d{4}\/\d{2}\/\d{2}$/, "Date must be in YYYY/MM/DD format")
     .refine((date) => {
       const parsedDate = new Date(date);
       return !isNaN(parsedDate.getTime());
