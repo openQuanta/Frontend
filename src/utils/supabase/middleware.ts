@@ -48,8 +48,13 @@ export async function updateSession(request: NextRequest) {
     "/error",
   ];
 
-  if (!user && !publicRoutes.includes(request.nextUrl.pathname)) {
-    // no user, potentially respond by redirecting the user to the login page
+  const pathname = request.nextUrl.pathname;
+
+  // Check if route starts with any public route prefix
+  const isPublicRoute =
+    publicRoutes.includes(pathname) || pathname.startsWith("/u/");
+
+  if (!user && !isPublicRoute) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);
