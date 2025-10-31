@@ -1,8 +1,7 @@
+import { ThemeProvider } from "@/context/theme-context";
 import localFont from "next/font/local";
 import "@/app/globals.css";
 import "remixicon/fonts/remixicon.css";
-import { Toaster } from "@/components/ui/sonner";
-import { SolanaProvider } from "@/context/solana";
 
 const halenoir = localFont({
   variable: "--font-halenoir",
@@ -17,12 +16,16 @@ const halenoir = localFont({
 
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html>
       <body className={`${halenoir.variable} antialiased`}>
-        <SolanaProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
-          <Toaster />
-        </SolanaProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import * as React from "react";
+import * as React from 'react';
 import {
   motion,
   type SpringOptions,
   useMotionValue,
   useSpring,
-} from "motion/react";
+} from 'motion/react';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
-type BubbleBackgroundProps = React.ComponentProps<"div"> & {
+type BubbleBackgroundProps = React.ComponentProps<'div'> & {
   interactive?: boolean;
   transition?: SpringOptions;
   colors?: {
@@ -30,12 +30,16 @@ function BubbleBackground({
   interactive = false,
   transition = { stiffness: 100, damping: 20 },
   colors = {
-    first: "222, 88, 40",
-    second: "170, 60, 20",
-    third: "131, 48, 237",
-    fourth: "66, 7, 141",
-    fifth: "180,180,50",
-    sixth: "140,100,255",
+    first: '222, 88, 40',
+    second: '170, 60, 20',
+    third: '131, 48, 237',
+    fourth: '66, 7, 141',
+    fifth: '180,180,50',
+    sixth: '140,100,255',
+  
+
+
+
   },
   ...props
 }: BubbleBackgroundProps) {
@@ -61,16 +65,19 @@ function BubbleBackground({
       mouseY.set(e.clientY - centerY);
     };
 
-    currentContainer?.addEventListener("mousemove", handleMouseMove);
+    currentContainer?.addEventListener('mousemove', handleMouseMove);
     return () =>
-      currentContainer?.removeEventListener("mousemove", handleMouseMove);
+      currentContainer?.removeEventListener('mousemove', handleMouseMove);
   }, [interactive, mouseX, mouseY]);
 
   return (
     <div
       ref={containerRef}
       data-slot="bubble-background"
-      className={cn("relative size-full overflow-hidden bg-black", className)}
+      className={cn(
+        'relative size-full overflow-hidden bg-black',
+        className,
+      )}
       {...props}
     >
       <style>
@@ -110,12 +117,12 @@ function BubbleBackground({
 
       <div
         className="absolute inset-0"
-        style={{ filter: "url(#goo) blur(70px)" }}
+        style={{ filter: 'url(#goo) blur(70px)' }}
       >
         <motion.div
           className="absolute rounded-full w-[520px] h-[533px] top-[10%] left-[10%] bg-[radial-gradient(circle_at_center,rgba(var(--first-color),0.7)_0%,rgba(var(--first-color),0)_40%)] mix-blend-soft-light blur-3xl"
-          animate={{ y: [-50, 50, -50] }}
-          transition={{ duration: 30, ease: "easeInOut", repeat: Infinity }}
+          animate={{ y: [-50, 50, -50]}}
+          transition={{ duration: 30, ease: 'easeInOut', repeat: Infinity }}
         />
 
         <motion.div
@@ -123,9 +130,9 @@ function BubbleBackground({
           animate={{ rotate: 360 }}
           transition={{
             duration: 20,
-            ease: "linear",
+            ease: 'linear',
             repeat: Infinity,
-            repeatType: "loop",
+            repeatType: 'loop',
           }}
         >
           <div className="rounded-full size-[520px] top-[10%] left-[10%] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--second-color),0.8)_0%,rgba(var(--second-color),0)_50%)]" />
@@ -134,7 +141,7 @@ function BubbleBackground({
         <motion.div
           className="absolute inset-0 flex justify-center items-center origin-[calc(50%+400px)]"
           animate={{ rotate: 360 }}
-          transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+          transition={{ duration: 40, ease: 'linear', repeat: Infinity }}
         >
           <div className="absolute rounded-full size-[520px] bg-[radial-gradient(circle_at_center,rgba(var(--third-color),0.8)_0%,rgba(var(--third-color),0)_50%)] mix-blend-hard-light top-[calc(50%+200px)] left-[calc(50%-500px)]" />
         </motion.div>
@@ -142,13 +149,13 @@ function BubbleBackground({
         <motion.div
           className="absolute rounded-full size-[5 20px] top-[10%] left-[10%] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--fourth-color),0.8)_0%,rgba(var(--fourth-color),0)_50%)] opacity-70"
           animate={{ x: [-50, 50, -50] }}
-          transition={{ duration: 40, ease: "easeInOut", repeat: Infinity }}
+          transition={{ duration: 40, ease: 'easeInOut', repeat: Infinity }}
         />
 
         <motion.div
-          className="absolute inset-0 flex justify-center items-center origin-[calc(50%-800px)_calc(50%+200px)]"
+          className="absolute inset-0 flex justify-center items-center origin-[calc(50%_-_800px)_calc(50%_+_200px)]"
           animate={{ rotate: 360 }}
-          transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+          transition={{ duration: 20, ease: 'linear', repeat: Infinity }}
         >
           <div className="absolute rounded-full size-[220px] mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--fifth-color),0.8)_0%,rgba(var(--fifth-color),0)_50%)] top-[calc(50%-80%)] left-[calc(50%-80%)]" />
         </motion.div>
